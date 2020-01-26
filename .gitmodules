@@ -1,0 +1,6 @@
+[submodule "hashtbl"]
+	path = hashtbl
+	url = git@github.com:gergo-/hashtbl.git
+[submodule "pyswip"]
+	path = pyswip
+	url = git@github.com:yuce/pyswip.git
