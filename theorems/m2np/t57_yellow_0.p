@@ -1,0 +1,2 @@
+fof(t57_yellow_0, conjecture,  (! [A] :  (l1_orders_2(A) =>  (! [B] :  ( (v4_yellow_0(B, A) & m1_yellow_0(B, A))  =>  (! [C] :  ( (v4_yellow_0(C, A) & m1_yellow_0(C, A))  =>  (u1_struct_0(B)=u1_struct_0(C) => g1_orders_2(u1_struct_0(B), u1_orders_2(B))=g1_orders_2(u1_struct_0(C), u1_orders_2(C))) ) ) ) ) ) ) ).
+fof(d14_yellow_0, axiom,  (! [A] :  (l1_orders_2(A) =>  (! [B] :  (m1_yellow_0(B, A) =>  (v4_yellow_0(B, A) <=> u1_orders_2(B)=k1_toler_1(u1_orders_2(A), u1_struct_0(B))) ) ) ) ) ).

@@ -1,0 +1,4 @@
+fof(t57_tex_2, conjecture,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v2_pre_topc(A) &  (v3_tdlat_3(A) & l1_pre_topc(A)) ) )  =>  (! [B] :  (m1_subset_1(B, k1_zfmisc_1(u1_struct_0(A))) =>  (v3_tex_2(B, A) => k3_tarski(a_2_0_tex_2(A, B))=u1_struct_0(A)) ) ) ) ) ).
+fof(d2_tops_3, axiom,  (! [A] :  (l1_pre_topc(A) =>  (! [B] :  (m1_subset_1(B, k1_zfmisc_1(u1_struct_0(A))) =>  (v1_tops_1(B, A) <=> k2_pre_topc(A, B)=u1_struct_0(A)) ) ) ) ) ).
+fof(t48_tex_2, axiom,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v2_pre_topc(A) &  (v3_tdlat_3(A) & l1_pre_topc(A)) ) )  =>  (! [B] :  (m1_subset_1(B, k1_zfmisc_1(u1_struct_0(A))) => k2_pre_topc(A, B)=k3_tarski(a_2_0_tex_2(A, B))) ) ) ) ).
+fof(t56_tex_2, axiom,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v2_pre_topc(A) &  (v3_tdlat_3(A) & l1_pre_topc(A)) ) )  =>  (! [B] :  (m1_subset_1(B, k1_zfmisc_1(u1_struct_0(A))) =>  (v3_tex_2(B, A) => v1_tops_1(B, A)) ) ) ) ) ).

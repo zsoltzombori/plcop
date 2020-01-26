@@ -1,0 +1,2 @@
+fof(t8_tex_2, conjecture,  (! [A] :  (l1_pre_topc(A) =>  (! [B] :  (m1_pre_topc(B, A) =>  (! [C] :  (m1_subset_1(C, k1_zfmisc_1(u1_struct_0(A))) =>  (C=u1_struct_0(B) =>  (v1_subset_1(C, u1_struct_0(A)) <=> v1_tex_2(B, A)) ) ) ) ) ) ) ) ).
+fof(d1_tex_2, axiom,  (! [A] :  (l1_pre_topc(A) =>  (! [B] :  (m1_pre_topc(B, A) =>  (v1_tex_2(B, A) <=>  (! [C] :  (m1_subset_1(C, k1_zfmisc_1(u1_struct_0(A))) =>  (C=u1_struct_0(B) => v1_subset_1(C, u1_struct_0(A))) ) ) ) ) ) ) ) ).

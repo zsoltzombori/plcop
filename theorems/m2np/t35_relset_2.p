@@ -1,0 +1,2 @@
+fof(t35_relset_2, conjecture,  (! [A] :  (! [B] :  (! [C] :  (m1_subset_1(C, k1_zfmisc_1(k1_zfmisc_1(k2_zfmisc_1(A, B)))) =>  (! [D] :  (! [E] :  (! [F] :  (m1_subset_1(F, k1_zfmisc_1(D)) => m1_subset_1(a_6_0_relset_2(A, B, C, D, E, F), k1_zfmisc_1(k1_zfmisc_1(E)))) ) ) ) ) ) ) ) ).
+fof(s8_domain_1__e1_42__relset_2, axiom,  (! [A, B, C, D, E, F] :  ( (m1_subset_1(C, k1_zfmisc_1(k1_zfmisc_1(k2_zfmisc_1(A, B)))) & m1_subset_1(F, k1_zfmisc_1(D)))  => m1_subset_1(a_6_0_relset_2(A, B, C, D, E, F), k1_zfmisc_1(k1_zfmisc_1(E)))) ) ).

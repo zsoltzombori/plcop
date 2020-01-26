@@ -1,0 +1,4 @@
+fof(t4_yellow19, conjecture,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v2_pre_topc(A) & l1_pre_topc(A)) )  =>  (! [B] :  (m1_subset_1(B, u1_struct_0(A)) => r2_waybel_7(A, k1_yellow19(A, B), B)) ) ) ) ).
+fof(d5_waybel_7, axiom,  (! [A] :  ( (v2_pre_topc(A) & l1_pre_topc(A))  =>  (! [B] :  (! [C] :  (r2_waybel_7(A, B, C) <=>  (! [D] :  (m1_subset_1(D, k1_zfmisc_1(u1_struct_0(A))) =>  ( (v3_pre_topc(D, A) & r2_hidden(C, D))  => r2_hidden(D, B)) ) ) ) ) ) ) ) ).
+fof(t2_yellow19, axiom,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v2_pre_topc(A) & l1_pre_topc(A)) )  =>  (! [B] :  (m1_subset_1(B, u1_struct_0(A)) =>  (! [C] :  (r2_hidden(C, k1_yellow19(A, B)) <=> m1_connsp_2(C, A, B)) ) ) ) ) ) ).
+fof(t3_connsp_2, axiom,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v2_pre_topc(A) & l1_pre_topc(A)) )  =>  (! [B] :  (m1_subset_1(B, k1_zfmisc_1(u1_struct_0(A))) =>  (! [C] :  (m1_subset_1(C, u1_struct_0(A)) =>  ( (v3_pre_topc(B, A) & r2_hidden(C, B))  => m1_connsp_2(B, A, C)) ) ) ) ) ) ) ).

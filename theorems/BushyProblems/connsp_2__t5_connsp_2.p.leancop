@@ -1,0 +1,146 @@
+dnf(277, conjecture, [-sk38, point_neighbourhood(sk36, sk35, sk37)], g).
+dnf(278, conjecture, [-sk38, -in(sk37, sk36)], g).
+dnf(279, conjecture, [-sk38, -open_subset(sk36, sk35)], g).
+dnf(280, conjecture, [-sk38, -element(sk37, the_carrier(sk35))], g).
+dnf(281, conjecture, [-sk38, -element(sk36, powerset(the_carrier(sk35)))], g).
+dnf(282, conjecture, [-sk38, -top_str(sk35)], g).
+dnf(283, conjecture, [-sk38, -topological_space(sk35)], g).
+dnf(284, conjecture, [-sk38, empty_carrier(sk35)], g).
+dnf(285, conjecture, [sk38, #(leancop_problem_2)], g).
+dnf(13, axiom, [top_str(A), strict_top_str(A), - (A=top_str_of(the_carrier(A), the_topology(A)))], n).
+dnf(16, axiom, [in(A, B), in(B, A)], n).
+dnf(17, axiom, [v1_membered(A), element(B, A), -v1_xcmplx_0(B)], n).
+dnf(18, axiom, [v2_membered(A), element(B, A), -v1_xcmplx_0(B)], n).
+dnf(19, axiom, [v2_membered(A), element(B, A), -v1_xreal_0(B)], n).
+dnf(20, axiom, [v3_membered(A), element(B, A), -v1_xcmplx_0(B)], n).
+dnf(21, axiom, [v3_membered(A), element(B, A), -v1_xreal_0(B)], n).
+dnf(22, axiom, [v3_membered(A), element(B, A), -v1_rat_1(B)], n).
+dnf(23, axiom, [v4_membered(A), element(B, A), -v1_xcmplx_0(B)], n).
+dnf(24, axiom, [v4_membered(A), element(B, A), -v1_xreal_0(B)], n).
+dnf(25, axiom, [v4_membered(A), element(B, A), -v1_int_1(B)], n).
+dnf(26, axiom, [v4_membered(A), element(B, A), -v1_rat_1(B)], n).
+dnf(27, axiom, [v5_membered(A), element(B, A), -v1_xcmplx_0(B)], n).
+dnf(28, axiom, [v5_membered(A), element(B, A), -natural(B)], n).
+dnf(29, axiom, [v5_membered(A), element(B, A), -v1_xreal_0(B)], n).
+dnf(30, axiom, [v5_membered(A), element(B, A), -v1_int_1(B)], n).
+dnf(31, axiom, [v5_membered(A), element(B, A), -v1_rat_1(B)], n).
+dnf(32, axiom, [empty(A), -v1_membered(A)], n).
+dnf(33, axiom, [empty(A), -v2_membered(A)], n).
+dnf(34, axiom, [empty(A), -v3_membered(A)], n).
+dnf(35, axiom, [empty(A), -v4_membered(A)], n).
+dnf(36, axiom, [empty(A), -v5_membered(A)], n).
+dnf(37, axiom, [v1_membered(A), element(B, powerset(A)), -v1_membered(B)], n).
+dnf(38, axiom, [v2_membered(A), element(B, powerset(A)), -v1_membered(B)], n).
+dnf(39, axiom, [v2_membered(A), element(B, powerset(A)), -v2_membered(B)], n).
+dnf(40, axiom, [v3_membered(A), element(B, powerset(A)), -v1_membered(B)], n).
+dnf(41, axiom, [v3_membered(A), element(B, powerset(A)), -v2_membered(B)], n).
+dnf(42, axiom, [v3_membered(A), element(B, powerset(A)), -v3_membered(B)], n).
+dnf(43, axiom, [v4_membered(A), element(B, powerset(A)), -v1_membered(B)], n).
+dnf(44, axiom, [v4_membered(A), element(B, powerset(A)), -v2_membered(B)], n).
+dnf(45, axiom, [v4_membered(A), element(B, powerset(A)), -v3_membered(B)], n).
+dnf(46, axiom, [v4_membered(A), element(B, powerset(A)), -v4_membered(B)], n).
+dnf(48, axiom, [v5_membered(A), -v4_membered(A)], n).
+dnf(49, axiom, [top_str(A), topological_space(A), m1_pre_topc(B, A), -topological_space(B)], n).
+dnf(50, axiom, [v5_membered(A), element(B, powerset(A)), -v1_membered(B)], n).
+dnf(51, axiom, [v5_membered(A), element(B, powerset(A)), -v2_membered(B)], n).
+dnf(52, axiom, [v5_membered(A), element(B, powerset(A)), -v3_membered(B)], n).
+dnf(53, axiom, [v5_membered(A), element(B, powerset(A)), -v4_membered(B)], n).
+dnf(54, axiom, [v5_membered(A), element(B, powerset(A)), -v5_membered(B)], n).
+dnf(56, axiom, [v4_membered(A), -v3_membered(A)], n).
+dnf(57, axiom, [v3_membered(A), -v2_membered(A)], n).
+dnf(58, axiom, [v2_membered(A), -v1_membered(A)], n).
+dnf(286, axiom, [top_str(A), topological_space(A), -empty_carrier(A), element(B, the_carrier(A)), element(C, powerset(the_carrier(A))), point_neighbourhood(C, A, B), -in(B, interior(A, C))], n).
+dnf(287, axiom, [top_str(A), topological_space(A), -empty_carrier(A), element(B, the_carrier(A)), element(C, powerset(the_carrier(A))), in(B, interior(A, C)), -point_neighbourhood(C, A, B)], n).
+dnf(83, axiom, [element(A, powerset(powerset(B))), -strict_top_str(top_str_of(B, A))], n).
+dnf(84, axiom, [element(A, powerset(powerset(B))), -top_str(top_str_of(B, A))], n).
+dnf(288, axiom, [-element(interior(A, B), powerset(the_carrier(A))), top_str(A), element(B, powerset(the_carrier(A)))], n).
+dnf(95, axiom, [top_str(A), -one_sorted_str(A)], n).
+dnf(289, axiom, [-element(A, powerset(the_carrier(B))), point_neighbourhood(A, B, C), -empty_carrier(B), topological_space(B), top_str(B), element(C, the_carrier(B))], n).
+dnf(97, axiom, [top_str(A), m1_pre_topc(B, A), -top_str(B)], n).
+dnf(98, axiom, [top_str(A), -element(the_topology(A), powerset(powerset(the_carrier(A))))], n).
+dnf(100, axiom, [-top_str(sk6)], g).
+dnf(101, axiom, [-one_sorted_str(sk7)], g).
+dnf(290, axiom, [-point_neighbourhood(sk34(A, B), B, A), -empty_carrier(B), topological_space(B), top_str(B), element(A, the_carrier(B))], n).
+dnf(103, axiom, [top_str(A), -m1_pre_topc(sk9(A), A)], n).
+dnf(104, axiom, [-element(sk10(A), A)], n).
+dnf(107, axiom, [empty(powerset(A))], n).
+dnf(125, axiom, [-empty(empty_set)], g).
+dnf(126, axiom, [-v1_membered(empty_set)], g).
+dnf(127, axiom, [-v2_membered(empty_set)], g).
+dnf(128, axiom, [-v3_membered(empty_set)], g).
+dnf(129, axiom, [-v4_membered(empty_set)], g).
+dnf(130, axiom, [-v5_membered(empty_set)], g).
+dnf(131, axiom, [element(A, powerset(powerset(B))), top_str_of(B, A)=top_str_of(C, D), - (B=C)], n).
+dnf(132, axiom, [element(A, powerset(powerset(B))), top_str_of(B, A)=top_str_of(C, D), - (A=D)], n).
+dnf(140, axiom, [empty(sk12)], g).
+dnf(141, axiom, [-v1_membered(sk12)], g).
+dnf(142, axiom, [-v2_membered(sk12)], g).
+dnf(143, axiom, [-v3_membered(sk12)], g).
+dnf(144, axiom, [-v4_membered(sk12)], g).
+dnf(145, axiom, [-v5_membered(sk12)], g).
+dnf(146, axiom, [-top_str(sk13)], g).
+dnf(147, axiom, [-strict_top_str(sk13)], g).
+dnf(150, axiom, [-empty(A), -element(sk15(A), powerset(A))], n).
+dnf(151, axiom, [-empty(A), empty(sk15(A))], n).
+dnf(162, axiom, [-top_str(sk17)], g).
+dnf(163, axiom, [empty_carrier(sk17)], g).
+dnf(164, axiom, [-strict_top_str(sk17)], g).
+dnf(165, axiom, [-topological_space(sk17)], g).
+dnf(168, axiom, [-element(sk19(A), powerset(A))], n).
+dnf(169, axiom, [-empty(sk19(A))], n).
+dnf(173, axiom, [top_str(A), -m1_pre_topc(sk21(A), A)], n).
+dnf(174, axiom, [top_str(A), -strict_top_str(sk21(A))], n).
+dnf(177, axiom, [-m1_pre_topc(sk23(A), A), -empty_carrier(A), top_str(A)], n).
+dnf(178, axiom, [empty_carrier(sk23(A)), -empty_carrier(A), top_str(A)], n).
+dnf(179, axiom, [-strict_top_str(sk23(A)), -empty_carrier(A), top_str(A)], n).
+dnf(182, axiom, [-m1_pre_topc(sk25(A), A), topological_space(A), top_str(A)], n).
+dnf(183, axiom, [-strict_top_str(sk25(A)), topological_space(A), top_str(A)], n).
+dnf(184, axiom, [-topological_space(sk25(A)), topological_space(A), top_str(A)], n).
+dnf(187, axiom, [-element(sk27(A), powerset(the_carrier(A))), topological_space(A), top_str(A)], n).
+dnf(188, axiom, [-closed_subset(sk27(A), A), topological_space(A), top_str(A)], n).
+dnf(189, axiom, [-element(sk28(A), powerset(the_carrier(A))), -empty_carrier(A), topological_space(A), top_str(A)], n).
+dnf(190, axiom, [empty(sk28(A)), -empty_carrier(A), topological_space(A), top_str(A)], n).
+dnf(191, axiom, [-closed_subset(sk28(A), A), -empty_carrier(A), topological_space(A), top_str(A)], n).
+dnf(195, axiom, [-subset(A, A)], n).
+dnf(207, axiom, [in(A, B), -element(A, B)], n).
+dnf(209, axiom, [element(A, B), -empty(B), -in(A, B)], n).
+dnf(213, axiom, [element(A, powerset(B)), -subset(A, B)], n).
+dnf(214, axiom, [-element(A, powerset(B)), subset(A, B)], n).
+dnf(216, axiom, [-element(A, B), in(A, C), element(C, powerset(B))], n).
+dnf(291, axiom, [top_str(A), topological_space(A), top_str(B), element(C, powerset(the_carrier(A))), element(D, powerset(the_carrier(B))), open_subset(D, B), - (interior(B, D)=D)], n).
+dnf(292, axiom, [top_str(A), topological_space(A), top_str(B), element(C, powerset(the_carrier(A))), element(D, powerset(the_carrier(B))), interior(A, C)=C, -open_subset(C, A)], n).
+dnf(217, axiom, [in(A, B), element(B, powerset(C)), empty(C)], n).
+dnf(219, axiom, [empty(A), - (A=empty_set)], n).
+dnf(220, axiom, [in(A, B), empty(B)], n).
+dnf(221, axiom, [empty(A), - (A=B), empty(B)], n).
+dnf(222, axiom, [- (A=A)], n).
+dnf(223, axiom, [A=B, - (B=A)], n).
+dnf(224, axiom, [- (A=B), A=C, C=B], n).
+dnf(225, axiom, [-v1_xcmplx_0(A), B=A, v1_xcmplx_0(B)], n).
+dnf(243, axiom, [-natural(A), B=A, natural(B)], n).
+dnf(226, axiom, [-v1_xreal_0(A), B=A, v1_xreal_0(B)], n).
+dnf(227, axiom, [-v1_int_1(A), B=A, v1_int_1(B)], n).
+dnf(228, axiom, [-v1_rat_1(A), B=A, v1_rat_1(B)], n).
+dnf(256, axiom, [-one_sorted_str(A), B=A, one_sorted_str(B)], n).
+dnf(293, axiom, [-point_neighbourhood(A, B, C), point_neighbourhood(D, E, F), D=A, E=B, F=C], n).
+dnf(231, axiom, [-v1_membered(A), B=A, v1_membered(B)], n).
+dnf(232, axiom, [-v2_membered(A), B=A, v2_membered(B)], n).
+dnf(233, axiom, [-v3_membered(A), B=A, v3_membered(B)], n).
+dnf(234, axiom, [-v4_membered(A), B=A, v4_membered(B)], n).
+dnf(235, axiom, [-v5_membered(A), B=A, v5_membered(B)], n).
+dnf(246, axiom, [-m1_pre_topc(A, B), m1_pre_topc(C, D), C=A, D=B], n).
+dnf(247, axiom, [-strict_top_str(A), B=A, strict_top_str(B)], n).
+dnf(255, axiom, [-empty_carrier(A), B=A, empty_carrier(B)], n).
+dnf(249, axiom, [-closed_subset(A, B), closed_subset(C, D), C=A, D=B], n).
+dnf(254, axiom, [-subset(A, B), subset(C, D), C=A, D=B], n).
+dnf(248, axiom, [-topological_space(A), B=A, topological_space(B)], n).
+dnf(251, axiom, [-top_str(A), B=A, top_str(B)], n).
+dnf(294, axiom, [-open_subset(A, B), open_subset(C, D), C=A, D=B], n).
+dnf(257, axiom, [-element(A, B), element(C, D), C=A, D=B], n).
+dnf(259, axiom, [-in(A, B), in(C, D), C=A, D=B], n).
+dnf(260, axiom, [-empty(A), B=A, empty(B)], n).
+dnf(261, axiom, [A=B, - (the_topology(A)=the_topology(B))], n).
+dnf(263, axiom, [- (top_str_of(A, B)=top_str_of(C, D)), A=C, B=D], n).
+dnf(276, axiom, [A=B, - (the_carrier(A)=the_carrier(B))], n).
+dnf(295, axiom, [- (interior(A, B)=interior(C, D)), A=C, B=D], n).
+dnf(275, axiom, [A=B, - (powerset(A)=powerset(B))], n).

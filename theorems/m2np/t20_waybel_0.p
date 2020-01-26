@@ -1,0 +1,4 @@
+fof(t20_waybel_0, conjecture,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v3_orders_2(A) &  (v5_orders_2(A) & l1_orders_2(A)) ) )  =>  (! [B] :  (m1_subset_1(B, u1_struct_0(A)) =>  (! [C] :  (m1_subset_1(C, u1_struct_0(A)) =>  (k6_waybel_0(A, B)=k6_waybel_0(A, C) => B=C) ) ) ) ) ) ) ).
+fof(d1_yellow_0, axiom,  (! [A] :  ( ( ~ (v2_struct_0(A))  & l1_orders_2(A))  =>  (v3_orders_2(A) <=>  (! [B] :  (m1_subset_1(B, u1_struct_0(A)) => r1_orders_2(A, B, B)) ) ) ) ) ).
+fof(d3_yellow_0, axiom,  (! [A] :  (l1_orders_2(A) =>  (v5_orders_2(A) <=>  (! [B] :  (m1_subset_1(B, u1_struct_0(A)) =>  (! [C] :  (m1_subset_1(C, u1_struct_0(A)) =>  ( (r1_orders_2(A, B, C) & r1_orders_2(A, C, B))  => B=C) ) ) ) ) ) ) ) ).
+fof(t18_waybel_0, axiom,  (! [A] :  ( ( ~ (v2_struct_0(A))  & l1_orders_2(A))  =>  (! [B] :  (m1_subset_1(B, u1_struct_0(A)) =>  (! [C] :  (m1_subset_1(C, u1_struct_0(A)) =>  (r2_hidden(C, k6_waybel_0(A, B)) <=> r1_orders_2(A, B, C)) ) ) ) ) ) ) ).

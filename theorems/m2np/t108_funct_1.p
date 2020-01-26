@@ -1,0 +1,2 @@
+fof(t108_funct_1, conjecture,  (! [A] :  (! [B] :  (! [C] :  ( (v1_relat_1(C) & v1_funct_1(C))  =>  ( (r2_hidden(A, B) & r2_hidden(A, k9_xtuple_0(C)))  => r2_hidden(k1_funct_1(C, A), k7_relat_1(C, B))) ) ) ) ) ).
+fof(d6_funct_1, axiom,  (! [A] :  ( (v1_relat_1(A) & v1_funct_1(A))  =>  (! [B] :  (! [C] :  (C=k7_relat_1(A, B) <=>  (! [D] :  (r2_hidden(D, C) <=>  (? [E] :  (r2_hidden(E, k9_xtuple_0(A)) &  (r2_hidden(E, B) & D=k1_funct_1(A, E)) ) ) ) ) ) ) ) ) ) ).

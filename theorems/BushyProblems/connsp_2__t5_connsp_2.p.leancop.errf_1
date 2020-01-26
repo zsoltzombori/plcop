@@ -1,0 +1,8 @@
+Warning: /home/urban/big/leantst1/leancop_dnf.pl:607:
+	Redefined static procedure assert_renvar/2
+Warning: /home/urban/big/leantst1/leancop_dnf.pl:614:
+	Redefined static procedure leancop_proof/2
+Warning: /home/urban/big/leantst1/leancop_dnf.pl:718:
+	Singleton variables: [DNF_Mat]
+0.69user 0.28system 0:01.07elapsed 91%CPU (0avgtext+0avgdata 4124maxresident)k
+0inputs+5216outputs (0major+7085minor)pagefaults 0swaps

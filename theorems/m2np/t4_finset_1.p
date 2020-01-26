@@ -1,0 +1,3 @@
+fof(t4_finset_1, conjecture,  (! [A] :  (! [B] :  (v1_finset_1(A) => v1_finset_1(k6_subset_1(A, B))) ) ) ).
+fof(fc12_finset_1, axiom,  (! [A, B] :  (v1_finset_1(A) => v1_finset_1(k4_xboole_0(A, B))) ) ).
+fof(redefinition_k6_subset_1, axiom,  (! [A, B] : k6_subset_1(A, B)=k4_xboole_0(A, B)) ).

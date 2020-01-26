@@ -1,0 +1,2 @@
+fof(t55_relset_2, conjecture,  (! [A] :  (! [B] :  (! [C] :  (m1_subset_1(C, k1_zfmisc_1(k2_zfmisc_1(B, A))) =>  (k9_xtuple_0(C)=k7_relset_1(A, B, k3_relset_1(B, A, C), A) & k7_relset_1(A, B, k3_relset_1(B, A, C), k7_relset_1(B, A, C, B))=k7_relset_1(A, B, k3_relset_1(B, A, C), k10_xtuple_0(C))) ) ) ) ) ).
+fof(t50_relset_2, axiom,  (! [A] :  (! [B] :  (! [C] :  (m1_subset_1(C, k1_zfmisc_1(k2_zfmisc_1(B, A))) =>  (k9_xtuple_0(C)=k7_relset_1(A, B, k3_relset_1(B, A, C), A) & k10_xtuple_0(C)=k7_relset_1(B, A, C, B)) ) ) ) ) ).

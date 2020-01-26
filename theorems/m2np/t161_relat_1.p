@@ -1,0 +1,2 @@
+fof(t161_relat_1, conjecture,  (! [A] :  (v1_relat_1(A) =>  (! [B] :  (v1_relat_1(B) =>  ( (k9_xtuple_0(A)=k1_xboole_0 & k9_xtuple_0(B)=k1_xboole_0)  => A=B) ) ) ) ) ).
+fof(t41_relat_1, axiom,  (! [A] :  (v1_relat_1(A) =>  ( (k9_xtuple_0(A)=k1_xboole_0 | k10_xtuple_0(A)=k1_xboole_0)  => A=k1_xboole_0) ) ) ).

@@ -1,0 +1,279 @@
+dnf(1, conjecture, [-sk32, element(A, powerset(powerset(the_carrier(sk29)))), centered(A), closed_subsets(A, sk29), meet_of_subsets(the_carrier(sk29), A)=empty_set], n).
+dnf(2, conjecture, [-sk32, compact_top_space(sk29)], g).
+dnf(3, conjecture, [-sk31, - (meet_of_subsets(the_carrier(sk29), sk30)=empty_set)], g).
+dnf(4, conjecture, [-sk31, -closed_subsets(sk30, sk29)], g).
+dnf(5, conjecture, [-sk31, -centered(sk30)], g).
+dnf(6, conjecture, [-sk31, -element(sk30, powerset(powerset(the_carrier(sk29))))], g).
+dnf(7, conjecture, [-sk31, -compact_top_space(sk29)], g).
+dnf(8, conjecture, [-sk33, sk31, sk32], g).
+dnf(9, conjecture, [-sk33, -top_str(sk29)], g).
+dnf(10, conjecture, [-sk33, -topological_space(sk29)], g).
+dnf(11, conjecture, [-sk33, empty_carrier(sk29)], g).
+dnf(12, conjecture, [#(leancop_problem_1), sk33], g).
+dnf(13, axiom, [top_str(A), strict_top_str(A), - (A=top_str_of(the_carrier(A), the_topology(A)))], n).
+dnf(14, axiom, [one_sorted_str(A), strict_one_sorted(A), - (A=one_sorted_str_of(the_carrier(A)))], n).
+dnf(15, axiom, [zero_str(A), strict_zero_str(A), - (A=zero_str_of(the_carrier(A), the_zero(A)))], n).
+dnf(16, axiom, [in(A, B), in(B, A)], n).
+dnf(17, axiom, [v1_membered(A), element(B, A), -v1_xcmplx_0(B)], n).
+dnf(18, axiom, [v2_membered(A), element(B, A), -v1_xcmplx_0(B)], n).
+dnf(19, axiom, [v2_membered(A), element(B, A), -v1_xreal_0(B)], n).
+dnf(20, axiom, [v3_membered(A), element(B, A), -v1_xcmplx_0(B)], n).
+dnf(21, axiom, [v3_membered(A), element(B, A), -v1_xreal_0(B)], n).
+dnf(22, axiom, [v3_membered(A), element(B, A), -v1_rat_1(B)], n).
+dnf(23, axiom, [v4_membered(A), element(B, A), -v1_xcmplx_0(B)], n).
+dnf(24, axiom, [v4_membered(A), element(B, A), -v1_xreal_0(B)], n).
+dnf(25, axiom, [v4_membered(A), element(B, A), -v1_int_1(B)], n).
+dnf(26, axiom, [v4_membered(A), element(B, A), -v1_rat_1(B)], n).
+dnf(27, axiom, [v5_membered(A), element(B, A), -v1_xcmplx_0(B)], n).
+dnf(28, axiom, [v5_membered(A), element(B, A), -natural(B)], n).
+dnf(29, axiom, [v5_membered(A), element(B, A), -v1_xreal_0(B)], n).
+dnf(30, axiom, [v5_membered(A), element(B, A), -v1_int_1(B)], n).
+dnf(31, axiom, [v5_membered(A), element(B, A), -v1_rat_1(B)], n).
+dnf(32, axiom, [empty(A), -v1_membered(A)], n).
+dnf(33, axiom, [empty(A), -v2_membered(A)], n).
+dnf(34, axiom, [empty(A), -v3_membered(A)], n).
+dnf(35, axiom, [empty(A), -v4_membered(A)], n).
+dnf(36, axiom, [empty(A), -v5_membered(A)], n).
+dnf(37, axiom, [v1_membered(A), element(B, powerset(A)), -v1_membered(B)], n).
+dnf(38, axiom, [v2_membered(A), element(B, powerset(A)), -v1_membered(B)], n).
+dnf(39, axiom, [v2_membered(A), element(B, powerset(A)), -v2_membered(B)], n).
+dnf(40, axiom, [v3_membered(A), element(B, powerset(A)), -v1_membered(B)], n).
+dnf(41, axiom, [v3_membered(A), element(B, powerset(A)), -v2_membered(B)], n).
+dnf(42, axiom, [v3_membered(A), element(B, powerset(A)), -v3_membered(B)], n).
+dnf(43, axiom, [v4_membered(A), element(B, powerset(A)), -v1_membered(B)], n).
+dnf(44, axiom, [v4_membered(A), element(B, powerset(A)), -v2_membered(B)], n).
+dnf(45, axiom, [v4_membered(A), element(B, powerset(A)), -v3_membered(B)], n).
+dnf(46, axiom, [v4_membered(A), element(B, powerset(A)), -v4_membered(B)], n).
+dnf(47, axiom, [empty(A), -finite(A)], n).
+dnf(48, axiom, [v5_membered(A), -v4_membered(A)], n).
+dnf(49, axiom, [top_str(A), topological_space(A), m1_pre_topc(B, A), -topological_space(B)], n).
+dnf(50, axiom, [v5_membered(A), element(B, powerset(A)), -v1_membered(B)], n).
+dnf(51, axiom, [v5_membered(A), element(B, powerset(A)), -v2_membered(B)], n).
+dnf(52, axiom, [v5_membered(A), element(B, powerset(A)), -v3_membered(B)], n).
+dnf(53, axiom, [v5_membered(A), element(B, powerset(A)), -v4_membered(B)], n).
+dnf(54, axiom, [v5_membered(A), element(B, powerset(A)), -v5_membered(B)], n).
+dnf(55, axiom, [finite(A), element(B, powerset(A)), -finite(B)], n).
+dnf(56, axiom, [v4_membered(A), -v3_membered(A)], n).
+dnf(57, axiom, [v3_membered(A), -v2_membered(A)], n).
+dnf(58, axiom, [v2_membered(A), -v1_membered(A)], n).
+dnf(59, axiom, [- (A=empty_set), sk1(A)=empty_set, -centered(A)], n).
+dnf(60, axiom, [- (A=empty_set), -subset(sk1(A), A), -centered(A)], n).
+dnf(61, axiom, [- (A=empty_set), -finite(sk1(A)), -centered(A)], n).
+dnf(62, axiom, [- (A=empty_set), - (set_meet(sk1(A))=empty_set), -centered(A)], n).
+dnf(63, axiom, [centered(A), A=empty_set], n).
+dnf(64, axiom, [centered(A), - (B=empty_set), subset(B, A), finite(B), set_meet(B)=empty_set], n).
+dnf(65, axiom, [top_str(A), compact_top_space(A), element(B, powerset(powerset(the_carrier(A)))), is_a_cover_of_carrier(A, B), open_subsets(B, A), -element(sk2(B, A), powerset(powerset(the_carrier(A))))], n).
+dnf(66, axiom, [top_str(A), compact_top_space(A), element(B, powerset(powerset(the_carrier(A)))), is_a_cover_of_carrier(A, B), open_subsets(B, A), -subset(sk2(B, A), B)], n).
+dnf(67, axiom, [top_str(A), compact_top_space(A), element(B, powerset(powerset(the_carrier(A)))), is_a_cover_of_carrier(A, B), open_subsets(B, A), -is_a_cover_of_carrier(A, sk2(B, A))], n).
+dnf(68, axiom, [top_str(A), compact_top_space(A), element(B, powerset(powerset(the_carrier(A)))), is_a_cover_of_carrier(A, B), open_subsets(B, A), -finite(sk2(B, A))], n).
+dnf(69, axiom, [top_str(A), -compact_top_space(A), -element(sk3(A), powerset(powerset(the_carrier(A))))], n).
+dnf(70, axiom, [top_str(A), -compact_top_space(A), -is_a_cover_of_carrier(A, sk3(A))], n).
+dnf(71, axiom, [top_str(A), -compact_top_space(A), -open_subsets(sk3(A), A)], n).
+dnf(72, axiom, [top_str(A), -compact_top_space(A), element(B, powerset(powerset(the_carrier(A)))), subset(B, sk3(A)), is_a_cover_of_carrier(A, B), finite(B)], n).
+dnf(73, axiom, [-subset(A, B), -in(sk4(B, A), A)], n).
+dnf(74, axiom, [-subset(A, B), in(sk4(B, A), B)], n).
+dnf(75, axiom, [subset(A, B), in(C, A), -in(C, B)], n).
+dnf(76, axiom, [one_sorted_str(A), element(B, powerset(powerset(the_carrier(A)))), is_a_cover_of_carrier(A, B), - (cast_as_carrier_subset(A)=union_of_subsets(the_carrier(A), B))], n).
+dnf(77, axiom, [one_sorted_str(A), element(B, powerset(powerset(the_carrier(A)))), cast_as_carrier_subset(A)=union_of_subsets(the_carrier(A), B), -is_a_cover_of_carrier(A, B)], n).
+dnf(78, axiom, [element(A, powerset(powerset(B))), element(C, powerset(powerset(B))), - (C=complements_of_subsets(B, A)), -element(sk5(C, A, B), powerset(B))], n).
+dnf(79, axiom, [element(A, powerset(powerset(B))), element(C, powerset(powerset(B))), - (C=complements_of_subsets(B, A)), in(sk5(C, A, B), C), in(subset_complement(B, sk5(C, A, B)), A)], n).
+dnf(80, axiom, [element(A, powerset(powerset(B))), element(C, powerset(powerset(B))), - (C=complements_of_subsets(B, A)), -in(sk5(C, A, B), C), -in(subset_complement(B, sk5(C, A, B)), A)], n).
+dnf(81, axiom, [element(A, powerset(powerset(B))), element(C, powerset(powerset(B))), C=complements_of_subsets(B, A), element(D, powerset(B)), in(D, C), -in(subset_complement(B, D), A)], n).
+dnf(82, axiom, [element(A, powerset(powerset(B))), element(C, powerset(powerset(B))), C=complements_of_subsets(B, A), element(D, powerset(B)), -in(D, C), in(subset_complement(B, D), A)], n).
+dnf(83, axiom, [element(A, powerset(powerset(B))), -strict_top_str(top_str_of(B, A))], n).
+dnf(84, axiom, [element(A, powerset(powerset(B))), -top_str(top_str_of(B, A))], n).
+dnf(85, axiom, [-strict_one_sorted(one_sorted_str_of(A))], n).
+dnf(86, axiom, [-one_sorted_str(one_sorted_str_of(A))], n).
+dnf(87, axiom, [element(A, B), -strict_zero_str(zero_str_of(B, A))], n).
+dnf(88, axiom, [element(A, B), -zero_str(zero_str_of(B, A))], n).
+dnf(89, axiom, [one_sorted_str(A), -element(cast_as_carrier_subset(A), powerset(the_carrier(A)))], n).
+dnf(90, axiom, [element(A, powerset(B)), -element(subset_complement(B, A), powerset(B))], n).
+dnf(91, axiom, [element(A, powerset(powerset(B))), -element(union_of_subsets(B, A), powerset(B))], n).
+dnf(92, axiom, [element(A, powerset(powerset(B))), -element(meet_of_subsets(B, A), powerset(B))], n).
+dnf(93, axiom, [-element(subset_difference(A, B, C), powerset(A)), element(B, powerset(A)), element(C, powerset(A))], n).
+dnf(94, axiom, [element(A, powerset(powerset(B))), -element(complements_of_subsets(B, A), powerset(powerset(B)))], n).
+dnf(95, axiom, [top_str(A), -one_sorted_str(A)], n).
+dnf(96, axiom, [zero_str(A), -one_sorted_str(A)], n).
+dnf(97, axiom, [top_str(A), m1_pre_topc(B, A), -top_str(B)], n).
+dnf(98, axiom, [top_str(A), -element(the_topology(A), powerset(powerset(the_carrier(A))))], n).
+dnf(99, axiom, [zero_str(A), -element(the_zero(A), the_carrier(A))], n).
+dnf(100, axiom, [-top_str(sk6)], g).
+dnf(101, axiom, [-one_sorted_str(sk7)], g).
+dnf(102, axiom, [-zero_str(sk8)], g).
+dnf(103, axiom, [top_str(A), -m1_pre_topc(sk9(A), A)], n).
+dnf(104, axiom, [-element(sk10(A), A)], n).
+dnf(105, axiom, [finite(A), -finite(set_difference(A, B))], n).
+dnf(106, axiom, [empty(the_carrier(A)), -empty_carrier(A), one_sorted_str(A)], n).
+dnf(107, axiom, [empty(powerset(A))], n).
+dnf(108, axiom, [empty(cast_as_carrier_subset(A)), -empty_carrier(A), one_sorted_str(A)], n).
+dnf(109, axiom, [v1_membered(A), -v1_membered(set_difference(A, B))], n).
+dnf(110, axiom, [v2_membered(A), -v1_membered(set_difference(A, B))], n).
+dnf(111, axiom, [v2_membered(A), -v2_membered(set_difference(A, B))], n).
+dnf(112, axiom, [v3_membered(A), -v1_membered(set_difference(A, B))], n).
+dnf(113, axiom, [v3_membered(A), -v2_membered(set_difference(A, B))], n).
+dnf(114, axiom, [v3_membered(A), -v3_membered(set_difference(A, B))], n).
+dnf(115, axiom, [v4_membered(A), -v1_membered(set_difference(A, B))], n).
+dnf(116, axiom, [v4_membered(A), -v2_membered(set_difference(A, B))], n).
+dnf(117, axiom, [v4_membered(A), -v3_membered(set_difference(A, B))], n).
+dnf(118, axiom, [v4_membered(A), -v4_membered(set_difference(A, B))], n).
+dnf(119, axiom, [v5_membered(A), -v1_membered(set_difference(A, B))], n).
+dnf(120, axiom, [v5_membered(A), -v2_membered(set_difference(A, B))], n).
+dnf(121, axiom, [v5_membered(A), -v3_membered(set_difference(A, B))], n).
+dnf(122, axiom, [v5_membered(A), -v4_membered(set_difference(A, B))], n).
+dnf(123, axiom, [v5_membered(A), -v5_membered(set_difference(A, B))], n).
+dnf(124, axiom, [-closed_subset(cast_as_carrier_subset(A), A), topological_space(A), top_str(A)], n).
+dnf(125, axiom, [-empty(empty_set)], g).
+dnf(126, axiom, [-v1_membered(empty_set)], g).
+dnf(127, axiom, [-v2_membered(empty_set)], g).
+dnf(128, axiom, [-v3_membered(empty_set)], g).
+dnf(129, axiom, [-v4_membered(empty_set)], g).
+dnf(130, axiom, [-v5_membered(empty_set)], g).
+dnf(131, axiom, [element(A, powerset(powerset(B))), top_str_of(B, A)=top_str_of(C, D), - (B=C)], n).
+dnf(132, axiom, [element(A, powerset(powerset(B))), top_str_of(B, A)=top_str_of(C, D), - (A=D)], n).
+dnf(133, axiom, [one_sorted_str_of(A)=one_sorted_str_of(B), - (A=B)], n).
+dnf(134, axiom, [element(A, B), zero_str_of(B, A)=zero_str_of(C, D), - (B=C)], n).
+dnf(135, axiom, [element(A, B), zero_str_of(B, A)=zero_str_of(C, D), - (A=D)], n).
+dnf(136, axiom, [element(A, powerset(B)), - (subset_complement(B, subset_complement(B, A))=A)], n).
+dnf(137, axiom, [element(A, powerset(powerset(B))), - (complements_of_subsets(B, complements_of_subsets(B, A))=A)], n).
+dnf(138, axiom, [empty(sk11)], g).
+dnf(139, axiom, [-finite(sk11)], g).
+dnf(140, axiom, [empty(sk12)], g).
+dnf(141, axiom, [-v1_membered(sk12)], g).
+dnf(142, axiom, [-v2_membered(sk12)], g).
+dnf(143, axiom, [-v3_membered(sk12)], g).
+dnf(144, axiom, [-v4_membered(sk12)], g).
+dnf(145, axiom, [-v5_membered(sk12)], g).
+dnf(146, axiom, [-top_str(sk13)], g).
+dnf(147, axiom, [-strict_top_str(sk13)], g).
+dnf(148, axiom, [-one_sorted_str(sk14)], g).
+dnf(149, axiom, [-strict_one_sorted(sk14)], g).
+dnf(150, axiom, [-empty(A), -element(sk15(A), powerset(A))], n).
+dnf(151, axiom, [-empty(A), empty(sk15(A))], n).
+dnf(152, axiom, [-element(sk16(A), powerset(A))], n).
+dnf(153, axiom, [-empty(sk16(A))], n).
+dnf(154, axiom, [-relation(sk16(A))], n).
+dnf(155, axiom, [-function(sk16(A))], n).
+dnf(156, axiom, [-one_to_one(sk16(A))], n).
+dnf(157, axiom, [-epsilon_transitive(sk16(A))], n).
+dnf(158, axiom, [-epsilon_connected(sk16(A))], n).
+dnf(159, axiom, [-ordinal(sk16(A))], n).
+dnf(160, axiom, [-natural(sk16(A))], n).
+dnf(161, axiom, [-finite(sk16(A))], n).
+dnf(162, axiom, [-top_str(sk17)], g).
+dnf(163, axiom, [empty_carrier(sk17)], g).
+dnf(164, axiom, [-strict_top_str(sk17)], g).
+dnf(165, axiom, [-topological_space(sk17)], g).
+dnf(166, axiom, [-zero_str(sk18)], g).
+dnf(167, axiom, [-strict_zero_str(sk18)], g).
+dnf(168, axiom, [-element(sk19(A), powerset(A))], n).
+dnf(169, axiom, [-empty(sk19(A))], n).
+dnf(170, axiom, [-empty(A), -element(sk20(A), powerset(A))], n).
+dnf(171, axiom, [-empty(A), empty(sk20(A))], n).
+dnf(172, axiom, [-empty(A), -finite(sk20(A))], n).
+dnf(173, axiom, [top_str(A), -m1_pre_topc(sk21(A), A)], n).
+dnf(174, axiom, [top_str(A), -strict_top_str(sk21(A))], n).
+dnf(175, axiom, [-one_sorted_str(sk22)], g).
+dnf(176, axiom, [empty_carrier(sk22)], g).
+dnf(170, axiom, [-empty(A), -element(sk20(A), powerset(A))], n).
+dnf(171, axiom, [-empty(A), empty(sk20(A))], n).
+dnf(172, axiom, [-empty(A), -finite(sk20(A))], n).
+dnf(177, axiom, [-m1_pre_topc(sk23(A), A), -empty_carrier(A), top_str(A)], n).
+dnf(178, axiom, [empty_carrier(sk23(A)), -empty_carrier(A), top_str(A)], n).
+dnf(179, axiom, [-strict_top_str(sk23(A)), -empty_carrier(A), top_str(A)], n).
+dnf(180, axiom, [-zero_str(sk24)], g).
+dnf(181, axiom, [empty_carrier(sk24)], g).
+dnf(182, axiom, [-m1_pre_topc(sk25(A), A), topological_space(A), top_str(A)], n).
+dnf(183, axiom, [-strict_top_str(sk25(A)), topological_space(A), top_str(A)], n).
+dnf(184, axiom, [-topological_space(sk25(A)), topological_space(A), top_str(A)], n).
+dnf(185, axiom, [-element(sk26(A), powerset(the_carrier(A))), -empty_carrier(A), one_sorted_str(A)], n).
+dnf(186, axiom, [empty(sk26(A)), -empty_carrier(A), one_sorted_str(A)], n).
+dnf(187, axiom, [-element(sk27(A), powerset(the_carrier(A))), topological_space(A), top_str(A)], n).
+dnf(188, axiom, [-closed_subset(sk27(A), A), topological_space(A), top_str(A)], n).
+dnf(189, axiom, [-element(sk28(A), powerset(the_carrier(A))), -empty_carrier(A), topological_space(A), top_str(A)], n).
+dnf(190, axiom, [empty(sk28(A)), -empty_carrier(A), topological_space(A), top_str(A)], n).
+dnf(191, axiom, [-closed_subset(sk28(A), A), -empty_carrier(A), topological_space(A), top_str(A)], n).
+dnf(192, axiom, [element(A, powerset(powerset(B))), - (union_of_subsets(B, A)=union(A))], n).
+dnf(193, axiom, [element(A, powerset(powerset(B))), - (meet_of_subsets(B, A)=set_meet(A))], n).
+dnf(194, axiom, [- (subset_difference(A, B, C)=set_difference(B, C)), element(B, powerset(A)), element(C, powerset(A))], n).
+dnf(195, axiom, [-subset(A, A)], n).
+dnf(196, axiom, [element(A, powerset(powerset(B))), - (A=empty_set), complements_of_subsets(B, A)=empty_set], n).
+dnf(197, axiom, [element(A, powerset(powerset(B))), - (complements_of_subsets(B, A)=empty_set), A=empty_set], n).
+dnf(198, axiom, [element(A, powerset(powerset(B))), - (A=empty_set), - (meet_of_subsets(B, complements_of_subsets(B, A))=subset_complement(B, union_of_subsets(B, A)))], n).
+dnf(199, axiom, [element(A, powerset(powerset(B))), - (A=empty_set), - (union_of_subsets(B, complements_of_subsets(B, A))=subset_complement(B, meet_of_subsets(B, A)))], n).
+dnf(200, axiom, [one_sorted_str(A), element(B, powerset(powerset(the_carrier(A)))), finite(complements_of_subsets(the_carrier(A), B)), -finite(B)], n).
+dnf(201, axiom, [one_sorted_str(A), element(B, powerset(powerset(the_carrier(A)))), finite(B), -finite(complements_of_subsets(the_carrier(A), B))], n).
+dnf(202, axiom, [top_str(A), element(B, powerset(powerset(the_carrier(A)))), closed_subsets(B, A), -open_subsets(complements_of_subsets(the_carrier(A), B), A)], n).
+dnf(203, axiom, [top_str(A), element(B, powerset(powerset(the_carrier(A)))), open_subsets(complements_of_subsets(the_carrier(A), B), A), -closed_subsets(B, A)], n).
+dnf(204, axiom, [one_sorted_str(A), element(B, powerset(the_carrier(A))), - (subset_complement(the_carrier(A), B)=subset_difference(the_carrier(A), cast_as_carrier_subset(A), B))], n).
+dnf(205, axiom, [top_str(A), element(B, powerset(powerset(the_carrier(A)))), open_subsets(B, A), -closed_subsets(complements_of_subsets(the_carrier(A), B), A)], n).
+dnf(206, axiom, [top_str(A), element(B, powerset(powerset(the_carrier(A)))), closed_subsets(complements_of_subsets(the_carrier(A), B), A), -open_subsets(B, A)], n).
+dnf(207, axiom, [in(A, B), -element(A, B)], n).
+dnf(208, axiom, [-subset(A, B), subset(A, C), subset(C, B)], n).
+dnf(209, axiom, [element(A, B), -empty(B), -in(A, B)], n).
+dnf(210, axiom, [set_difference(A, B)=empty_set, -subset(A, B)], n).
+dnf(211, axiom, [- (set_difference(A, B)=empty_set), subset(A, B)], n).
+dnf(212, axiom, [- (set_difference(A, empty_set)=A)], n).
+dnf(213, axiom, [element(A, powerset(B)), -subset(A, B)], n).
+dnf(214, axiom, [-element(A, powerset(B)), subset(A, B)], n).
+dnf(215, axiom, [- (set_difference(empty_set, A)=empty_set)], n).
+dnf(216, axiom, [-element(A, B), in(A, C), element(C, powerset(B))], n).
+dnf(217, axiom, [in(A, B), element(B, powerset(C)), empty(C)], n).
+dnf(218, axiom, [one_sorted_str(A), -empty_carrier(A), element(B, powerset(powerset(the_carrier(A)))), is_a_cover_of_carrier(A, B), B=empty_set], n).
+dnf(219, axiom, [empty(A), - (A=empty_set)], n).
+dnf(220, axiom, [in(A, B), empty(B)], n).
+dnf(221, axiom, [empty(A), - (A=B), empty(B)], n).
+dnf(222, axiom, [- (A=A)], n).
+dnf(223, axiom, [A=B, - (B=A)], n).
+dnf(224, axiom, [- (A=B), A=C, C=B], n).
+dnf(225, axiom, [-v1_xcmplx_0(A), B=A, v1_xcmplx_0(B)], n).
+dnf(226, axiom, [-v1_xreal_0(A), B=A, v1_xreal_0(B)], n).
+dnf(227, axiom, [-v1_int_1(A), B=A, v1_int_1(B)], n).
+dnf(228, axiom, [-v1_rat_1(A), B=A, v1_rat_1(B)], n).
+dnf(229, axiom, [-centered(A), B=A, centered(B)], n).
+dnf(230, axiom, [-compact_top_space(A), B=A, compact_top_space(B)], n).
+dnf(231, axiom, [-v1_membered(A), B=A, v1_membered(B)], n).
+dnf(232, axiom, [-v2_membered(A), B=A, v2_membered(B)], n).
+dnf(233, axiom, [-v3_membered(A), B=A, v3_membered(B)], n).
+dnf(234, axiom, [-v4_membered(A), B=A, v4_membered(B)], n).
+dnf(235, axiom, [-v5_membered(A), B=A, v5_membered(B)], n).
+dnf(236, axiom, [-strict_one_sorted(A), B=A, strict_one_sorted(B)], n).
+dnf(237, axiom, [-relation(A), B=A, relation(B)], n).
+dnf(238, axiom, [-function(A), B=A, function(B)], n).
+dnf(239, axiom, [-one_to_one(A), B=A, one_to_one(B)], n).
+dnf(240, axiom, [-epsilon_transitive(A), B=A, epsilon_transitive(B)], n).
+dnf(241, axiom, [-epsilon_connected(A), B=A, epsilon_connected(B)], n).
+dnf(242, axiom, [-ordinal(A), B=A, ordinal(B)], n).
+dnf(243, axiom, [-natural(A), B=A, natural(B)], n).
+dnf(244, axiom, [-strict_zero_str(A), B=A, strict_zero_str(B)], n).
+dnf(245, axiom, [-zero_str(A), B=A, zero_str(B)], n).
+dnf(246, axiom, [-m1_pre_topc(A, B), m1_pre_topc(C, D), C=A, D=B], n).
+dnf(247, axiom, [-strict_top_str(A), B=A, strict_top_str(B)], n).
+dnf(248, axiom, [-topological_space(A), B=A, topological_space(B)], n).
+dnf(249, axiom, [-closed_subset(A, B), closed_subset(C, D), C=A, D=B], n).
+dnf(250, axiom, [-finite(A), B=A, finite(B)], n).
+dnf(251, axiom, [-top_str(A), B=A, top_str(B)], n).
+dnf(252, axiom, [-closed_subsets(A, B), closed_subsets(C, D), C=A, D=B], n).
+dnf(253, axiom, [-open_subsets(A, B), open_subsets(C, D), C=A, D=B], n).
+dnf(254, axiom, [-subset(A, B), subset(C, D), C=A, D=B], n).
+dnf(255, axiom, [-empty_carrier(A), B=A, empty_carrier(B)], n).
+dnf(256, axiom, [-one_sorted_str(A), B=A, one_sorted_str(B)], n).
+dnf(257, axiom, [-element(A, B), element(C, D), C=A, D=B], n).
+dnf(258, axiom, [-is_a_cover_of_carrier(A, B), is_a_cover_of_carrier(C, D), C=A, D=B], n).
+dnf(259, axiom, [-in(A, B), in(C, D), C=A, D=B], n).
+dnf(260, axiom, [-empty(A), B=A, empty(B)], n).
+dnf(261, axiom, [A=B, - (the_topology(A)=the_topology(B))], n).
+dnf(262, axiom, [A=B, - (the_zero(A)=the_zero(B))], n).
+dnf(263, axiom, [- (top_str_of(A, B)=top_str_of(C, D)), A=C, B=D], n).
+dnf(264, axiom, [A=B, - (one_sorted_str_of(A)=one_sorted_str_of(B))], n).
+dnf(265, axiom, [- (zero_str_of(A, B)=zero_str_of(C, D)), A=C, B=D], n).
+dnf(266, axiom, [A=B, - (union(A)=union(B))], n).
+dnf(267, axiom, [A=B, - (set_meet(A)=set_meet(B))], n).
+dnf(268, axiom, [- (union_of_subsets(A, B)=union_of_subsets(C, D)), A=C, B=D], n).
+dnf(269, axiom, [- (meet_of_subsets(A, B)=meet_of_subsets(C, D)), A=C, B=D], n).
+dnf(270, axiom, [- (subset_complement(A, B)=subset_complement(C, D)), A=C, B=D], n).
+dnf(271, axiom, [- (subset_difference(A, B, C)=subset_difference(D, E, F)), A=D, B=E, C=F], n).
+dnf(272, axiom, [A=B, - (cast_as_carrier_subset(A)=cast_as_carrier_subset(B))], n).
+dnf(273, axiom, [- (complements_of_subsets(A, B)=complements_of_subsets(C, D)), A=C, B=D], n).
+dnf(274, axiom, [- (set_difference(A, B)=set_difference(C, D)), A=C, B=D], n).
+dnf(275, axiom, [A=B, - (powerset(A)=powerset(B))], n).
+dnf(276, axiom, [A=B, - (the_carrier(A)=the_carrier(B))], n).

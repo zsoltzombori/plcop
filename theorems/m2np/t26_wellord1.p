@@ -1,0 +1,13 @@
+fof(t26_wellord1, conjecture,  (! [A] :  (! [B] :  (! [C] :  (v1_relat_1(C) =>  (v2_wellord1(C) => r3_xboole_0(k1_wellord1(C, A), k1_wellord1(C, B))) ) ) ) ) ).
+fof(cc1_wellord1, axiom,  (! [A] :  ( (v1_relat_1(A) & v2_wellord1(A))  =>  (v1_relat_1(A) &  (v1_relat_2(A) &  (v4_relat_2(A) &  (v6_relat_2(A) &  (v8_relat_2(A) & v1_wellord1(A)) ) ) ) ) ) ) ).
+fof(d1_wellord1, axiom,  (! [A] :  (v1_relat_1(A) =>  (! [B] : k1_wellord1(A, B)=k6_subset_1(k10_relat_1(A, B), k1_tarski(B))) ) ) ).
+fof(d2_xboole_0, axiom, k1_xboole_0=o_0_0_xboole_0).
+fof(d3_tarski, axiom,  (! [A] :  (! [B] :  (r1_tarski(A, B) <=>  (! [C] :  (r2_hidden(C, A) => r2_hidden(C, B)) ) ) ) ) ).
+fof(d9_xboole_0, axiom,  (! [A] :  (! [B] :  (r3_xboole_0(A, B) <=>  (r1_tarski(A, B) | r1_tarski(B, A)) ) ) ) ).
+fof(dt_o_0_0_xboole_0, axiom, v1_xboole_0(o_0_0_xboole_0)).
+fof(l2_wellord1, axiom,  (! [A] :  (v1_relat_1(A) =>  (v8_relat_2(A) <=>  (! [B] :  (! [C] :  (! [D] :  ( (r2_hidden(k4_tarski(B, C), A) & r2_hidden(k4_tarski(C, D), A))  => r2_hidden(k4_tarski(B, D), A)) ) ) ) ) ) ) ).
+fof(l3_wellord1, axiom,  (! [A] :  (v1_relat_1(A) =>  (v4_relat_2(A) <=>  (! [B] :  (! [C] :  ( (r2_hidden(k4_tarski(B, C), A) & r2_hidden(k4_tarski(C, B), A))  => B=C) ) ) ) ) ) ).
+fof(l4_wellord1, axiom,  (! [A] :  (v1_relat_1(A) =>  (v6_relat_2(A) <=>  (! [B] :  (! [C] :  ~ ( (r2_hidden(B, k1_relat_1(A)) &  (r2_hidden(C, k1_relat_1(A)) &  ( ~ (B=C)  &  ( ~ (r2_hidden(k4_tarski(B, C), A))  &  ~ (r2_hidden(k4_tarski(C, B), A)) ) ) ) ) ) ) ) ) ) ) ).
+fof(t1_wellord1, axiom,  (! [A] :  (! [B] :  (! [C] :  (v1_relat_1(C) =>  (r2_hidden(A, k1_wellord1(C, B)) <=>  ( ~ (A=B)  & r2_hidden(k4_tarski(A, B), C)) ) ) ) ) ) ).
+fof(t2_wellord1, axiom,  (! [A] :  (! [B] :  (v1_relat_1(B) =>  (r2_hidden(A, k1_relat_1(B)) | k1_wellord1(B, A)=k1_xboole_0) ) ) ) ).
+fof(t7_boole, axiom,  (! [A] :  (! [B] :  ~ ( (r2_hidden(A, B) & v1_xboole_0(B)) ) ) ) ).

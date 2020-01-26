@@ -1,0 +1,3 @@
+fof(t3_relat_1, conjecture,  (! [A] :  (v1_relat_1(A) =>  (! [B] :  (v1_relat_1(B) => r1_tarski(k6_subset_1(k9_xtuple_0(A), k9_xtuple_0(B)), k9_xtuple_0(k6_subset_1(A, B)))) ) ) ) ).
+fof(redefinition_k6_subset_1, axiom,  (! [A, B] : k6_subset_1(A, B)=k4_xboole_0(A, B)) ).
+fof(t25_xtuple_0, axiom,  (! [A] :  (! [B] : r1_tarski(k4_xboole_0(k9_xtuple_0(A), k9_xtuple_0(B)), k9_xtuple_0(k4_xboole_0(A, B)))) ) ).

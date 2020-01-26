@@ -1,0 +1,5 @@
+fof(t17_relat_1, conjecture,  (! [A] :  (! [B] : k1_relat_1(k1_tarski(k4_tarski(A, B)))=k2_tarski(A, B)) ) ).
+fof(d6_relat_1, axiom,  (! [A] :  (v1_relat_1(A) => k1_relat_1(A)=k2_xboole_0(k9_xtuple_0(A), k10_xtuple_0(A))) ) ).
+fof(fc5_relat_1, axiom,  (! [A, B] : v1_relat_1(k1_tarski(k4_tarski(A, B)))) ).
+fof(t1_enumset1, axiom,  (! [A] :  (! [B] : k2_tarski(A, B)=k2_xboole_0(k1_tarski(A), k1_tarski(B))) ) ).
+fof(t9_relat_1, axiom,  (! [A] :  (! [B] :  (! [C] :  (v1_relat_1(C) =>  (C=k1_tarski(k4_tarski(A, B)) =>  (k9_xtuple_0(C)=k1_tarski(A) & k10_xtuple_0(C)=k1_tarski(B)) ) ) ) ) ) ).

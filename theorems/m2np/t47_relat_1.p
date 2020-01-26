@@ -1,0 +1,4 @@
+fof(t47_relat_1, conjecture,  (! [A] :  (! [B] :  (v1_relat_1(B) =>  ( (! [C] :  (r2_hidden(C, A) => r2_hidden(k4_tarski(C, C), B)) )  => r1_tarski(k4_relat_1(A), B)) ) ) ) ).
+fof(d10_relat_1, axiom,  (! [A] :  (! [B] :  (v1_relat_1(B) =>  (B=k4_relat_1(A) <=>  (! [C] :  (! [D] :  (r2_hidden(k4_tarski(C, D), B) <=>  (r2_hidden(C, A) & C=D) ) ) ) ) ) ) ) ).
+fof(d3_relat_1, axiom,  (! [A] :  (v1_relat_1(A) =>  (! [B] :  (r1_tarski(A, B) <=>  (! [C] :  (! [D] :  (r2_hidden(k4_tarski(C, D), A) => r2_hidden(k4_tarski(C, D), B)) ) ) ) ) ) ) ).
+fof(dt_k4_relat_1, axiom,  (! [A] : v1_relat_1(k4_relat_1(A))) ).

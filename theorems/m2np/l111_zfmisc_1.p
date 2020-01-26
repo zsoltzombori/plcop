@@ -1,0 +1,2 @@
+fof(l111_zfmisc_1, conjecture,  (! [A] :  (! [B] :  ( ( (! [C] :  ~ ( (r2_hidden(C, A) &  (! [D] :  (! [E] :  ~ (C=k4_tarski(D, E)) ) ) ) ) )  &  ( (! [C] :  ~ ( (r2_hidden(C, B) &  (! [D] :  (! [E] :  ~ (C=k4_tarski(D, E)) ) ) ) ) )  &  (! [C] :  (! [D] :  (r2_hidden(k4_tarski(C, D), A) <=> r2_hidden(k4_tarski(C, D), B)) ) ) ) )  => A=B) ) ) ).
+fof(t1_tarski, axiom,  (! [A] :  (! [B] :  ( (! [C] :  (r2_hidden(C, A) <=> r2_hidden(C, B)) )  => A=B) ) ) ).

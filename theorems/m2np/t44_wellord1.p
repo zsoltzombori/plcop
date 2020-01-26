@@ -1,0 +1,3 @@
+fof(t44_wellord1, conjecture,  (! [A] :  (v1_relat_1(A) =>  (! [B] :  (v1_relat_1(B) =>  (! [C] :  ( (v1_relat_1(C) & v1_funct_1(C))  =>  ( (v2_wellord1(A) & r3_wellord1(A, B, C))  => v2_wellord1(B)) ) ) ) ) ) ) ).
+fof(d4_wellord1, axiom,  (! [A] :  (v1_relat_1(A) =>  (v2_wellord1(A) <=>  (v1_relat_2(A) &  (v8_relat_2(A) &  (v4_relat_2(A) &  (v6_relat_2(A) & v1_wellord1(A)) ) ) ) ) ) ) ).
+fof(t43_wellord1, axiom,  (! [A] :  (v1_relat_1(A) =>  (! [B] :  (v1_relat_1(B) =>  (! [C] :  ( (v1_relat_1(C) & v1_funct_1(C))  =>  (r3_wellord1(A, B, C) =>  ( (v1_relat_2(A) => v1_relat_2(B))  &  ( (v8_relat_2(A) => v8_relat_2(B))  &  ( (v6_relat_2(A) => v6_relat_2(B))  &  ( (v4_relat_2(A) => v4_relat_2(B))  &  (v1_wellord1(A) => v1_wellord1(B)) ) ) ) ) ) ) ) ) ) ) ) ).

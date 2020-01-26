@@ -1,0 +1,5 @@
+fof(t112_xboole_1, conjecture,  (! [A] :  (! [B] :  (! [C] : k5_xboole_0(k3_xboole_0(A, B), k3_xboole_0(C, B))=k3_xboole_0(k5_xboole_0(A, C), B)) ) ) ).
+fof(commutativity_k3_xboole_0, axiom,  (! [A, B] : k3_xboole_0(A, B)=k3_xboole_0(B, A)) ).
+fof(d6_xboole_0, axiom,  (! [A] :  (! [B] : k5_xboole_0(A, B)=k2_xboole_0(k4_xboole_0(A, B), k4_xboole_0(B, A))) ) ).
+fof(t111_xboole_1, axiom,  (! [A] :  (! [B] :  (! [C] : k4_xboole_0(k3_xboole_0(A, B), k3_xboole_0(C, B))=k3_xboole_0(k4_xboole_0(A, C), B)) ) ) ).
+fof(t23_xboole_1, axiom,  (! [A] :  (! [B] :  (! [C] : k3_xboole_0(A, k2_xboole_0(B, C))=k2_xboole_0(k3_xboole_0(A, B), k3_xboole_0(A, C))) ) ) ).

@@ -1,0 +1,2 @@
+fof(t32_ordinal1, conjecture,  (! [A] :  (! [B] :  (r1_tarski(A, B) =>  (! [C] :  ( (v1_relat_1(C) &  (v5_relat_1(C, A) &  (v1_funct_1(C) & v5_ordinal1(C)) ) )  =>  (v1_relat_1(C) &  (v5_relat_1(C, B) &  (v1_funct_1(C) & v5_ordinal1(C)) ) ) ) ) ) ) ) ).
+fof(t183_relat_1, axiom,  (! [A] :  (! [B] :  (r1_tarski(A, B) =>  (! [C] :  ( (v1_relat_1(C) & v5_relat_1(C, A))  => v5_relat_1(C, B)) ) ) ) ) ).

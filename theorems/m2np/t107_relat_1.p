@@ -1,0 +1,6 @@
+fof(t107_relat_1, conjecture,  (! [A] : k6_relat_1(A, k1_xboole_0)=k1_xboole_0) ).
+fof(cc1_relat_1, axiom,  (! [A] :  (v1_xboole_0(A) => v1_relat_1(A)) ) ).
+fof(d12_relat_1, axiom,  (! [A] :  (! [B] :  (v1_relat_1(B) =>  (! [C] :  (v1_relat_1(C) =>  (C=k6_relat_1(A, B) <=>  (! [D] :  (! [E] :  (r2_hidden(k4_tarski(D, E), C) <=>  (r2_hidden(E, A) & r2_hidden(k4_tarski(D, E), B)) ) ) ) ) ) ) ) ) ) ).
+fof(d2_xboole_0, axiom, k1_xboole_0=o_0_0_xboole_0).
+fof(dt_o_0_0_xboole_0, axiom, v1_xboole_0(o_0_0_xboole_0)).
+fof(t7_boole, axiom,  (! [A] :  (! [B] :  ~ ( (r2_hidden(A, B) & v1_xboole_0(B)) ) ) ) ).

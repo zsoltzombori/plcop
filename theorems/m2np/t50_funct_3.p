@@ -1,0 +1,4 @@
+fof(t50_funct_3, conjecture,  (! [A] :  (! [B] :  ( (v1_relat_1(B) & v1_funct_1(B))  =>  (! [C] :  ( (v1_relat_1(C) & v1_funct_1(C))  =>  ( (k9_xtuple_0(B)=A & k9_xtuple_0(C)=A)  => k9_xtuple_0(k13_funct_3(B, C))=A) ) ) ) ) ) ).
+fof(d7_funct_3, axiom,  (! [A] :  ( (v1_relat_1(A) & v1_funct_1(A))  =>  (! [B] :  ( (v1_relat_1(B) & v1_funct_1(B))  =>  (! [C] :  ( (v1_relat_1(C) & v1_funct_1(C))  =>  (C=k13_funct_3(A, B) <=>  (k9_xtuple_0(C)=k3_xboole_0(k9_xtuple_0(A), k9_xtuple_0(B)) &  (! [D] :  (r2_hidden(D, k9_xtuple_0(C)) => k1_funct_1(C, D)=k4_tarski(k1_funct_1(A, D), k1_funct_1(B, D))) ) ) ) ) ) ) ) ) ) ).
+fof(dt_k13_funct_3, axiom,  (! [A, B] :  ( ( (v1_relat_1(A) & v1_funct_1(A))  &  (v1_relat_1(B) & v1_funct_1(B)) )  =>  (v1_relat_1(k13_funct_3(A, B)) & v1_funct_1(k13_funct_3(A, B))) ) ) ).
+fof(idempotence_k3_xboole_0, axiom,  (! [A, B] : k3_xboole_0(A, A)=A) ).

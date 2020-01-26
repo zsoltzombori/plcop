@@ -1,0 +1,2 @@
+fof(t3_finset_1, conjecture,  (! [A] :  (! [B] :  (v1_finset_1(A) => v1_finset_1(k3_xboole_0(A, B))) ) ) ).
+fof(fc11_finset_1, axiom,  (! [A, B] :  (v1_finset_1(A) => v1_finset_1(k3_xboole_0(A, B))) ) ).

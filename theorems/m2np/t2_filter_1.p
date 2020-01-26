@@ -1,0 +1,2 @@
+fof(t2_filter_1, conjecture,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v10_lattices(A) & l3_lattices(A)) )  =>  (! [B] :  (m1_subset_1(B, u1_struct_0(A)) =>  (! [C] :  (m1_subset_1(C, u1_struct_0(A)) =>  (k2_filter_0(A, B)=k2_filter_0(A, C) => B=C) ) ) ) ) ) ) ).
+fof(t56_filter_0, axiom,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v10_lattices(A) & l3_lattices(A)) )  =>  (! [B] :  (m1_subset_1(B, u1_struct_0(A)) => k5_lattices(k6_filter_0(A, k2_filter_0(A, B)))=B) ) ) ) ).

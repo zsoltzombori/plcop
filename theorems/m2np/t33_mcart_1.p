@@ -1,0 +1,3 @@
+fof(t33_mcart_1, conjecture,  (! [A] :  (! [B] :  (! [C] :  (! [D] :  (! [E] :  (! [F] :  (k3_zfmisc_1(A, B, C)=k3_zfmisc_1(D, E, F) =>  (k3_zfmisc_1(A, B, C)=k1_xboole_0 |  (A=D &  (B=E & C=F) ) ) ) ) ) ) ) ) ) ).
+fof(t31_mcart_1, axiom,  (! [A] :  (! [B] :  (! [C] :  ( ( ~ (A=k1_xboole_0)  &  ( ~ (B=k1_xboole_0)  &  ~ (C=k1_xboole_0) ) )  <=>  ~ (k3_zfmisc_1(A, B, C)=k1_xboole_0) ) ) ) ) ).
+fof(t32_mcart_1, axiom,  (! [A] :  (! [B] :  (! [C] :  (! [D] :  (! [E] :  (! [F] :  (k3_zfmisc_1(A, B, C)=k3_zfmisc_1(D, E, F) =>  (A=k1_xboole_0 |  (B=k1_xboole_0 |  (C=k1_xboole_0 |  (A=D &  (B=E & C=F) ) ) ) ) ) ) ) ) ) ) ) ).

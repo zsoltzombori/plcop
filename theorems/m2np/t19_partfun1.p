@@ -1,0 +1,4 @@
+fof(t19_partfun1, conjecture,  (! [A] :  (! [B] :  (! [C] :  (! [D] :  ( (v1_relat_1(D) & v1_funct_1(D))  =>  ( (k9_xtuple_0(D)=k1_tarski(A) &  (r2_hidden(A, B) & r2_hidden(k1_funct_1(D, A), C)) )  =>  (v1_funct_1(D) & m1_subset_1(D, k1_zfmisc_1(k2_zfmisc_1(B, C)))) ) ) ) ) ) ) ).
+fof(t31_zfmisc_1, axiom,  (! [A] :  (! [B] :  (r1_tarski(k1_tarski(A), B) <=> r2_hidden(A, B)) ) ) ).
+fof(t4_funct_1, axiom,  (! [A] :  (! [B] :  ( (v1_relat_1(B) & v1_funct_1(B))  =>  (k9_xtuple_0(B)=k1_tarski(A) => k10_xtuple_0(B)=k1_tarski(k1_funct_1(B, A))) ) ) ) ).
+fof(t4_relset_1, axiom,  (! [A] :  (! [B] :  (! [C] :  (v1_relat_1(C) =>  ( (r1_tarski(k9_xtuple_0(C), A) & r1_tarski(k10_xtuple_0(C), B))  => m1_subset_1(C, k1_zfmisc_1(k2_zfmisc_1(A, B)))) ) ) ) ) ).

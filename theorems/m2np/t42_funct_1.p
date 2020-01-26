@@ -1,0 +1,5 @@
+fof(t42_funct_1, conjecture,  (! [A] :  ( (v1_relat_1(A) & v1_funct_1(A))  =>  (! [B] :  ( (v1_relat_1(B) & v1_funct_1(B))  =>  ( (v2_funct_1(A) &  (k10_xtuple_0(B)=k9_xtuple_0(A) & k3_relat_1(B, A)=k4_relat_1(k10_xtuple_0(A))) )  => B=k2_funct_1(A)) ) ) ) ) ).
+fof(dt_k2_funct_1, axiom,  (! [A] :  ( (v1_relat_1(A) & v1_funct_1(A))  =>  (v1_relat_1(k2_funct_1(A)) & v1_funct_1(k2_funct_1(A))) ) ) ).
+fof(l46_funct_1, axiom,  (! [A] :  (! [B] :  ( (v1_relat_1(B) & v1_funct_1(B))  =>  (! [C] :  ( (v1_relat_1(C) & v1_funct_1(C))  =>  (! [D] :  ( (v1_relat_1(D) & v1_funct_1(D))  =>  ( (k10_xtuple_0(B)=A &  (k3_relat_1(B, C)=k4_relat_1(k9_xtuple_0(D)) & k3_relat_1(C, D)=k4_relat_1(A)) )  => D=B) ) ) ) ) ) ) ) ).
+fof(t33_funct_1, axiom,  (! [A] :  ( (v1_relat_1(A) & v1_funct_1(A))  =>  (v2_funct_1(A) =>  (k10_xtuple_0(A)=k9_xtuple_0(k2_funct_1(A)) & k9_xtuple_0(A)=k10_xtuple_0(k2_funct_1(A))) ) ) ) ).
+fof(t39_funct_1, axiom,  (! [A] :  ( (v1_relat_1(A) & v1_funct_1(A))  =>  (v2_funct_1(A) =>  (k3_relat_1(A, k2_funct_1(A))=k4_relat_1(k9_xtuple_0(A)) & k3_relat_1(k2_funct_1(A), A)=k4_relat_1(k10_xtuple_0(A))) ) ) ) ).

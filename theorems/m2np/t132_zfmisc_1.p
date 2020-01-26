@@ -1,0 +1,4 @@
+fof(t132_zfmisc_1, conjecture,  (! [A] :  (! [B] :  (v1_zfmisc_1(B) =>  (r2_hidden(A, B) => B=k1_tarski(A)) ) ) ) ).
+fof(d1_tarski, axiom,  (! [A] :  (! [B] :  (B=k1_tarski(A) <=>  (! [C] :  (r2_hidden(C, B) <=> C=A) ) ) ) ) ).
+fof(t131_zfmisc_1, axiom,  (! [A] :  ~ ( ( ~ (v1_xboole_0(A))  &  (v1_zfmisc_1(A) &  (! [B] :  ~ (A=k1_tarski(B)) ) ) ) ) ) ).
+fof(t7_boole, axiom,  (! [A] :  (! [B] :  ~ ( (r2_hidden(A, B) & v1_xboole_0(B)) ) ) ) ).

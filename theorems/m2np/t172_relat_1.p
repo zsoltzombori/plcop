@@ -1,0 +1,4 @@
+fof(t172_relat_1, conjecture,  (! [A] :  (! [B] :  (! [C] :  (v1_relat_1(C) =>  (r1_xboole_0(A, B) => k5_relat_1(k5_relat_1(C, A), B)=k1_xboole_0) ) ) ) ) ).
+fof(d7_xboole_0, axiom,  (! [A] :  (! [B] :  (r1_xboole_0(A, B) <=> k3_xboole_0(A, B)=k1_xboole_0) ) ) ).
+fof(t71_relat_1, axiom,  (! [A] :  (! [B] :  (! [C] :  (v1_relat_1(C) => k5_relat_1(k5_relat_1(C, A), B)=k5_relat_1(C, k3_xboole_0(A, B))) ) ) ) ).
+fof(t81_relat_1, axiom,  (! [A] :  (v1_relat_1(A) => k5_relat_1(A, k1_xboole_0)=k1_xboole_0) ) ).

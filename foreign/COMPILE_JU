@@ -1,0 +1,3 @@
+# this assumes all sorts of things; the libgboost.so should be in /tmp/
+swipl-ld -shared -cc-options,-std=c++11,-D_GLIBCXX_USE_CXX11_ABI=0 -ld g++ -I/usr/lib/swi-prolog/include/ -I/home/mptp/.local/lib/python2.7/site-packages/torch/lib/include -I/home/mptp/.local/lib/python2.7/site-packages/torch/lib/include/torch/csrc/api/include -L/home/mptp/.local/lib/python2.7/site-packages/torch/lib/ -rdynamic /home/mptp/.local/lib/python2.7/site-packages/torch/lib/libtorch.so -Wl,--no-as-needed,/home/mptp/.local/lib/python2.7/site-packages/torch/lib/libcaffe2.so -Wl,--as-needed,/home/mptp/.local/lib/python2.7/site-packages/torch/lib/libc10.so -lpthread -Wl,-rpath,/home/mptp/.local/lib/python2.7/site-packages/torch/lib/  -o protorch protorch.cpp
+

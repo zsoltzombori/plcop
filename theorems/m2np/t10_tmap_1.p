@@ -1,0 +1,3 @@
+fof(t10_tmap_1, conjecture,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v2_pre_topc(A) & l1_pre_topc(A)) )  =>  (! [B] :  ( ( ~ (v2_struct_0(B))  & m1_pre_topc(B, A))  =>  (! [C] :  ( ( ~ (v2_struct_0(C))  & m1_pre_topc(C, A))  =>  (m1_pre_topc(B, C) =>  (! [D] :  (m1_subset_1(D, u1_struct_0(B)) =>  (? [E] :  (m1_subset_1(E, u1_struct_0(C)) & E=D) ) ) ) ) ) ) ) ) ) ) ).
+fof(dt_m1_pre_topc, axiom,  (! [A] :  (l1_pre_topc(A) =>  (! [B] :  (m1_pre_topc(B, A) => l1_pre_topc(B)) ) ) ) ).
+fof(t25_pre_topc, axiom,  (! [A] :  ( ( ~ (v2_struct_0(A))  & l1_pre_topc(A))  =>  (! [B] :  ( ( ~ (v2_struct_0(B))  & m1_pre_topc(B, A))  =>  (! [C] :  (m1_subset_1(C, u1_struct_0(B)) => m1_subset_1(C, u1_struct_0(A))) ) ) ) ) ) ).

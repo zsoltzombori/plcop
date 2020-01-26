@@ -1,0 +1,3 @@
+fof(t1_lattice3, conjecture,  (! [A] :  (! [B] :  (m1_subset_1(B, u1_struct_0(k1_lattice3(A))) =>  (! [C] :  (m1_subset_1(C, u1_struct_0(k1_lattice3(A))) =>  (k1_lattices(k1_lattice3(A), B, C)=k2_xboole_0(B, C) & k2_lattices(k1_lattice3(A), B, C)=k3_xboole_0(B, C)) ) ) ) ) ) ).
+fof(ie1_lattice3, axiom,  (! [A, B, C, D, E] :  ( (m1_subset_1(B, u1_struct_0(k1_lattice3(A))) & m1_subset_1(C, u1_struct_0(k1_lattice3(A))))  =>  ( (B=D & C=E)  => k1_lattices(k1_lattice3(A), B, C)=k2_xboole_0(D, E)) ) ) ).
+fof(ie2_lattice3, axiom,  (! [A, B, C, D, E] :  ( (m1_subset_1(B, u1_struct_0(k1_lattice3(A))) & m1_subset_1(C, u1_struct_0(k1_lattice3(A))))  =>  ( (B=D & C=E)  => k2_lattices(k1_lattice3(A), B, C)=k3_xboole_0(D, E)) ) ) ).

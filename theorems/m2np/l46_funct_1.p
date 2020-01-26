@@ -1,0 +1,3 @@
+fof(l46_funct_1, conjecture,  (! [A] :  (! [B] :  ( (v1_relat_1(B) & v1_funct_1(B))  =>  (! [C] :  ( (v1_relat_1(C) & v1_funct_1(C))  =>  (! [D] :  ( (v1_relat_1(D) & v1_funct_1(D))  =>  ( (k10_xtuple_0(B)=A &  (k3_relat_1(B, C)=k4_relat_1(k9_xtuple_0(D)) & k3_relat_1(C, D)=k4_relat_1(A)) )  => D=B) ) ) ) ) ) ) ) ).
+fof(reflexivity_r1_tarski, axiom,  (! [A, B] : r1_tarski(A, A)) ).
+fof(t56_relat_1, axiom,  (! [A] :  (! [B] :  (v1_relat_1(B) =>  (! [C] :  (v1_relat_1(C) =>  (! [D] :  (v1_relat_1(D) =>  ( (r1_tarski(k10_xtuple_0(B), A) &  (k3_relat_1(B, C)=k4_relat_1(k9_xtuple_0(D)) & k3_relat_1(C, D)=k4_relat_1(A)) )  => D=B) ) ) ) ) ) ) ) ).

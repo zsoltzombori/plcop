@@ -1,0 +1,6 @@
+fof(t44_mcart_1, conjecture,  (! [A] :  ( ~ (v1_xboole_0(A))  =>  (! [B] :  ( ~ (v1_xboole_0(B))  =>  (! [C] :  ( ~ (v1_xboole_0(C))  =>  (! [D] :  (m1_subset_1(D, k3_zfmisc_1(A, B, C)) => D=k3_xtuple_0(k1_mcart_1(A, B, C, D), k2_mcart_1(A, B, C, D), k3_mcart_1(A, B, C, D))) ) ) ) ) ) ) ) ).
+fof(cc1_mcart_1, axiom,  (! [A, B, C] :  ( ( ~ (v1_xboole_0(A))  &  ( ~ (v1_xboole_0(B))  &  ~ (v1_xboole_0(C)) ) )  =>  (! [D] :  (m1_subset_1(D, k3_zfmisc_1(A, B, C)) => v2_xtuple_0(D)) ) ) ) ).
+fof(rd7_xtuple_0, axiom,  (! [A] :  (v2_xtuple_0(A) => k3_xtuple_0(k4_xtuple_0(A), k5_xtuple_0(A), k2_xtuple_0(A))=A) ) ).
+fof(redefinition_k1_mcart_1, axiom,  (! [A, B, C, D] :  ( ( ~ (v1_xboole_0(A))  &  ( ~ (v1_xboole_0(B))  &  ( ~ (v1_xboole_0(C))  & m1_subset_1(D, k3_zfmisc_1(A, B, C))) ) )  => k1_mcart_1(A, B, C, D)=k4_xtuple_0(D)) ) ).
+fof(redefinition_k2_mcart_1, axiom,  (! [A, B, C, D] :  ( ( ~ (v1_xboole_0(A))  &  ( ~ (v1_xboole_0(B))  &  ( ~ (v1_xboole_0(C))  & m1_subset_1(D, k3_zfmisc_1(A, B, C))) ) )  => k2_mcart_1(A, B, C, D)=k5_xtuple_0(D)) ) ).
+fof(redefinition_k3_mcart_1, axiom,  (! [A, B, C, D] :  ( ( ~ (v1_xboole_0(A))  &  ( ~ (v1_xboole_0(B))  &  ( ~ (v1_xboole_0(C))  & m1_subset_1(D, k3_zfmisc_1(A, B, C))) ) )  => k3_mcart_1(A, B, C, D)=k2_xtuple_0(D)) ) ).

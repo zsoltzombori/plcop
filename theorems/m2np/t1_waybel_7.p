@@ -1,0 +1,7 @@
+fof(t1_waybel_7, conjecture,  (! [A] :  ( (v3_orders_2(A) &  (v4_orders_2(A) &  (v5_orders_2(A) &  (v1_lattice3(A) &  (v2_lattice3(A) &  (v3_lattice3(A) & l1_orders_2(A)) ) ) ) ) )  =>  (! [B] :  (! [C] :  (r1_tarski(B, C) =>  (r3_orders_2(A, k1_yellow_0(A, B), k1_yellow_0(A, C)) & r1_orders_2(A, k2_yellow_0(A, C), k2_yellow_0(A, B))) ) ) ) ) ) ).
+fof(cc1_lattice3, axiom,  (! [A] :  (l1_orders_2(A) =>  (v1_lattice3(A) =>  ~ (v2_struct_0(A)) ) ) ) ).
+fof(dt_k1_yellow_0, axiom,  (! [A, B] :  (l1_orders_2(A) => m1_subset_1(k1_yellow_0(A, B), u1_struct_0(A))) ) ).
+fof(redefinition_r3_orders_2, axiom,  (! [A, B, C] :  ( ( ( ~ (v2_struct_0(A))  &  (v3_orders_2(A) & l1_orders_2(A)) )  &  (m1_subset_1(B, u1_struct_0(A)) & m1_subset_1(C, u1_struct_0(A))) )  =>  (r3_orders_2(A, B, C) <=> r1_orders_2(A, B, C)) ) ) ).
+fof(t17_yellow_0, axiom,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v5_orders_2(A) &  (v3_lattice3(A) & l1_orders_2(A)) ) )  =>  (! [B] :  (r1_yellow_0(A, B) & r2_yellow_0(A, B)) ) ) ) ).
+fof(t34_yellow_0, axiom,  (! [A] :  (l1_orders_2(A) =>  (! [B] :  (! [C] :  ( (r1_tarski(B, C) &  (r1_yellow_0(A, B) & r1_yellow_0(A, C)) )  => r1_orders_2(A, k1_yellow_0(A, B), k1_yellow_0(A, C))) ) ) ) ) ).
+fof(t35_yellow_0, axiom,  (! [A] :  (l1_orders_2(A) =>  (! [B] :  (! [C] :  ( (r1_tarski(B, C) &  (r2_yellow_0(A, B) & r2_yellow_0(A, C)) )  => r1_orders_2(A, k2_yellow_0(A, C), k2_yellow_0(A, B))) ) ) ) ) ).

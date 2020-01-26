@@ -1,0 +1,3 @@
+fof(t39_lattice3, conjecture,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v10_lattices(A) &  (v4_lattice3(A) & l3_lattices(A)) ) )  =>  (! [B] :  (m1_subset_1(B, u1_struct_0(A)) =>  (! [C] :  (r3_lattice3(A, B, C) => r3_lattices(A, B, k16_lattice3(A, C))) ) ) ) ) ) ).
+fof(dt_k16_lattice3, axiom,  (! [A, B] :  ( ( ~ (v2_struct_0(A))  & l3_lattices(A))  => m1_subset_1(k16_lattice3(A, B), u1_struct_0(A))) ) ).
+fof(t34_lattice3, axiom,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v10_lattices(A) &  (v4_lattice3(A) & l3_lattices(A)) ) )  =>  (! [B] :  (m1_subset_1(B, u1_struct_0(A)) =>  (! [C] :  (B=k16_lattice3(A, C) <=>  (r3_lattice3(A, B, C) &  (! [D] :  (m1_subset_1(D, u1_struct_0(A)) =>  (r3_lattice3(A, D, C) => r3_lattices(A, D, B)) ) ) ) ) ) ) ) ) ) ).

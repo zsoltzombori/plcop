@@ -1,0 +1,3 @@
+fof(t106_funct_1, conjecture,  (! [A] :  (! [B] :  (! [C] :  ( (v1_relat_1(C) &  (v5_relat_1(C, A) & v1_funct_1(C)) )  =>  (r2_hidden(B, k9_xtuple_0(C)) => m1_subset_1(k1_funct_1(C, B), A)) ) ) ) ) ).
+fof(t102_funct_1, axiom,  (! [A] :  (! [B] :  ( (v1_relat_1(B) &  (v5_relat_1(B, A) & v1_funct_1(B)) )  =>  (! [C] :  (r2_hidden(C, k9_xtuple_0(B)) => r2_hidden(k1_funct_1(B, C), A)) ) ) ) ) ).
+fof(t1_subset, axiom,  (! [A] :  (! [B] :  (r2_hidden(A, B) => m1_subset_1(A, B)) ) ) ).

@@ -1,0 +1,32 @@
+This is a proof checker for leancop connection-style proofs.
+
+Run it as:
+
+./leancheck -i t9_zfmisc.p.out
+PROOF FILE OK
+
+or:
+
+./leancheck -i notapf.out 
+PROOF FILE NOT OK
+
+To recompile with sbcl, run ./mymake .
+
+The leancop proof clauses are either input clauses, instances of input
+clauses, or extension steps.  Each proof clause is considered ground
+(remaining existential variables are treated as constants).
+
+The checker works by checking that:
+
+1. The proof clauses alleged to be an input clause or an instance of
+an input clause is subsumed by the corresponding input clause (as
+identified in the proof by a label).
+
+2. The proof clauses alleged to be an input clause or an instance of
+an input clause form a propositionally unsatisfiable set.
+
+After choosing distinct positive integers for each atom we use
+PicoSat~\cite{Biere2008} to verify the set is propositionally
+unsatisfiable.
+
+

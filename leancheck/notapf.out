@@ -1,0 +1,41 @@
+mptp@air-02:~/local1/leancop_ml.tst3/leancop21$ ./leancop.sh zfmisc_1__t9_zfmisc_1.p 10
+%   def_mm compiled 0.00 sec, 22,480 bytes
+%  leancop21_swi compiled 0.00 sec, 31,472 bytes
+%  leancop_proof compiled 0.00 sec, 26,568 bytes
+%  leancop_tptp2 compiled 0.01 sec, 22,104 bytes
+% ./leancop_main.pl compiled 0.01 sec, 90,448 bytes
+
+zfmisc_1__t9_zfmisc_1.p is a Theorem
+Start of proof for zfmisc_1__t9_zfmisc_1.p
+------------------------------------------------------
+Proof for the following clauses:
+ (1)  [- (k1_tarski(1^[])=k2_tarski(2^[], 3^[]))]
+  (2)  [2^[]=3^[]]
+   (3)  [r2_hidden(_G5256, _G5303), r2_hidden(_G5303, _G5256)]
+    (4)  [- (k2_tarski(_G5516, _G5561)=k2_tarski(_G5561, _G5516))]
+     (5)  [- (k1_xboole_0=o_0_0_xboole_0)]
+      (6)  [-v1_xboole_0(o_0_0_xboole_0)]
+       (7)  [v1_xboole_0(_G6018), - (_G6018=k1_xboole_0)]
+        (8)  [r2_hidden(_G6175, _G6221), v1_xboole_0(_G6221)]
+	 (9)  [k1_tarski(_G6713)=k2_tarski(_G6768, _G6824), - (_G6713=_G6768)]
+	  (10)  [v1_xboole_0(_G6408), - (_G6408=_G6461), v1_xboole_0(_G6461)]
+	   (11)  [_G4348=_G4397, - (k1_tarski(_G4348)=k1_tarski(_G4397))]
+	    (12)  [- (k2_tarski(_G4617, _G4752)=k2_tarski(_G4684, _G4821)), _G4617=_G4684, _G4752=_G4821]
+	     (13)  [- (_G2658=_G2658)]
+	      (14)  [_G2757=_G2802, - (_G2802=_G2757)]
+	       (15)  [- (_G2990=_G3103), _G2990=_G3046, _G3046=_G3103]
+	        (16)  [-v1_xboole_0(_G4077), _G4028=_G4077, v1_xboole_0(_G4028)]
+		 (17)  [-r2_hidden(_G3507, _G3644), r2_hidden(_G3440, _G3575), _G3440=_G3507, _G3575=_G3644]
+
+Connection Proof:
+-----------------
+1  [2^[]=3^[]]   (2)
+1.1  [- (2^[]=3^[]), 2^[]=1^[], 1^[]=3^[]]   (15)  substitution:[[_G2990, _G3103, _G3046], [2^[], 3^[], 1^[]]]
+1.1.1  [- (2^[]=1^[]), 1^[]=2^[]]   (14)  substitution:[[_G2802, _G2757], [2^[], 1^[]]]
+1.1.1.1  [- (1^[]=2^[]), k1_tarski(1^[])=k2_tarski(2^[], 3^[])]   (9)  substitution:[[_G6713, _G6768, _G6824], [1^[], 2^[], 3^[]]]
+1.1.1.1.1  [- (k1_tarski(1^[])=k2_tarski(2^[], 3^[]))]   (1)
+1.1.2  [- (1^[]=3^[]), k1_tarski(1^[])=k2_tarski(3^[], 2^[])]   (9)  substitution:[[_G6713, _G6768, _G6824], [1^[], 3^[], 2^[]]]
+1.1.2.1  [- (k1_tarski(1^[])=k2_tarski(3^[], 2^[])), k1_tarski(1^[])=k2_tarski(2^[], 3^[]), k2_tarski(2^[], 3^[])=k2_tarski(3^[], 2^[])]   (15)  substitution:[[_G2990, _G3103, _G3046], [k1_tarski(1^[]), k2_tarski(3^[], 2^[]), k2_tarski(2^[], 3^[])]]
+1.1.2.1.1  [- (k1_tarski(1^[])=k2_tarski(2^[], 3^[]))]   (1)
+------------------------------------------------------
+End of proof for zfmisc_1__t9_zfmisc_1.p

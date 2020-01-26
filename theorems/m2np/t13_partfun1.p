@@ -1,0 +1,3 @@
+fof(t13_partfun1, conjecture,  (! [A] :  (! [B] :  (! [C] :  (! [D] :  ( (v1_funct_1(D) & m1_subset_1(D, k1_zfmisc_1(k2_zfmisc_1(A, B))))  =>  (v1_funct_1(k6_relset_1(A, B, C, D)) & m1_subset_1(k6_relset_1(A, B, C, D), k1_zfmisc_1(k2_zfmisc_1(A, B)))) ) ) ) ) ) ).
+fof(dt_k6_relset_1, axiom,  (! [A, B, C, D] :  (m1_subset_1(D, k1_zfmisc_1(k2_zfmisc_1(A, B))) => m1_subset_1(k6_relset_1(A, B, C, D), k1_zfmisc_1(k2_zfmisc_1(A, B)))) ) ).
+fof(t12_partfun1, axiom,  (! [A] :  (! [B] :  (! [C] :  (! [D] :  ( (v1_funct_1(D) & m1_subset_1(D, k1_zfmisc_1(k2_zfmisc_1(A, B))))  =>  (v1_funct_1(k6_relset_1(A, B, C, D)) & m1_subset_1(k6_relset_1(A, B, C, D), k1_zfmisc_1(k2_zfmisc_1(A, C)))) ) ) ) ) ) ).

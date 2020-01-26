@@ -1,0 +1,514 @@
+[conj,cut,comp(7)]
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, point_neighbourhood, sk38, top_str, leancop_problem_2, sk35, sk36, sk37] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, point_neighbourhood, sk38, topological_space, leancop_problem_2, sk35, sk36, sk37] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, empty_carrier, point_neighbourhood, sk38, leancop_problem_2, sk35, sk36, sk37] >>> 284
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, point_neighbourhood, sk38, leancop_problem_2, sk35, sk36, sk37, the_carrier] >>> 280
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, point_neighbourhood, sk38, leancop_problem_2, powerset, sk35, sk36, sk37, the_carrier] >>> 281
+@
+@
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, open_subset, sk38, top_str, leancop_problem_2, sk35, sk36] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, open_subset, sk38, topological_space, leancop_problem_2, sk35, sk36] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, open_subset, sk38, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 281
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, sk35, sk37, the_carrier] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, sk35, sk37, the_carrier] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, empty_carrier, sk38, leancop_problem_2, sk35, sk37, the_carrier] >>> 284
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, leancop_problem_2, powerset, sk35, sk37, the_carrier] >>> 281
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, empty_carrier, sk38, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 284
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 280
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, open_subset, sk38, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 279
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, open_subset, sk38, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 279
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, sk38, top_str, topological_space, leancop_problem_2, sk35] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, empty_carrier, sk38, top_str, leancop_problem_2, sk35] >>> 284
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, sk35, the_carrier] >>> 280
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, sk38, top_str, topological_space, leancop_problem_2, sk35] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, open_subset, sk38, top_str, leancop_problem_2, sk35, sk36] >>> 279
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, sk38, top_str, topological_space, leancop_problem_2, sk35] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, open_subset, sk38, top_str, leancop_problem_2, sk35, sk36] >>> 279
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, sk38, top_str, topological_space, leancop_problem_2, sk35] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, empty_carrier, sk38, topological_space, leancop_problem_2, sk35] >>> 284
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, sk35, the_carrier] >>> 280
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, sk38, top_str, topological_space, leancop_problem_2, sk35] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, sk38, top_str, topological_space, leancop_problem_2, sk35] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, open_subset, sk38, topological_space, leancop_problem_2, sk35, sk36] >>> 279
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, empty_carrier, sk38, top_str, leancop_problem_2, sk35] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, empty_carrier, sk38, topological_space, leancop_problem_2, sk35] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, empty_carrier, sk38, leancop_problem_2, sk35, the_carrier] >>> 280
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, empty_carrier, sk38, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+@
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, point_neighbourhood, sk38, top_str, leancop_problem_2, sk35, sk36, sk37] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, point_neighbourhood, sk38, topological_space, leancop_problem_2, sk35, sk36, sk37] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, empty_carrier, point_neighbourhood, sk38, leancop_problem_2, sk35, sk36, sk37] >>> 284
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, point_neighbourhood, sk38, leancop_problem_2, sk35, sk36, sk37, the_carrier] >>> 280
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, point_neighbourhood, sk38, leancop_problem_2, powerset, sk35, sk36, sk37, the_carrier] >>> 281
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, in, point_neighbourhood, sk38, interior, leancop_problem_2, sk35, sk36, sk37] >>> 278
+@
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, in, sk38, top_str, interior, leancop_problem_2, sk36, sk37] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, in, sk38, topological_space, interior, leancop_problem_2, sk35, sk36, sk37] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, empty_carrier, in, sk38, interior, leancop_problem_2, sk35, sk36, sk37] >>> 284
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, in, sk38, interior, leancop_problem_2, sk35, sk36, sk37, the_carrier] >>> 280
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, in, sk38, interior, leancop_problem_2, powerset, sk35, sk36, sk37, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, in, point_neighbourhood, sk38, interior, leancop_problem_2, sk35, sk36, sk37] >>> 277
+& best_lit_attempts=7; best_lit_unsuccessful_attempts=0; [#, in, sk38, leancop_problem_2, sk36, sk37] >>> 287
+@
+@
+& best_lit_attempts=3; best_lit_unsuccessful_attempts=2; [#, =, in, sk38, leancop_problem_2, sk36, sk37] >>> 222
+@
+@
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, open_subset, sk38, top_str, leancop_problem_2, sk35, sk36] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, open_subset, sk38, topological_space, leancop_problem_2, sk35, sk36] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, open_subset, sk38, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 281
+@
+@
+@
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, sk35, sk37, the_carrier] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, sk35, sk37, the_carrier] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, empty_carrier, sk38, leancop_problem_2, sk35, sk37, the_carrier] >>> 284
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, leancop_problem_2, powerset, sk35, sk37, the_carrier] >>> 281
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, in, sk38, interior, leancop_problem_2, sk35, sk36, sk37, the_carrier] >>> 278
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, empty_carrier, sk38, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 284
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 280
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, in, sk38, interior, leancop_problem_2, powerset, sk35, sk36, sk37, the_carrier] >>> 278
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, open_subset, sk38, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 279
+@
+@
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, open_subset, sk38, leancop_problem_2, powerset, sk35, sk36, the_carrier] >>> 279
+@
+@
+@
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, sk38, top_str, topological_space, leancop_problem_2, sk35] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, empty_carrier, sk38, top_str, leancop_problem_2, sk35] >>> 284
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, sk35, the_carrier] >>> 280
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, in, sk38, top_str, interior, leancop_problem_2, sk35, sk36, sk37] >>> 278
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, sk38, top_str, topological_space, leancop_problem_2, sk35] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, open_subset, sk38, top_str, leancop_problem_2, sk35, sk36] >>> 279
+@
+@
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, sk38, top_str, topological_space, leancop_problem_2, sk35] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, top_str, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, open_subset, sk38, top_str, leancop_problem_2, sk35, sk36] >>> 279
+@
+@
+@
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, sk38, top_str, topological_space, leancop_problem_2, sk35] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, empty_carrier, sk38, topological_space, leancop_problem_2, sk35] >>> 284
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, sk35, the_carrier] >>> 280
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, in, sk38, topological_space, interior, leancop_problem_2, sk35, sk36, sk37] >>> 278
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, sk38, top_str, topological_space, leancop_problem_2, sk35] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, sk38, top_str, topological_space, leancop_problem_2, sk35] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, sk38, topological_space, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, open_subset, sk38, topological_space, leancop_problem_2, sk35, sk36] >>> 279
+@
+@
+@
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, empty_carrier, sk38, top_str, leancop_problem_2, sk35] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, empty_carrier, sk38, topological_space, leancop_problem_2, sk35] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, empty_carrier, sk38, leancop_problem_2, sk35, the_carrier] >>> 280
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, empty_carrier, sk38, leancop_problem_2, powerset, sk35, the_carrier] >>> 281
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, empty_carrier, in, sk38, interior, leancop_problem_2, sk35, sk36, sk37] >>> 278
+@
+@
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, point_neighbourhood, sk38, top_str, leancop_problem_2, sk35, sk36, sk37] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, point_neighbourhood, sk38, topological_space, leancop_problem_2, sk35, sk36, sk37] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, empty_carrier, point_neighbourhood, sk38, leancop_problem_2, sk35, sk36, sk37] >>> 284
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, point_neighbourhood, sk38, leancop_problem_2, sk35, sk36, sk37, the_carrier] >>> 280
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, point_neighbourhood, sk38, leancop_problem_2, powerset, sk35, sk36, sk37, the_carrier] >>> 281
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, in, point_neighbourhood, sk38, interior, leancop_problem_2, sk35, sk36, sk37] >>> 278
+@
+@
+& best_lit_attempts=3; best_lit_unsuccessful_attempts=2; [#, =, in, point_neighbourhood, sk38, interior, leancop_problem_2, sk35, sk36, sk37] >>> 222
+@
+@
+@
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, in, sk38, top_str, interior, leancop_problem_2, sk36, sk37] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, in, sk38, topological_space, interior, leancop_problem_2, sk35, sk36, sk37] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, empty_carrier, in, sk38, interior, leancop_problem_2, sk35, sk36, sk37] >>> 284
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, in, sk38, interior, leancop_problem_2, sk35, sk36, sk37, the_carrier] >>> 280
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, element, in, sk38, interior, leancop_problem_2, powerset, sk35, sk36, sk37, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, in, point_neighbourhood, sk38, interior, leancop_problem_2, sk35, sk36, sk37] >>> 277
+& best_lit_attempts=7; best_lit_unsuccessful_attempts=0; [#, in, sk38, leancop_problem_2, sk36, sk37] >>> 287
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, =, element, in, sk38, leancop_problem_2, powerset, sk36, sk37] >>> 104
+@
+@
+& best_lit_attempts=3; best_lit_unsuccessful_attempts=2; [#, =, in, sk38, leancop_problem_2, powerset, sk10, sk36, sk37, top_str_of] >>> 222
+& best_lit_attempts=5; best_lit_unsuccessful_attempts=0; [#, =, in, sk38, leancop_problem_2, sk36, sk37] >>> 131
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, =, element, in, sk38, interior, leancop_problem_2, powerset, sk35, sk36, sk37] >>> 104
+@
+@
+@
+@
+@
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, =, in, sk38, top_str, interior, leancop_problem_2, sk35, sk36, sk37] >>> 282
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, =, in, sk38, topological_space, interior, leancop_problem_2, sk35, sk36, sk37] >>> 283
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, =, element, in, sk38, interior, leancop_problem_2, powerset, sk35, sk36, sk37, the_carrier] >>> 281
+@
+& best_lit_attempts=1; best_lit_unsuccessful_attempts=0; [#, =, in, open_subset, sk38, interior, leancop_problem_2, sk35, sk36, sk37] >>> 279
+& best_lit_attempts=7; best_lit_unsuccessful_attempts=2; [#, =, in, sk38, interior, leancop_problem_2, sk35, sk36, sk37] >>> 291
+& best_lit_attempts=15; best_lit_unsuccessful_attempts=7; [#, =, in, sk38, interior, leancop_problem_2, sk35, sk36, sk37] >>> 223
+& best_lit_attempts=28; best_lit_unsuccessful_attempts=0; [#, in, sk38, leancop_problem_2, sk36, sk37] >>> 259
+& best_lit_attempts=47; best_lit_unsuccessful_attempts=18; [#, sk38, leancop_problem_2] >>> 278
+& best_lit_attempts=48; best_lit_unsuccessful_attempts=0; [#, leancop_problem_2] >>> 285
+
+BushyProblems/connsp_2__t5_connsp_2.p.leancop.small is a Theorem
+Start of proof for BushyProblems/connsp_2__t5_connsp_2.p.leancop.small
+------------------------------------------------------
+Explanations for the proof presented below:
+- to solve unsatisfiable problems they are negated
+- equality axioms are added if required
+- terms and variables are represented by Prolog terms
+  and Prolog variables, negation is represented by -
+- I^[t1,..,tn] represents the atom P_I(t1,..,tn)
+  or the Skolem term f_I(t1,t2,..,tn) introduced
+  during the clausal form translation
+- the substitution [[X1,..,Xn],[t1,..,tn]] represents
+  the assignments X1:=t1, .., Xn:=tn
+
+Proof:
+------
+
+Translation into (disjunctive) clausal form:
+ (277)  [-sk38, point_neighbourhood(sk36, sk35, sk37)]
+ (278)  [-sk38, -in(sk37, sk36)]
+ (279)  [-sk38, -open_subset(sk36, sk35)]
+ (280)  [-sk38, -element(sk37, the_carrier(sk35))]
+ (281)  [-sk38, -element(sk36, powerset(the_carrier(sk35)))]
+ (282)  [-sk38, -top_str(sk35)]
+ (283)  [-sk38, -topological_space(sk35)]
+ (284)  [-sk38, empty_carrier(sk35)]
+ (285)  [sk38]
+ (287)  [top_str(_G648), topological_space(_G648), -empty_carrier(_G648), element(_G665, the_carrier(_G648)), element(_G673, powerset(the_carrier(_G648))), in(_G665, interior(_G648, _G673)), -point_neighbourhood(_G673, _G648, _G665)]
+ (104)  [-element(sk10(_G633), _G633)]
+ (131)  [element(_G592, powerset(powerset(_G597))), top_str_of(_G597, _G592)=top_str_of(_G608, _G609), - (_G597=_G608)]
+ (291)  [top_str(_G532), topological_space(_G532), top_str(_G542), element(_G547, powerset(the_carrier(_G532))), element(_G557, powerset(the_carrier(_G542))), open_subset(_G557, _G542), - (interior(_G542, _G557)=_G557)]
+ (222)  [- (_G518=_G518)]
+ (223)  [_G494=_G495, - (_G495=_G494)]
+ (259)  [-in(_G462, _G463), in(_G468, _G469), _G468=_G462, _G469=_G463]
+
+We prove that the given clauses are valid, i.e. for
+a given substitution they evaluate to true for all
+interpretations. The proof is by contradiction:
+Assume there is an interpretation so that the given
+clauses evaluate to false. Then in each clause there
+has to be at least one literal that is false.
+
+ Then clause (285) is false if at least one of the following is false:
+ [sk38]
+1 Assume sk38 is false.
+  Then clause (278) is false if at least one of the following is false:
+  [-in(sk37, sk36)]
+1.1 Assume -in(sk37, sk36) is false.
+    Then clause (259) under the substitution [[_G468, _G469, _G462, _G463], [sk37, sk36, sk37, interior(sk35, sk36)]]
+    is false if at least one of the following is false:
+    [-in(sk37, interior(sk35, sk36)), sk37=sk37, sk36=interior(sk35, sk36)]
+1.1.1 Assume -in(sk37, interior(sk35, sk36)) is false.
+      Then clause (287) under the substitution [[_G665, _G648, _G673], [sk37, sk35, sk36]]
+      is false if at least one of the following is false:
+      [top_str(sk35), topological_space(sk35), -empty_carrier(sk35), element(sk37, the_carrier(sk35)), element(sk36, powerset(the_carrier(sk35))), -point_neighbourhood(sk36, sk35, sk37)]
+1.1.1.1 Assume top_str(sk35) is false.
+        Then clause (282) is false if at least one of the following is false:
+        [-sk38]
+1.1.1.1.1 Assume -sk38 is false.
+          Then clause (285) is true.
+1.1.1.2 Assume topological_space(sk35) is false.
+        Then clause (283) is false if at least one of the following is false:
+        [-sk38]
+1.1.1.2.1 Assume -sk38 is false.
+          Then clause (285) is true.
+1.1.1.3 Assume -empty_carrier(sk35) is false.
+        Then clause (284) is false if at least one of the following is false:
+        [-sk38]
+1.1.1.3.1 Assume -sk38 is false.
+          Then clause (285) is true.
+1.1.1.4 Assume element(sk37, the_carrier(sk35)) is false.
+        Then clause (280) is false if at least one of the following is false:
+        [-sk38]
+1.1.1.4.1 Assume -sk38 is false.
+          Then clause (285) is true.
+1.1.1.5 Assume element(sk36, powerset(the_carrier(sk35))) is false.
+        Then clause (281) is false if at least one of the following is false:
+        [-sk38]
+1.1.1.5.1 Assume -sk38 is false.
+          Then clause (285) is true.
+1.1.1.6 Assume -point_neighbourhood(sk36, sk35, sk37) is false.
+        Then clause (277) is false if at least one of the following is false:
+        [-sk38]
+1.1.1.6.1 Assume -sk38 is false.
+          Then clause (285) is true.
+1.1.2 Assume sk37=sk37 is false.
+      Then clause (131) under the substitution [[_G597, _G608, _G592, _G609], [sk37, sk37, sk10(powerset(powerset(sk37))), sk10(powerset(powerset(sk37)))]]
+      is false if at least one of the following is false:
+      [element(sk10(powerset(powerset(sk37))), powerset(powerset(sk37))), top_str_of(sk37, sk10(powerset(powerset(sk37))))=top_str_of(sk37, sk10(powerset(powerset(sk37))))]
+1.1.2.1 Assume element(sk10(powerset(powerset(sk37))), powerset(powerset(sk37))) is false.
+        Then clause (104) under the substitution [[_G633], [powerset(powerset(sk37))]]
+        is true.
+1.1.2.2 Assume top_str_of(sk37, sk10(powerset(powerset(sk37))))=top_str_of(sk37, sk10(powerset(powerset(sk37)))) is false.
+        Then clause (222) under the substitution [[_G518], [top_str_of(sk37, sk10(powerset(powerset(sk37))))]]
+        is true.
+1.1.3 Assume sk36=interior(sk35, sk36) is false.
+      Then clause (223) under the substitution [[_G495, _G494], [sk36, interior(sk35, sk36)]]
+      is false if at least one of the following is false:
+      [interior(sk35, sk36)=sk36]
+1.1.3.1 Assume interior(sk35, sk36)=sk36 is false.
+        Then clause (291) under the substitution [[_G542, _G557, _G532, _G547], [sk35, sk36, sk35, sk36]]
+        is false if at least one of the following is false:
+        [top_str(sk35), topological_space(sk35), top_str(sk35), element(sk36, powerset(the_carrier(sk35))), element(sk36, powerset(the_carrier(sk35))), open_subset(sk36, sk35)]
+1.1.3.1.1 Assume top_str(sk35) is false.
+          Then clause (282) is false if at least one of the following is false:
+          [-sk38]
+1.1.3.1.1.1 Assume -sk38 is false.
+            Then clause (285) is true.
+1.1.3.1.2 Assume topological_space(sk35) is false.
+          Then clause (283) is false if at least one of the following is false:
+          [-sk38]
+1.1.3.1.2.1 Assume -sk38 is false.
+            Then clause (285) is true.
+1.1.3.1.3 Assume top_str(sk35) is false.
+          This assumption has been refuted in 1.1.3.1.1.
+1.1.3.1.4 Assume element(sk36, powerset(the_carrier(sk35))) is false.
+          Then clause (281) is false if at least one of the following is false:
+          [-sk38]
+1.1.3.1.4.1 Assume -sk38 is false.
+            Then clause (285) is true.
+1.1.3.1.5 Assume element(sk36, powerset(the_carrier(sk35))) is false.
+          This assumption has been refuted in 1.1.3.1.4.
+1.1.3.1.6 Assume open_subset(sk36, sk35) is false.
+          Then clause (279) is false if at least one of the following is false:
+          [-sk38]
+1.1.3.1.6.1 Assume -sk38 is false.
+            Then clause (285) is true.
+
+Therefore there is no interpretation that makes all
+given clauses simultaneously false. Hence the given
+clauses are valid.
+                                             q.e.d.
+------------------------------------------------------
+End of proof for BushyProblems/connsp_2__t5_connsp_2.p.leancop.small

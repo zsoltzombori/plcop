@@ -1,0 +1,16 @@
+dnf(277, conjecture, [-sk38, point_neighbourhood(sk36, sk35, sk37)], g).
+dnf(278, conjecture, [-sk38, -in(sk37, sk36)], g).
+dnf(279, conjecture, [-sk38, -open_subset(sk36, sk35)], g).
+dnf(280, conjecture, [-sk38, -element(sk37, the_carrier(sk35))], g).
+dnf(281, conjecture, [-sk38, -element(sk36, powerset(the_carrier(sk35)))], g).
+dnf(282, conjecture, [-sk38, -top_str(sk35)], g).
+dnf(283, conjecture, [-sk38, -topological_space(sk35)], g).
+dnf(284, conjecture, [-sk38, empty_carrier(sk35)], g).
+dnf(285, conjecture, [sk38, #(leancop_problem_2)], g).
+dnf(287, axiom, [top_str(A), topological_space(A), -empty_carrier(A), element(B, the_carrier(A)), element(C, powerset(the_carrier(A))), in(B, interior(A, C)), -point_neighbourhood(C, A, B)], n).
+dnf(104, axiom, [-element(sk10(A), A)], n).
+dnf(131, axiom, [element(A, powerset(powerset(B))), top_str_of(B, A)=top_str_of(C, D), - (B=C)], n).
+dnf(291, axiom, [top_str(A), topological_space(A), top_str(B), element(C, powerset(the_carrier(A))), element(D, powerset(the_carrier(B))), open_subset(D, B), - (interior(B, D)=D)], n).
+dnf(222, axiom, [- (A=A)], n).
+dnf(223, axiom, [A=B, - (B=A)], n).
+dnf(259, axiom, [-in(A, B), in(C, D), C=A, D=B], n).

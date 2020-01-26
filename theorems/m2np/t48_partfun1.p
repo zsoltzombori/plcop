@@ -1,0 +1,9 @@
+fof(t48_partfun1, conjecture,  (! [A] : k4_partfun1(k1_xboole_0, A)=k1_tarski(k1_xboole_0)) ).
+fof(cc1_funct_1, axiom,  (! [A] :  (v1_xboole_0(A) => v1_funct_1(A)) ) ).
+fof(cc3_relset_1, axiom,  (! [A, B] :  (v1_xboole_0(A) =>  (! [C] :  (m1_subset_1(C, k1_zfmisc_1(k2_zfmisc_1(A, B))) => v1_xboole_0(C)) ) ) ) ).
+fof(d1_tarski, axiom,  (! [A] :  (! [B] :  (B=k1_tarski(A) <=>  (! [C] :  (r2_hidden(C, B) <=> C=A) ) ) ) ) ).
+fof(fc1_xboole_0, axiom, v1_xboole_0(k1_xboole_0)).
+fof(t12_relset_1, axiom,  (! [A] :  (! [B] : m1_subset_1(k1_xboole_0, k1_zfmisc_1(k2_zfmisc_1(A, B)))) ) ).
+fof(t45_partfun1, axiom,  (! [A] :  (! [B] :  (! [C] :  ( (v1_funct_1(C) & m1_subset_1(C, k1_zfmisc_1(k2_zfmisc_1(A, B))))  => r2_hidden(C, k4_partfun1(A, B))) ) ) ) ).
+fof(t46_partfun1, axiom,  (! [A] :  (! [B] :  (! [C] :  (r2_hidden(C, k4_partfun1(A, B)) =>  (v1_funct_1(C) & m1_subset_1(C, k1_zfmisc_1(k2_zfmisc_1(A, B)))) ) ) ) ) ).
+fof(t6_boole, axiom,  (! [A] :  (v1_xboole_0(A) => A=k1_xboole_0) ) ).

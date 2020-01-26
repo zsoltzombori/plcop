@@ -1,0 +1,3 @@
+fof(t26_partfun1, conjecture,  (! [A] :  (! [B] :  (! [C] :  (! [D] :  ( (v1_relat_1(D) & v1_funct_1(D))  =>  (r2_hidden(A, k1_relset_1(B, k3_partfun1(D, B, C))) => k1_funct_1(k3_partfun1(D, B, C), A)=k1_funct_1(D, A)) ) ) ) ) ) ).
+fof(t24_partfun1, axiom,  (! [A] :  (! [B] :  (! [C] :  (! [D] :  ( (v1_relat_1(D) & v1_funct_1(D))  =>  (r2_hidden(A, k1_relset_1(B, k3_partfun1(D, B, C))) <=>  (r2_hidden(A, k9_xtuple_0(D)) &  (r2_hidden(A, B) & r2_hidden(k1_funct_1(D, A), C)) ) ) ) ) ) ) ) ).
+fof(t25_partfun1, axiom,  (! [A] :  (! [B] :  (! [C] :  (! [D] :  ( (v1_relat_1(D) & v1_funct_1(D))  =>  ( (r2_hidden(A, k9_xtuple_0(D)) &  (r2_hidden(A, B) & r2_hidden(k1_funct_1(D, A), C)) )  => k1_funct_1(k3_partfun1(D, B, C), A)=k1_funct_1(D, A)) ) ) ) ) ) ).

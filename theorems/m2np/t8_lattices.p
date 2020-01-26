@@ -1,0 +1,3 @@
+fof(t8_lattices, conjecture,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v4_lattices(A) & l2_lattices(A)) )  =>  (! [B] :  (m1_subset_1(B, u1_struct_0(A)) =>  (! [C] :  (m1_subset_1(C, u1_struct_0(A)) =>  ( (r1_lattices(A, B, C) & r1_lattices(A, C, B))  => B=C) ) ) ) ) ) ) ).
+fof(d3_lattices, axiom,  (! [A] :  ( ( ~ (v2_struct_0(A))  & l2_lattices(A))  =>  (! [B] :  (m1_subset_1(B, u1_struct_0(A)) =>  (! [C] :  (m1_subset_1(C, u1_struct_0(A)) =>  (r1_lattices(A, B, C) <=> k1_lattices(A, B, C)=C) ) ) ) ) ) ) ).
+fof(d4_lattices, axiom,  (! [A] :  ( ( ~ (v2_struct_0(A))  & l2_lattices(A))  =>  (v4_lattices(A) <=>  (! [B] :  (m1_subset_1(B, u1_struct_0(A)) =>  (! [C] :  (m1_subset_1(C, u1_struct_0(A)) => k1_lattices(A, B, C)=k1_lattices(A, C, B)) ) ) ) ) ) ) ).

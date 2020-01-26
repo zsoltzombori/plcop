@@ -1,0 +1,2 @@
+fof(t32_subset_1, conjecture,  (! [A] :  (! [B] :  (m1_subset_1(B, k1_zfmisc_1(A)) =>  (! [C] :  (m1_subset_1(C, k1_zfmisc_1(A)) =>  ( (! [D] :  (m1_subset_1(D, A) =>  ~ ( (r2_hidden(D, B) <=> r2_hidden(D, C)) ) ) )  => B=k3_subset_1(A, C)) ) ) ) ) ) ).
+fof(t30_subset_1, axiom,  (! [A] :  (! [B] :  (m1_subset_1(B, k1_zfmisc_1(A)) =>  (! [C] :  (m1_subset_1(C, k1_zfmisc_1(A)) =>  ( (! [D] :  (m1_subset_1(D, A) =>  (r2_hidden(D, B) <=>  ~ (r2_hidden(D, C)) ) ) )  => B=k3_subset_1(A, C)) ) ) ) ) ) ).

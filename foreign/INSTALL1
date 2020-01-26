@@ -1,0 +1,2 @@
+# this assumes all sorts of things; the libgboost.so should be in /tmp/
+swipl-ld -shared  --std=c++11 -cc-options,-std=c++11 -ld g++ -I/usr/lib/swi-prolog/include/ -I/home/urban/ec/repos-mws/cfcop7/xgb/xgboost/include/ -I/home/urban/ec/repos-mws/cfcop7/xgb/xgboost/dmlc-core/include/ -I/home/urban/ec/repos-mws/cfcop7/xgb/xgboost/rabit/include/ -I/home/urban/ec/repos-mws/cfcop7/xgb/xgboost/include/  -Wl,-rpath -Wl,/tmp/ -L/tmp/ -lxgboost  -o xgb xgb.cpp

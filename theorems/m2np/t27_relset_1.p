@@ -1,0 +1,5 @@
+fof(t27_relset_1, conjecture,  (! [A] :  ( ~ (v1_xboole_0(A))  =>  (! [B] :  ( ~ (v1_xboole_0(B))  =>  (! [C] :  (m1_subset_1(C, k1_zfmisc_1(k2_zfmisc_1(B, A))) =>  ~ ( ( ~ (k2_relset_1(A, C)=k1_xboole_0)  &  (! [D] :  (m1_subset_1(D, B) =>  ~ (r2_hidden(D, k1_relset_1(B, C))) ) ) ) ) ) ) ) ) ) ) ).
+fof(dt_k3_relset_1, axiom,  (! [A, B, C] :  (m1_subset_1(C, k1_zfmisc_1(k2_zfmisc_1(A, B))) => m1_subset_1(k3_relset_1(A, B, C), k1_zfmisc_1(k2_zfmisc_1(B, A)))) ) ).
+fof(redefinition_k3_relset_1, axiom,  (! [A, B, C] :  (m1_subset_1(C, k1_zfmisc_1(k2_zfmisc_1(A, B))) => k3_relset_1(A, B, C)=k2_relat_1(C)) ) ).
+fof(t11_relset_1, axiom,  (! [A] :  (! [B] :  (! [C] :  (m1_subset_1(C, k1_zfmisc_1(k2_zfmisc_1(A, B))) =>  (k1_relset_1(B, k3_relset_1(A, B, C))=k2_relset_1(B, C) & k2_relset_1(A, k3_relset_1(A, B, C))=k1_relset_1(A, C)) ) ) ) ) ).
+fof(t26_relset_1, axiom,  (! [A] :  ( ~ (v1_xboole_0(A))  =>  (! [B] :  ( ~ (v1_xboole_0(B))  =>  (! [C] :  (m1_subset_1(C, k1_zfmisc_1(k2_zfmisc_1(A, B))) =>  ~ ( ( ~ (k1_relset_1(A, C)=k1_xboole_0)  &  (! [D] :  (m1_subset_1(D, B) =>  ~ (r2_hidden(D, k2_relset_1(B, C))) ) ) ) ) ) ) ) ) ) ) ).

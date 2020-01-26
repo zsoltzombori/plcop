@@ -1,0 +1,3 @@
+fof(t18_mcart_1, conjecture,  (! [A] :  (! [B] :  (! [C] :  (! [D] :  (r2_hidden(A, k2_zfmisc_1(k1_tarski(B), k2_tarski(C, D))) =>  (k1_xtuple_0(A)=B &  (k2_xtuple_0(A)=C | k2_xtuple_0(A)=D) ) ) ) ) ) ) ).
+fof(t12_mcart_1, axiom,  (! [A] :  (! [B] :  (! [C] :  (r2_hidden(A, k2_zfmisc_1(k1_tarski(B), C)) =>  (k1_xtuple_0(A)=B & r2_hidden(k2_xtuple_0(A), C)) ) ) ) ) ).
+fof(t16_mcart_1, axiom,  (! [A] :  (! [B] :  (! [C] :  (! [D] :  (r2_hidden(A, k2_zfmisc_1(B, k2_tarski(C, D))) =>  (r2_hidden(k1_xtuple_0(A), B) &  (k2_xtuple_0(A)=C | k2_xtuple_0(A)=D) ) ) ) ) ) ) ).

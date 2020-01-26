@@ -1,0 +1,2 @@
+fof(t22_lattices, conjecture,  (! [A] :  ( ( ~ (v2_struct_0(A))  &  (v10_lattices(A) &  (v17_lattices(A) & l3_lattices(A)) ) )  =>  (! [B] :  (m1_subset_1(B, u1_struct_0(A)) => k7_lattices(A, k7_lattices(A, B))=B) ) ) ) ).
+fof(rd7_lattices, axiom,  (! [A, B] :  ( ( ( ~ (v2_struct_0(A))  &  (v10_lattices(A) &  (v17_lattices(A) & l3_lattices(A)) ) )  & m1_subset_1(B, u1_struct_0(A)))  => k7_lattices(A, k7_lattices(A, B))=B) ) ).
