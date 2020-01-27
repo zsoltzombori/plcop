@@ -39,7 +39,7 @@ cp foreign/libxgboost.so /tmp/
 
 If you need to obtain another version of xgboost, this link can help:
 
-[https://xgboost.readthedocs.io/en/latest/build.html#building-the-shared-library]
+https://xgboost.readthedocs.io/en/latest/build.html#building-the-shared-library
 
 # Usage
 
