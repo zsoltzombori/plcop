@@ -91,6 +91,7 @@ Params = "{},save_all_policy({})".format(Params, args.save_all_policy)
 Params = "{},save_all_value({})".format(Params, args.save_all_value)
 Params = "{},lemma_features({})".format(Params, args.lemma_features)
 Params = "{},inference_limit({})".format(Params, args.inference_limit)
+Params = "{},collapse_vars({})".format(Params, args.collapse_vars)
 
 if args.guided == 2: # using c interface, we need to pass the model files as well
     Params = "{},value_modelfile(\"{}\"),policy_modelfile(\"{}\")".format(Params,value_modelfile, policy_modelfile)

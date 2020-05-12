@@ -21,8 +21,8 @@ embed_step(ActionIndex,[EGoal,EPath,ELem],EActions,Result):-
 
 init:-
     Settings = [conj,nodef,comp(10),verbose,print_proof],
-    init('theorems/robinson/robinson_1m1__1/robinson_1m1__1.p', Settings).
-%%    init('theorems/m2np/l115_zfmisc_1.p', Settings).
+    %% init('theorems/robinson/robinson_1m1__1/robinson_1m1__1.p', Settings).
+    init('theorems/m2np/t108_zfmisc_1.p', Settings).
 init(File,Settings):-
     init(File,Settings,_,_,_).
 init(File,Settings,[Goal,Path,Lem],Actions,Result):-
@@ -48,6 +48,7 @@ init_pure(File,Settings,NewState):-
     format("Successfully opened file ~w\n", [File]),
     ( Conj\=[] -> Problem1=Problem ; Problem1=(~Problem) ),
     leancop_equal(Problem1,Problem2),
+    %% leancop_equal_reflexivity(Problem1,Problem2), % TODO
     make_matrix(Problem2,Matrix,Settings),
     ( option(verbose) ->
 	  writeln(["Problem ", Problem2]),
@@ -116,16 +117,16 @@ set_state(Goal,Path,Lem,Actions,Todos,Proof):-
 % log exploration
 log(Goal,Path,Lem,Actions,Todos,Proof,Result,Selected):-
     ( option(verbose) ->
-	  writeln(["Selected ", Selected]),
-	  writeln(["Goal: ", Goal]),
-      writeln(["Path: ", Path]),
-      writeln(["Lem:  ", Lem]),
+	  write("Selected "), print_term(Selected, [indent_arguments(false)]), nl,
+	  write("Goal     "), print_term(Goal, [indent_arguments(false)]), nl,
+	  write("Path     "), print_term(Path, [indent_arguments(false)]), nl,
+	  write("Lem      "), print_term(Lem, [indent_arguments(false)]), nl,
       nl,
-      foreach(member(A,Actions), format("Action ~w\n",[A])),
+      writeln("Actions:"),
+      foreach(member(A,Actions), (print_term(A,[indent_arguments(false)]), nl)), 
       nl,
-	  % writeln(["Actions ", Actions]),
-	  writeln(["Result ", Result]),
-	  writeln(["Todos ", Todos])
+	  write("Result   "), print_term(Result, [indent_arguments(false)]), nl,
+	  write("Todos    "), print_term(Todos, [indent_arguments(false)]), nl
      ; true
     ),
 
@@ -169,11 +170,13 @@ nondet_step(ext(NegLit,Cla1,_Grnd1), [Lit|Cla],Path,Lem,Todos,Proof,NewGoal,NewP
     ),
     Proof2=[ext(Ext_orig-Ext)|Proof],
     det_steps(Cla1,[Lit|Path],Lem,Todos2,Proof2,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result).
-nondet_step(para(Pos, From, To, Cla1, Dir), [Lit|Cla],Path,Lem,Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):- % paramodulation
+nondet_step(para(Pos, LHS, RHS, Cla1, Dir), [Lit|Cla],Path,Lem,Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):- % paramodulation
     position(Lit, Pos, Term), !,
-    Para = [Lit, Pos, From, To, Cla1, Dir],
+    Para = [Lit, Pos, LHS, RHS, Cla1, Dir],
     copy_term(Para, Para_orig),
-    Term = From,
+    ( Dir = l2r -> LHS = Term, RHS = To
+    ; LHS = To, RHS = Term
+    ),
     replace_term_in_pos(Lit, Pos,To,Lit2),
     ( Cla=[_|_] ->
 	  Todos2 = [[Cla,Path,[Lit|Lem]]|Todos]
@@ -190,8 +193,10 @@ det_steps([],_Path,_Lem,Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Res
      ; Todos = [[Goal2,Path2,Lem2]|Todos2] -> % nothing to prove, something on the stack
 	   det_steps(Goal2,Path2,Lem2,Todos2,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result)
     ).
-det_steps([Lit|_Cla],Path,_Lem,_Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):-
-    member(P,Path), Lit == P, !, % loop elimination
+% det_steps([Lit|_Cla],Path,_Lem,_Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):-
+%     member(P,Path), Lit == P, !, % loop elimination
+det_steps(Cla,Path,_Lem,_Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):-
+    member(Lit,Cla), member(P,Path), Lit == P, !, % loop elimination
     [NewGoal,NewPath,NewLem,NewTodos,NewProof,Result] = [[failure],[],[],[],Proof,-1].    
 det_steps([Lit|Cla],Path,Lem,Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):-
     member(LitL,Lem), Lit==LitL, !, % perform lemma step
@@ -271,7 +276,9 @@ add_to_embedding(Name,AtomL0,Emb0,AtomL,Emb):-
 %% print_my_proof(+Proof, +Type):- Type in {orig, substituted, both}
 print_my_proof([], _).
 print_my_proof([lem(Lit)|Proof], Type):- !,
-    format('   ~w: ~t ~w\n', ['Lemma    ', Lit]),
+    format('   ~w: ~t', ['Lemma    ']),
+    print_term(Lit, [indent_arguments(false)]),
+    nl,
     print_my_proof(Proof, Type).
 print_my_proof([P|Proof], Type):-
     P =.. [Head, Orig-Substituted],
@@ -282,9 +289,9 @@ print_my_proof([P|Proof], Type):-
     ),
     write('   '), write(Name), write(': \t'),
 
-    ( Type == orig -> write(Orig)
-    ; Type == substituted -> write(Substituted)
-    ; Type == both -> write(Orig), nl, write('\t\t -> '), write(Substituted)
+    ( Type == orig -> print_term(Orig, [indent_arguments(false)])
+    ; Type == substituted -> print_term(Substituted, [indent_arguments(false)])
+    ; Type == both -> print_term(Orig, [indent_arguments(false)]), nl, write('\t\t -> '), print_term(Substituted, [indent_arguments(false)])
     ),
     nl,
     print_my_proof(Proof, Type).
@@ -295,7 +302,7 @@ print_kb():-
     findall(Ax, (
                  lit(_E,NegL,Cla,_),
                  Ax = lit([NegL|Cla]),
-                 writeln(Ax)
+                 print_term(Ax, [indent_arguments(false)]), nl
                ), Axs
            ),
     length(Axs, L),
@@ -306,31 +313,35 @@ print_kb():-
 
 proof_clauses([], _).
 proof_clauses([init(_)|Proof], Stream):- !,
+    format(Stream, '\ninit.\n', []),
     proof_clauses(Proof, Stream).
 proof_clauses([lem(_)|Proof], Stream):- !,
+    format(Stream, '\nlemma.\n', []),
     proof_clauses(Proof, Stream).
 proof_clauses([red(_)|Proof], Stream):- !,
+    format(Stream, '\nreduction.\n', []),
     proof_clauses(Proof, Stream).
 proof_clauses([para(Orig-_Substituted)|Proof], Stream):- !,
-    Orig = [Goal, Pos,  From ,To, Cla, _Dir], % TODO maybe include Dir
-    %% Substituted = [_, FromC ,ToC, ClaC],
-    rewrite_neg([Goal], [Goal1]),
-    format(Stream, "\nparamodulation(~w).\n", [Goal1]),
-    print_clause([neg(eq(From,To))|Cla], Stream),
-    %% print_clause([neg(eq(FromC,ToC))|ClaC], Stream),
+    Orig = [Goal, Pos, LHS, RHS, Cla, Dir],
+    format(Stream, '\nparamodulation.\n', []),
+    rewrite_for_print([Goal], [Goal1]),
+    copy_term(Goal1, Goal2), numbervars(Goal2, 0, _),
+    format(Stream, "~w.\n", [Goal2]),
     format(Stream, "~w.\n", [Pos]),
+    format(Stream, "~w.\n", [Dir]),
+    print_clause([neg(eq(LHS,RHS))|Cla], Stream),
     proof_clauses(Proof, Stream).
-proof_clauses([ext(Orig-Substituted)|Proof], Stream):- !,
+proof_clauses([ext(Orig-_Substituted)|Proof], Stream):- !,
     Orig = [Goal, OrigC],
-    Substituted = [_, SubstitutedC],
-    rewrite_neg([Goal], [Goal1]),
-    format(Stream, "\n~w.\n", [Goal1]),
+    format(Stream, '\nextension.\n', []),
+    rewrite_for_print([Goal], [Goal1]),
+    copy_term(Goal1, Goal2), numbervars(Goal2, 0, _),
+    format(Stream, "~w.\n", [Goal2]),
     print_clause(OrigC, Stream),
-    print_clause(SubstitutedC, Stream),
     proof_clauses(Proof, Stream).
 
 print_clause(Clause, Stream):-
-    rewrite_neg(Clause, Clause0),
+    rewrite_for_print(Clause, Clause0),
     copy_term(Clause0, Clause1), numbervars(Clause1, 0, _),
     Clause1 = [NegHead|Body],
     ( NegHead = neg(Head) -> true
@@ -349,11 +360,18 @@ print_clause(Clause, Stream):-
     ),
     format(Stream, '.\n', []).
 
-rewrite_neg([], []).
-rewrite_neg([C|Cs], [RC|RCs]):-
-    ( C = -X -> RC = neg(X)
-    ; RC = C
-    ),
-    rewrite_neg(Cs, RCs).
 
-           
+rewrite_for_print(A, B):-
+    ( var(A) -> B=A
+    ; A = (#) -> B = hashMark
+    ; atomic(A) -> B=A
+    ; A = [_|_] -> maplist(rewrite_for_print,A,B)             
+    ; A =.. [Head|Args],
+      maplist(rewrite_for_print, Args, Args2),
+      ( Head == (=) -> Head2 = eq
+      ; Head == (-) -> Head2 = neg
+      ; Head2 = Head
+      ),
+      B =.. [Head2|Args2]
+    ).
+

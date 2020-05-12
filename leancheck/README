@@ -5,9 +5,13 @@ Run it as:
 ./leancheck -i t9_zfmisc.p.out
 PROOF FILE OK
 
-or:
+./leancheck -i t5_xboole_1.txt
+PROOF FILE OK
 
 ./leancheck -i notapf.out 
+PROOF FILE NOT OK
+
+./leancheck -i notaneqpf.txt
 PROOF FILE NOT OK
 
 To recompile with sbcl, run ./mymake .

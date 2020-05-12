@@ -92,6 +92,16 @@ fml2cop([F|Fml],[F1|Fml1]) :-
 
 %%% add equality axioms
 
+%% add nothing but A=A
+leancop_equal_reflexivity(F,F1) :-
+    collect_predfunc([F],PL,_FL),
+    ( append(_PL2,[(=,2)|_PL3],PL) ->
+      F5 = (( all X:(X=X) )),
+      ( F=(A=>C) -> F1=((F5,A)=>C) ; F1=(F5=>F) )
+    ; F1=F
+    ), !.
+
+
 leancop_equal(F,F1) :-
     collect_predfunc([F],PL,FL),
     ( append(PL2,[(=,2)|PL3],PL), append(PL2,PL3,PL1) ->

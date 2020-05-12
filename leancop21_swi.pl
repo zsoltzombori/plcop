@@ -141,22 +141,24 @@ select_unifiable_contras(E, Contras):-
            ).
 
 select_paramodulation(Lit, Paramodulations):-
-    findall(para(Pos, From, To, Cla1, Dir), (
-                                        lit(-(_=_), -(A=B), Cla1, _Grnd1),
-                                        position(Lit, Pos, Term),
-                                        nonvar(Term),
-                                        ( \+(\+(unify_with_occurs_check(Term,A))), From=A, To=B, Dir=l2r
-                                        ; \+(\+(unify_with_occurs_check(Term,B))), From=B, To=A, Dir=r2l
-                                        ),
-                                        nonvar(From),
-                                        %% make sure no variables are introduced due to the rewrite
-                                        copy_term([From,To], [From2,To2]),
-                                        numbervars(From2, 0, _),
-                                        ground(To2)
-                                       ), Paramodulations
+    findall(para(Pos, LHS, RHS, Cla1, Dir), (
+                                             lit(-(_=_), -(LHS=RHS), Cla1, _Grnd1),
+                                             \+ LHS == RHS,
+                                             position(Lit, Pos, Term),
+                                             nonvar(Term),
+                                             ( \+(\+(unify_with_occurs_check(Term,LHS))), From=LHS, To=RHS, Dir=l2r
+                                             ; \+(\+(unify_with_occurs_check(Term,RHS))), From=RHS, To=LHS, Dir=r2l
+                                             ),
+                                             nonvar(From),
+                                             %% make sure no variables are introduced due to the rewrite
+                                             copy_term([From,To], [From2,To2]),
+                                             numbervars(From2, 0, _),
+                                             ground(To2)
+                                            ), Paramodulations
            ).
 
 position(X, [], X).
+position(S^Args, [], S^Args):- !.
 position(X, [P|Pos], Term):-
     nonvar(X),
     \+ atomic(X),

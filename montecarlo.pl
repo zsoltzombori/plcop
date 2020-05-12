@@ -11,7 +11,6 @@
 :- [produce_leancop_proof].
 :- use_module(library(http/json)).
 
-% :- dynamic nodecount/1.
 :- dynamic mc_param/2.
 :- dynamic xgb_handle/2.
 :- dynamic proof_found/1.
@@ -73,7 +72,6 @@ mc_run(File,Params,ValueDir,PolicyDir,ClauseDir,ProofDir,ExecutionTime):-
     mc_param(playout_time,Time),
     mc_playout_times(PlayoutCount,ChildHash,ParentHash,NodeHash,FHash,Time),
 
-    %% nodecount(NC),
     flag(nodecount, NC, NC),
     format("Created ~d nodes\n", [NC]), !,
 
@@ -118,8 +116,6 @@ mc_init(File,ChildHash,ParentHash,NodeHash,FHash):-
     guidance_action_probs(StartState,FHash,ChildProbs),
 
     nb_hashtbl_set(NodeHash, 0, [StartState, 1, 1, Value, ChildProbs]),
-    %% retractall(nodecount(_)),
-    %% assert(nodecount(1)).
     flag(nodecount, _, 1).
 
 mc_playout_times(0,_,_,_,_,_):- !.
@@ -211,7 +207,6 @@ mc_expand_node(ParentId,ChildHash,ParentHash,NodeHash,FHash,ActionIndex,ChildVal
     % copy_term(ChildState,ChildState2),
     % mc_simulate(ChildState2,FHash,ChildValue),
     nth0(ActionIndex, ChildProbs, ChildProb),
-    %% nodecount(ChildId),
     flag(nodecount, ChildId, ChildId+1),
 
     nb_hashtbl_set(ChildHash,ParentId-ActionIndex,ChildId),
@@ -233,14 +228,21 @@ mc_expand_node(ParentId,ChildHash,ParentHash,NodeHash,FHash,ActionIndex,ChildVal
         proof_clauses(ProofRev, ClauseStream)
       ; true
       ),
+
+      %% ensure that nodes leading to this proof are considered bigstep nodes (we will extract training data from them)
+      mc_backpropagate_bigstep(ChildId, ParentHash),
       
       assert(proof_found(ChildId))
     ; true
     ).
 
-    %% retract(nodecount(_)),
-    %% C is ChildId+1,
-    %% assert(nodecount(C)).
+mc_backpropagate_bigstep(Id,ParentHash):-
+    ( rootnode(Id) -> true ; assertz(rootnode(Id)) ),
+    ( nb_hashtbl_get(ParentHash, Id, ParentId) -> mc_backpropagate_bigstep(ParentId,ParentHash)
+    ; true
+    ).
+
+
 
 
 % +State: current state
@@ -464,11 +466,11 @@ guidance_get_value(State,FHash,Value):-
     (  Result == 1 -> Value = 1
      ; Result == -1 -> Value = 0
      ; mc_param(guided,1) ->
-       logic_embed(State, FHash, _EmbStateP, EmbStateV,_),
+       logic_embed(State, FHash, state_only, _EmbStateP, EmbStateV,_),
        python_value(EmbStateV,Value2),
        Value is Value2 / 1e10
     ; mc_param(guided,2) ->
-       logic_embed(State, FHash, _EmbStateP, EmbStateV,_),
+       logic_embed(State, FHash, state_only, _EmbStateP, EmbStateV,_),
        xgb_handle(value,Handle), !,
        xgb:xpredict(Handle,EmbStateV,V),
        % Value is V
@@ -552,8 +554,7 @@ term_depth(Term, Depth):-
 
 
 guidance_action_probs(State,_FHash,Probs):-
-%%    mc_param(guided,0), !, % no guidance
-    ( mc_param(guided,0) ; mc_param(guided,2) ), !, % TODO CHECKING WHAT HAPPENS WHEN POLICY GUIDANCE IS DISABLED
+    mc_param(guided,0), !, % no guidance
     action_count(State,AC),
     ( AC = 0 ->  Probs = []
     ; Prob is 1/AC,
@@ -563,7 +564,7 @@ guidance_action_probs(State,FHash,Probs):-
     mc_param(guided,2), !,      % c guidance
     xgb_handle(policy,Handle), !,
 
-    logic_embed(State, FHash, EmbStateP, _EmbStateV, EmbActions),
+    logic_embed(State, FHash, both, EmbStateP, _EmbStateV, EmbActions),
     mc_param(temperature,Temp),
     findall(ExpScore, (
                        member(Action,EmbActions),
@@ -641,12 +642,17 @@ logic_step(State,ActionIndex,NextState):-
 %%   [(maxf+1,goals_length); (maxf+2,goals_size); (maxf+3,goals_max); (maxf+4,path_len); (maxf+5, sub_len); (maxf+6, max_depth); (maxf+7, mk1); (maxf
 %% +8, mv1); (maxf+9, mk2); (maxf+10, mv2)];;
 
-logic_embed(State,FHash,EmbStateP,EmbStateV,EmbActions):-
+%% EmbType in [both, state_only]
+logic_embed(State,FHash,EmbType, EmbStateP,EmbStateV,EmbActions):-
     State=state(Goal,Path,Lem,Actions,Todos,_Proof,_Result),
     goals_list(State, AllGoals),
     copy_term([AllGoals,Goal,Path,Lem,Actions,Todos],[AllGoals1,Goal1,Path1,Lem1,Actions1,Todos1]),
     % copy_term([AllGoals,Path,Lem,Actions,Todos],[Goal1,Path1,Lem1,Actions1,Todos1]),
-    numbervars([AllGoals1,Goal1,Path1,Lem1,Actions1,Todos1],1000,_VarCount0),
+
+    ( mc_param(collapse_vars,1) ->
+      collapse_vars([AllGoals1,Goal1,Path1,Lem1,Actions1,Todos1])
+    ; numbervars([AllGoals1,Goal1,Path1,Lem1,Actions1,Todos1],1000,_VarCount0)
+    ),
 
     mc_param(n_dim,FDim),
     FDim2 is 2*FDim,
@@ -691,8 +697,24 @@ logic_embed(State,FHash,EmbStateP,EmbStateV,EmbActions):-
 		      [I9, TopFrequency2]],
     append(EmbStateP0, GlobalFeatures, EmbStateP),
     append(EmbStateV0, GlobalFeatures, EmbStateV),
-    Offset = I9,
-    cached_embed_list(Actions1, FHash, FDim, Offset, EmbActions).
+
+    ( EmbType = both ->
+      Offset = I9,
+      cached_embed_list(Actions1, FHash, FDim, Offset, EmbActions)
+    %% length(Actions, ALen), 
+    %% logic_embed_successors(0, ALen, State, FHash, EmbActions)
+    ; true
+    ).
+
+logic_embed_successors(I,I,_,_,[]):- !.
+logic_embed_successors(I, ALen, State, FHash, [E|EmbActions]):-
+    I < ALen,
+    copy_term(State, State2),
+    logic_step(State2,I,ChildState),
+    logic_embed(ChildState,FHash,state_only,_,E,_),
+    I1 is I+1,
+    logic_embed_successors(I1, ALen, State, FHash, EmbActions).
+    
 
 
 
@@ -734,6 +756,15 @@ goalStats(Goals, GoalsSymbolSize, MaxGoalSize, MaxGoalDepth, TopSymbol1,  TopSym
 %%     ( G == X -> true
 %%     ; contains(Xs, G)
 %%     ).
+
+collapse_vars(X):-
+    ( var(X) -> X=var
+    ; atomic(X) -> true
+    ; X = [_|_] -> maplist(collapse_vars, X)
+    ; X =.. [_|Args], maplist(collapse_vars, Args)
+    ).
+                             
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % action_count(+State,-ActionCount).
@@ -850,7 +881,7 @@ get_clause_file(Dir,InFile,OutFile):-
 save_training_data(File, FHash, ValueDir, PolicyDir, Value, Policy):-
     get_time(T), T2 is round(T), set_random(seed(T2)),
     
-    ( ( mc_param(save_all_value, SaveProb), random(RandV), RandV < SaveProb
+    ( ( mc_param(save_all_value, SaveProbV), random(RandV), RandV < SaveProbV
       ; proof_found(_)
       ) -> 
       get_output_file(ValueDir,File,ValueFile),
@@ -865,12 +896,12 @@ save_training_data(File, FHash, ValueDir, PolicyDir, Value, Policy):-
     ; true
     ),
     
-    ( ( mc_param(save_all_policy, SaveProb), random(RandP), RandP < SaveProb
+    ( ( mc_param(save_all_policy, SaveProbP), random(RandP), RandP < SaveProbP
       ; proof_found(_)
       ) -> 
       get_output_file(PolicyDir,File,PolicyFile),
       open(PolicyFile,write,PStream),
-      ( mc_param(output_format, svmlight) -> 
+      ( mc_param(output_format, svmlight) ->
         write_svmlight_list(Policy, FHash, PStream)
       ; mc_param(output_format, string) ->
         write_string_list(Policy, PStream)
@@ -890,7 +921,7 @@ write_svmlight_list([L|Ls], FHash, Stream):-
 
 write_svmlight([State, Target], FHash, Stream):-
     !,
-    logic_embed(State, FHash, _EmbStateP, EmbStateV, _EmbActions),
+    logic_embed(State, FHash, state_only, _EmbStateP, EmbStateV, _EmbActions),
     
     format(Stream,"~w ",[Target]),
     (  member([Key,Value], EmbStateV),
@@ -901,7 +932,7 @@ write_svmlight([State, Target], FHash, Stream):-
     writeln(Stream,"").
 
 write_svmlight([State, ActionId, Target], FHash, Stream):-
-    logic_embed(State, FHash, EmbStateP, _EmbStateV, EmbActions),
+    logic_embed(State, FHash, both, EmbStateP, _EmbStateV, EmbActions),
     nth0(ActionId, EmbActions, EmbAction),
     append(EmbStateP, EmbAction, EmbState2),
     

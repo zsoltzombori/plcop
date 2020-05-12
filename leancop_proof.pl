@@ -57,7 +57,8 @@ leancop_connect_proof(Mat,Proof) :-
     print('------------------------------------------------------'),
     nl,
     print('Proof for the following clauses:'), nl,
-    print_clauses(Mat,1,Mat1),
+    print_clauses(Mat,1,Mat1), !,
+    %% trace,
     calc_proof(Mat1,Proof,Proof1),
     print('Connection Proof:'), nl,
     print('-----------------'), nl,
@@ -100,26 +101,48 @@ calc_proof(Cla,Path,Lem,Mat,[[Cla1|Proof]|Proof2],Proof1) :-
     calc_proof(Cla,Path,Lem,Mat,[[Cla4|Proof3]|Proof2],Proof1).
 
 calc_proof([Lit|Cla],Path,Lem,Mat,[[Cla1|Proof]|Proof2],Proof1) :-
-    (-NegLit=Lit;-Lit=NegLit), append(Cla2,[NegL|Cla3],Cla1),
-    NegLit==NegL, append(Cla2,Cla3,Cla4), length([_|Path],I) ->
+    (-NegLit=Lit;-Lit=NegLit),
+    Cla1 = [NegL|Cla4],
+    ( %%append(Cla2,[NegL|Cla3],Cla1),
+      NegLit==NegL,
+      %%append(Cla2,Cla3,Cla4),
+      length([_|Path],I) ->
       clause_num_sub(Cla1,Path,Lem,Mat,1,Num,Sub),
       Proof1=[[([NegLit|Cla4],Num,Sub)|Proof3]|Proof4],
       calc_proof(Cla4,[I:Lit|Path],Lem,Mat,Proof,Proof3),
       (Lem=[I:J:_|_] -> J1 is J+1 ; J1=1),
-      calc_proof(Cla,Path,[I:J1:Lit|Lem],Mat,Proof2,Proof4).
+      calc_proof(Cla,Path,[I:J1:Lit|Lem],Mat,Proof2,Proof4)
+    ; %% append(Cla2,[NegL|Cla3],Cla1),
+      NegL = paramodulation(_Lit, _Lit2, _Dir, _LHS,_RHS, _Cla),
+      %% append(Cla2, Cla3, Cla4),
+      length([_|Path],I) ->
+      clause_num_sub(Cla1,Path,Lem,Mat,1,Num,Sub),
+      Proof1=[[([NegL|Cla4],Num,Sub)|Proof3]|Proof4],
+      calc_proof(Cla4,[I:Lit|Path],Lem,Mat,Proof,Proof3),
+      (Lem=[I:J:_|_] -> J1 is J+1 ; J1=1),
+      calc_proof(Cla,Path,[I:J1:Lit|Lem],Mat,Proof2,Proof4)
+    ).
 
 %%% determine clause number and substitution
-
 clause_num_sub([NegLit],Path,Lem,[],_,R:Num,[[],[]]) :-
     (-NegLit=Lit;-Lit=NegLit), member(Num:J:LitL,Lem), LitL==Lit ->
     R=J ; member(Num:NegL,Path), NegL==NegLit -> R=r.
 
-clause_num_sub(Cla,Path,Lem,[Cla1|Mat],I,Num,Sub) :-
-    append(Cla2,[L|Cla3],Cla1), append([L|Cla2],Cla3,Cla4),
-    instance1(Cla,Cla4) ->
+
+clause_num_sub(ClaX,Path,Lem,[Cla1|Mat],I,Num,Sub) :-
+    ( ClaX = [paramodulation(_Lit, _Lit2, _Dir, LHS, RHS, Cla0)|_] ->
+      ( select(#, Cla0, Cla00) -> true ; Cla00 = Cla0 ),
+      Cla = [-(LHS=RHS)|Cla00]      
+    ; Cla = ClaX
+    ),
+    
+    ( append(Cla2,[L|Cla3],Cla1), append([L|Cla2],Cla3,Cla4),
+      instance1(Cla,Cla4) ->
       Num=I, term_variables(Cla4,Var), copy_term(Cla4,Cla5),
-      term_variables(Cla5,Var1), Cla=Cla5, Sub=[Var,Var1] ;
-      I1 is I+1, clause_num_sub(Cla,Path,Lem,Mat,I1,Num,Sub).
+      term_variables(Cla5,Var1), Cla=Cla5, Sub=[Var,Var1]
+    ; 
+      I1 is I+1, clause_num_sub(ClaX,Path,Lem,Mat,I1,Num,Sub)
+    ).
 
 instance1(A,B) :-
     \+ \+ (term_variables(A,VA), unify_with_occurs_check(A,B),

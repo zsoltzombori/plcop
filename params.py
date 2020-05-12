@@ -30,6 +30,7 @@ def getArgs():
     parser.add_argument('--temperature', dest="temperature", default=2, type=float,  help="softmax temperature")
     parser.add_argument('--save_all_policy', dest="save_all_policy", default=0, type=float,  help="Pobability of saving policy data from a failed proof")
     parser.add_argument('--save_all_value', dest="save_all_value", default=0, type=float,  help="Pobability of saving value data from a failed proof")
+    parser.add_argument('--collapse_vars', dest="collapse_vars", default=0, type=int,  help="If 1, then all vars are replaced with 'var' before featurization")
 
     # leancop parameters
     parser.add_argument('--pathlim', dest="pathlim", default=100, type=int, help="Proof depth limit")
