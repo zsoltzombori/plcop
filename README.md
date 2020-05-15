@@ -1,5 +1,7 @@
 Codebase for plCoP, a Prolog Technology Reinforcement Learning Prover
 
+Article: [https://arxiv.org/abs/2004.06997](https://arxiv.org/abs/2004.06997)
+
 # Download project:
 
 ```

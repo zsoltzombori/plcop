@@ -1,3 +1,22 @@
+%% Simple interactive environment to explore leanCoP
+%% Given a problem in tptp format in File, simple call
+%%
+%% init(File).
+%%
+%% You can observe the current state as well as the list of valid actions
+%% Select the index (starting from 0) I of the action you want to make
+%%
+%% step(I).
+%%
+%% You can now observe the resulting state and repeatedly perform more steps.
+%%
+%% Goal: current goal to prove
+%% Path: list of open goals (anestors of the current goal)
+%% Lem: list of lemmas (literals that we have already proven with a prefix of the current path)
+%% Result: 0 (there are valid moves), 1 (success), 2 (failure)
+%% Todos: list of triples of Goal, Path, Lem on the stack
+
+
 :- dynamic(lit/4).
 :- dynamic(option/1).
 :- dynamic(state/6).
@@ -20,9 +39,11 @@ embed_step(ActionIndex,[EGoal,EPath,ELem],EActions,Result):-
     findall(EAction, (member(Action,Actions), embed(Action,EAction)), EActions).
 
 init:-
-    Settings = [conj,nodef,comp(10),verbose,print_proof],
     %% init('theorems/robinson/robinson_1m1__1/robinson_1m1__1.p', Settings).
-    init('theorems/m2np/t108_zfmisc_1.p', Settings).
+    init('theorems/m2np/t108_zfmisc_1.p').
+init(File):-
+    Settings = [conj,nodef,comp(10),verbose,print_proof],
+    init(File, Settings).
 init(File,Settings):-
     init(File,Settings,_,_,_).
 init(File,Settings,[Goal,Path,Lem],Actions,Result):-
