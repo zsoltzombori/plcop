@@ -1,5 +1,5 @@
 
-:- [leancop_proof].  % load program for proof presentation
+:- ensure_loaded(leancop/leancop_proof).  % load program for proof presentation
 
 produce_leancop_proof(PLP, ProofFile):-
     PLP = [init((-#)-(-#))|PLP1],
