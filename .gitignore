@@ -124,3 +124,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Output of the solver
+/results
+
+# Training data for autoencoder/
+/encoder/data

@@ -14,8 +14,11 @@ mc_training_data(NodeHash, ChildHash, Value, Policy):-
     format("Bigstep Nodes: ~d, ~w\n",[L,BigstepNodes2]),
     mc_training_data(BigstepNodes2, NodeHash, ChildHash, [], [], Value, Policy).
 
+% We iterate over bigstep nodes
 mc_training_data([], _NodeHash, _ChildHash, Value, Policy, Value, Policy).
 mc_training_data([Id|Ids], NodeHash, ChildHash, ValueAcc, PolicyAcc, Value, Policy):-
+
+    % -NodeHash: StateId -> [State,Prob,VisitCount,Value,ChildProbs]
     nb_hashtbl_get(NodeHash,Id,[State,_,VC,_Val,_]),
 
     %% value data
@@ -54,6 +57,13 @@ training_collect_policy(ActionId, ChildPairs, State, ActionCount, VC, NodeHash, 
     training_collect_policy(ActionId1, ChildPairs, State, ActionCount, VC, NodeHash, Acc1, Policy).
 
 
+% Training Value:
+%   WIN     : 1
+%   LOOSE   : -1
+%   NON-LEAF: Discount ** Path_to_leaf
+%   NO PATHS: 0
+%
+% For non-leafs, the value is calculated recursively by funding the shortest paths
 training_collect_value(Id, NodeHash, ChildHash, Discount, SuccValue, FailValue, NoValue, Value):-
     nb_hashtbl_get(NodeHash,Id,[State,_,_,_,_]),
     State=state(_,_,_,_,_,_,Result),

@@ -42,7 +42,16 @@ mc_run:-
     % File= 'theorems/pelletier21.p',
     File= 'theorems/a.p',
     % File= "theorems/BushyProblems/finset_1__t18_finset_1.p",
-    Params = [guided(0),cp(2),sim_depth(0),playout_count(30),min_visit_count(1),n_dim(20),playout_time(30), leancop_settings([conj,nodef])],
+    Params = [
+      guided(0),
+      cp(2),
+      sim_depth(0),
+      playout_count(30),
+      min_visit_count(1),
+      n_dim(20),
+      playout_time(30),
+      leancop_settings([conj,nodef])
+    ],
     ValueDir = "results/stage0/train_value",
     PolicyDir = "results/stage0/train_policy",
     ClauseDir = "results/stage0/clause",
@@ -115,7 +124,7 @@ mc_run(File,Params,ValueDir,PolicyDir,ClauseDir,ProofDir,ExecutionTime):-
 % +File: input problem file
 % -ChildHash: [StateId,ActionId] -> StateId
 % -ParentHash: StateId -> StateId
-%% -NodeHash: StateId -> [State,Prob,VisitCount,Value,ChildProbs]
+% -NodeHash: StateId -> [State,Prob,VisitCount,Value,ChildProbs]
 mc_init(File,ChildHash,ParentHash,NodeHash,FHash):-
     empty_nb_hashtbl(ChildHash),
     empty_nb_hashtbl(ParentHash),

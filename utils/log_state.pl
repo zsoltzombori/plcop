@@ -39,7 +39,9 @@ save_training_data(File, FHash, ValueDir, PolicyDir, Value, Policy):-
     ).
 
 
-      
+%%%%%%%%%%%%%%%%%%%
+%% SVMLight Version
+%%%%%%%%%%%%%%%%%%%
 
 write_svmlight_list([], _, _).
 write_svmlight_list([L|Ls], FHash, Stream):-
@@ -71,6 +73,10 @@ write_svmlight([State, ActionId, Target], FHash, Stream):-
     ),
     writeln(Stream,"").
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Readable String Version
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 write_string_list([], _).
 write_string_list([L|Ls], Stream):-
