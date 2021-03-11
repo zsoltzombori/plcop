@@ -128,5 +128,9 @@ dmypy.json
 # Output of the solver
 /results
 
-# Training data for autoencoder/
+# Training data for autoencoder
 /encoder/data
+
+# Outputs of the autoencoder
+/encoder/models
+/encoder/training_checkpoints
