@@ -4,6 +4,24 @@ import hashlib
 
 FEATURES_MODULO = 262139 # this is given in features.ml line 32
 
+def get_max_fea(args):
+    extra_features = 16
+    policy_components = 3
+    value_components = 2
+    if args.lemma_features == 1:
+        value_components += 2
+        policy_components += 2
+    if args.subst_features == 1:
+        value_components += 1
+        policy_components += 1    
+    value_n_features = value_components * args.n_dim + extra_features
+    policy_n_features = policy_components * args.n_dim + extra_features
+    n_features = max(value_n_features, policy_n_features)
+    return n_features
+
+
+
+
 # return a vector of length dim with prefix from datalist
 # if dim > len(datalist) then zero pad
 def get_fixed_dim(dim, datalist):
@@ -431,3 +449,77 @@ ACTION_MAP = {
  3834872697031308342 : 4,
  3905853662302724450 : 5
 }
+
+def get_prob(length, entropyN=0.7, lr=1e-1, threshold=0.001):
+    probs = np.random.uniform(0, 1, size=length)
+    probs = probs / np.sum(probs)
+    curr_ent = np.sum(-probs * np.log(probs))
+    curr_entN = curr_ent / np.log(length)
+    status = curr_entN > entropyN
+
+    for i in range(300000):
+        if np.abs(curr_entN - entropyN) < threshold:
+            break
+        index = np.random.randint(0, length)
+        average = np.mean(probs)
+        if curr_entN > entropyN:
+            if probs[index] > average:
+                sign = 1
+            else:
+                sign = -1
+        else:
+            if probs[index] > average:
+                sign = -1
+            else:
+                sign = 1
+
+        # print("")
+        # print(i)
+        # print("Probs:   ", probs)
+        # print("EntropyN: ", curr_entN)
+        # print("Index:   ", index)
+        # print("Sign:    ", sign)
+        # print("lr:      ", lr)
+
+
+        probs[index] += sign * lr
+        probs[index] *= 2**(sign * lr)
+        probs = np.abs(probs) / np.sum(probs)
+        curr_ent = np.sum(-probs * np.log(probs))
+        curr_entN = curr_ent / np.log(length)
+        status_new = curr_entN > entropyN
+        if status_new != status:
+            lr /= 2
+        status = status_new
+    probs = np.sort(probs)
+    return probs, curr_entN
+
+
+prob_dict = {}
+def order_preserving_prob(probs, entropyN):
+    l = len(probs)
+    if l <= 1:
+        return probs
+    if entropyN not in prob_dict:
+        prob_dict[entropyN] = {}
+    d = prob_dict[entropyN]
+    if l not in d:
+        p, e = get_prob(l, entropyN)
+        print(entropyN, l, e)
+        d[l] = p
+    new_probs = d[l]
+
+    order = np.argsort(probs)
+    s = np.empty_like(order)
+    s[order] = np.arange(order.size)
+    new_probs = new_probs[s]
+
+    # print(probs, " -> ", new_probs)
+    return new_probs
+
+    
+def test():
+    for l in range(1,10):
+        probs = np.ones(l) /l
+        new_probs = order_preserving_prob(probs, 0.7)
+        print(probs, " -> ", new_probs)

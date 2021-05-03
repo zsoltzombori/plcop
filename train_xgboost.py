@@ -1,4 +1,3 @@
-import time
 import os
 import numpy as np
 import xgboost as xgb
@@ -7,15 +6,11 @@ from sklearn.datasets import load_svmlight_files, load_svmlight_file
 from scipy.sparse import vstack
 from datetime import datetime
 
-import params
-import util
 
-# load parameters
-args = params.getArgs()
 
 # if oversample=True then make sure that values >0 and =0 are balanced
-def train(train_dir, modelfile, n_features, objective="reg:linear", oversample=False):
-    files = listdir_fullpath(train_dir)
+def train(args, train_dirs, modelfile, n_features, objective="reg:squarederror", oversample=False):
+    files = listdir_multiple(train_dirs)
     print("Training from {} files".format(len(files)))
 
     if True:
@@ -62,7 +57,7 @@ def train(train_dir, modelfile, n_features, objective="reg:linear", oversample=F
 
     # TODO better understand all these parameters
     par = {}
-    par['objective'] = objective #'reg:linear' / 'binary:logistic'
+    par['objective'] = objective #'reg:squarederror' / 'binary:logistic'
     par['eval_metric'] = ['mae','rmse']
     par['eta'] = args.lr # learning rate
     par['max_depth'] = 9 # max tree depth
@@ -79,6 +74,17 @@ def train(train_dir, modelfile, n_features, objective="reg:linear", oversample=F
     now = datetime.now()
     bst.save_model(modelfile + now.strftime("%Y%m%d_%H%M%S"))
     
+
+def listdir_multiple(dirs):
+    files = []
+    for dir in dirs:
+        for f in listdir_fullpath(dir):
+            if os.path.isdir(f):
+                files += listdir_multiple([f])
+            else:
+                files.append(f)
+    return files
+
 def listdir_fullpath(d):
     return [os.path.join(d, f) for f in os.listdir(d)]
 
@@ -106,35 +112,3 @@ def remove_duplicates(x, y):
 
     print("Reduced shapes {} and {} to {} and {}".format(x.shape, y.shape, xs.shape, ys.shape))
     return xs, ys
-
-if args.lemma_features == 1:
-    value_n_features = 4 * args.n_dim + 9
-    policy_n_features = 5 * args.n_dim + 9
-else:
-    value_n_features = 2 * args.n_dim + 9
-    policy_n_features = 3 * args.n_dim + 9
-
-value_train_dir = "{}/train_value".format(args.outdir)
-value_modelfile = "{}/value_xgb".format(args.outdir)
-policy_train_dir = "{}/train_policy".format(args.outdir)
-policy_modelfile = "{}/policy_xgb".format(args.outdir)
-
-T0 = time.time()
-
-if args.target_model == "value":
-    print("\n\nTraining value model ONLY")
-    train(value_train_dir, value_modelfile, value_n_features, objective="reg:linear", oversample=True)
-elif args.target_model == "policy":
-    print("\n\nTraining policy model ONLY")
-    train(policy_train_dir, policy_modelfile, policy_n_features, objective="reg:linear", oversample=True)
-elif args.target_model == "all":
-    print("\n\nTraining value model")
-    train(value_train_dir, value_modelfile, value_n_features, objective="reg:linear", oversample=True)
-    print("\n\nTraining policy model")
-    train(policy_train_dir, policy_modelfile, policy_n_features, objective="reg:linear", oversample=True)
-else:
-    assert False, "Unknown target_model value: " + args.target_model
-
-    
-T1 = time.time()
-print("Xgboost training took {:.2f} sec".format(T1-T0))

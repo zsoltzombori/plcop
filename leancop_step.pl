@@ -16,47 +16,62 @@
 %% Result: 0 (there are valid moves), 1 (success), 2 (failure)
 %% Todos: list of triples of Goal, Path, Lem on the stack
 
+:- use_module(library(assoc)).
+:- [hashtbl/prolog/p_hashtbl].
+                                         
 
-:- dynamic(lit/4).
+:- dynamic(lit/6).
 :- dynamic(option/1).
-:- dynamic(state/6).
+:- dynamic(state/3).
+:- dynamic(alternative/1).
+%% :- dynamic(lemma/2).
 
 :- [leancop_tptp2].  % load program for TPTP input syntax
 :- [def_mm].  % load program for clausal form translation
 :- [leancop21_swi]. % load program for asserting clauses
 
-embed_init(File,Settings,[EGoal,EPath,ELem],EActions,Result):-
-    init(File,Settings,[Goal,Path,Lem],Actions,Result),
-    embed(Goal,EGoal),
-    embed(Path,EPath),
-    embed(Lem,ELem),
-    findall(EAction, (member(Action,Actions), embed(Action,EAction)), EActions).
-embed_step(ActionIndex,[EGoal,EPath,ELem],EActions,Result):-
-    step(ActionIndex,[Goal,Path,Lem],Actions,Result),
-    embed(Goal,EGoal),
-    embed(Path,EPath),
-    embed(Lem,ELem),
-    findall(EAction, (member(Action,Actions), embed(Action,EAction)), EActions).
+search(File):-
+    Settings = [conj, nodef, comp(4), print_proof],
+%%    retractall(lemma(_,_)),
+    init_pure(File, Settings, State),
+    search2(State, 1).
+search2(State, Success):-
+    State = state(_Tableau, Actions, _Result),
+    nth0(ActionIndex, Actions, _),
+    step_pure(ActionIndex, State, NewState, _Step),
+    NewState = state(_, _, Result),
+    ( Result = 1 -> !, Success = 1
+    ; Result = -1 -> fail
+    ; search2(NewState, Success)
+    ),
+    ( Success == 1 -> ! ; true ) .
+
+    
+
+    
+
 
 init:-
     %% init('theorems/robinson/robinson_1m1__1/robinson_1m1__1.p', Settings).
-    init('theorems/m2np/t108_zfmisc_1.p').
+    init('theorems/fromDavid/prop_09_0_2.p').
 init(File):-
-    Settings = [conj,nodef,comp(10),verbose,print_proof],
+    Settings = [conj,nodef,comp(10),
+                % extra_axioms("new_rules.ax"),
+                single_action_optim(0),
+                verbose,print_proof,
+                swap(1)
+               ],
     init(File, Settings).
 init(File,Settings):-
-    init(File,Settings,_,_,_).
-init(File,Settings,[Goal,Path,Lem],Actions,Result):-
+    init(File,Settings,_).
+init(File,Settings,NewState):-
+    retractall(state(_,_,_)),
     init_pure(File,Settings,NewState),
-    NewState = state(Goal,Path,Lem,Actions,Todos,Proof,Result),
-    set_state(Goal,Path,Lem,Actions,Todos,Proof),
-    log(Goal,Path,Lem,Actions,Todos,Proof,Result,start).
+    asserta(NewState),
+    log(NewState, start).
 
 % init_pure(+File,+Settings,-NewState)
 init_pure(File,Settings,NewState):-
-    NewState = state(Goal,Path,Lem,Actions,Todos,Proof,Result),
-    %% NewState = state(Goal,Path,Lem,Actions,Todos,Result),
-
     retractall(option(_)),
     findall(_, ( member(S,Settings), assert(option(S)) ), _ ),
 
@@ -68,86 +83,108 @@ init_pure(File,Settings,NewState):-
     leancop_tptp2(File,AxPath,AxNames,Problem,Conj), !,
     format("Successfully opened file ~w\n", [File]),
     ( Conj\=[] -> Problem1=Problem ; Problem1=(~Problem) ),
-    leancop_equal(Problem1,Problem2),
-    %% leancop_equal_reflexivity(Problem1,Problem2), % TODO
-    make_matrix(Problem2,Matrix,Settings),
+    ( option(extra_axioms(ExtraAxioms)), atom_string(ExtraAxioms, AxiomFile), exists_file(AxiomFile) ->
+      leancop_tptp2(AxiomFile,AxPath,AxNames,ProblemExtra,_), !,
+      format("Successfully opened extra file ~w\n", [AxiomFile]),
+      ( Problem1=(A=>C) -> Problem2=((ProblemExtra,A)=>C) ; Problem2=(ProblemExtra=>Problem1) )
+    ; Problem2 = Problem1
+    ),
+
+    leancop_equal_source(Problem2,Problem3),
+    make_matrix(Problem3,Settings,Matrix,MatSource),
+
+    %% hacky_reorder_literals(Matrix0, Matrix), % TODO 
+
     ( option(verbose) ->
 	  writeln(["Problem ", Problem2]),
-	  writeln(["Matrix ", Matrix])
+	  writeln(["Matrix ", Matrix]),
+      writeln(["MatSource ", MatSource])
      ; true
     ),
-    b_setval(matrix, Matrix), %TODO super ugly
-    retractall(lit(_,_,_,_)),
+    b_setval(matrix, Matrix-MatSource), %TODO super ugly
+    retractall(lit(_,_,_,_,_,_,_)),
     (member([-(#)],Matrix) -> S=conj ; S=pos),
     assert_clauses(Matrix,S),
-    det_steps([-(#)],[],[],[],[init((-#)-(-#))],Goal,Path,Lem,Todos,Proof,Result0),
-    valid_actions_filter(Goal,Path,Actions),
+    empty_p_hashtbl(Subst0),
+    Tableau0 = tableau([-(#)],[],[],[],Subst0,[init((-#)-(-#))]),
+
+    det_steps(Tableau0, Tableau, Result0),
+    tab_comp(goal, Tableau, Goal),
+    tab_comp(path, Tableau, Path),
+    valid_actions_filter(Goal, Path, Actions),
     (  length(Actions,0), Result0 < 1 -> Result = -1
      ; Result = Result0
-    ).
+    ),
+    NewState = state(Tableau, Actions, Result).
+    
 
     
-:- dynamic(alternative/6).
 step(ActionIndex):-
-    step(ActionIndex,_,_,_).
-step(ActionIndex,[Goal,Path,Lem],Actions,Result):-
-    state(Goal0,Path0,Lem0,Actions0,Todos0,Proof0),
-    State = state(Goal0,Path0,Lem0,Actions0,Todos0,Proof0,_Result0),
-    step_pure(ActionIndex,State,NewState,Action0),
-    NewState = state(Goal,Path,Lem,Actions,Todos,Proof,Result),
-					 
-    set_state(Goal,Path,Lem,Actions,Todos,Proof),
-    log(Goal,Path,Lem,Actions,Todos,Proof,Result,Action0).
+    step(ActionIndex,_State).
+step(ActionIndex,State):-
+    state(Tableau, Actions, Result), !,
+    State = state(Tableau, Actions, Result),
+    step_pure(ActionIndex,State,NewState,_Action0),
+    asserta(NewState).
 
 
 % step_pure(+ActionIndex,+State,-NewState,-SelectedAction))
 step_pure(ActionIndex,State,NewState,Action0):-
-    ( State = state(Goal0,Path0,Lem0,Actions0,Todos0,Proof0,_Result0) ->
-      NewState = state(Goal,Path,Lem,Actions,Todos,Proof,Result)
-    ; State = state(Goal0,Path0,Lem0,Actions0,Todos0,_Result0) ->
-      NewState = state(Goal,Path,Lem,Actions,Todos,Result)
-    ),
+    State = state(Tableau0, Actions0, Result0),
 
-    nth0(ActionIndex,Actions0,Action0),
-
-    % if there were other alternative actions, store them as alternatives
-    (option(backtrack), Actions0=[_,_|_] ->
-	 select_nounif(Action0, Actions0, RemActions0), !,
-	 asserta(alternative(Goal0,Path0,Lem0,RemActions0,Todos0,Proof0))
-     ; true
+    ( nth0(ActionIndex,Actions0,Action0) -> true
+    ; % instead of a regular axtion, we perform a swap
+      length(Actions0, AC),
+      \+ option(backtrack),
+      SwapIndex is ActionIndex - AC,
+      Action0 = swap(SwapIndex)
     ),
     
-    nondet_step(Action0,Goal0,Path0,Lem0,Todos0,Proof0,Goal1,Path1,Lem1,Todos1,Proof1,Result1),
-    ( Result1 == -1, option(backtrack), pop_alternative(Goal,Path,Lem,Actions,Todos,Proof) ->
-	  Result=0,
-	  log(Goal,Path,Lem,Actions,Todos,Proof,Result,Action0)
-												   
-     ; [Goal,Path,Lem,Todos,Proof,Result] = [Goal1,Path1,Lem1,Todos1,Proof1,Result1],
-       valid_actions_filter(Goal,Path,Actions)
-    ).
+    % if there were other alternative actions, store them as alternatives
+    ( option(backtrack), Actions0=[_,_|_] ->
+	  select_nounif(Action0, Actions0, RemActions0), !,
+      AltState = state(Tableau0, RemActions0, Result0),
+	  asserta(alternative(AltState))
+    ; true
+    ),
+    nondet_step(Action0, Tableau0, Tableau1, Result1),
+    
+    ( Result1 == -1, option(backtrack),
+      alternative(NewState), retract(alternative(NewState)) -> true
+	; tab_comp(goal, Tableau1, Goal1),
+      tab_comp(path, Tableau1, Path1),
+      valid_actions_filter(Goal1, Path1, Actions1),
+      NewState = state(Tableau1, Actions1, Result1)
+    ),
+	log(NewState, Action0).
 
-pop_alternative(Goal,Path,Lem,Actions,Todos,Proof):-
-    alternative(Goal,Path,Lem,Actions,Todos,Proof),
-    retract(alternative(Goal,Path,Lem,Actions,Todos,Proof)), !.
-
-:- dynamic(state/6).
-% save the current state
-set_state(Goal,Path,Lem,Actions,Todos,Proof):-
-    retractall(state(_,_,_,_,_,_)),
-    assert(state(Goal,Path,Lem,Actions,Todos,Proof)).
 % log exploration
-log(Goal,Path,Lem,Actions,Todos,Proof,Result,Selected):-
+log(state(Tableau, Actions, Result), Selected):-
+    Tableau = tableau(Goal,Path,Lem,Todos,_Subst,Proof),
     ( option(verbose) ->
 	  write("Selected "), print_term(Selected, [indent_arguments(false)]), nl,
 	  write("Goal     "), print_term(Goal, [indent_arguments(false)]), nl,
 	  write("Path     "), print_term(Path, [indent_arguments(false)]), nl,
 	  write("Lem      "), print_term(Lem, [indent_arguments(false)]), nl,
+	  write("Result   "), print_term(Result, [indent_arguments(false)]), nl,
+	  write("Todos    "), print_term(Todos, [indent_arguments(false)]), nl,
       nl,
       writeln("Actions:"),
-      foreach(member(A,Actions), (print_term(A,[indent_arguments(false)]), nl)), 
-      nl,
-	  write("Result   "), print_term(Result, [indent_arguments(false)]), nl,
-	  write("Todos    "), print_term(Todos, [indent_arguments(false)]), nl
+      findall(_, (
+                 nth0(N, Actions, A),
+                 write(N), write(" "),
+                 %% print_term(A,[indent_arguments(false)]),
+                 ( A = ext(NegLit, Cla, _, _, _, _) ->  print_term([NegLit|Cla],[indent_arguments(false)])
+                 ; A = red(NegLit) -> print_term(red(NegLit), [indent_arguments(false)])
+                 ; A = para(Pos, LHS, RHS, Cla1, Dir, _, _) -> print_term(para(Pos, LHS, RHS, Cla1, Dir),[indent_arguments(false)])
+                 ; A = swap(NewGoal) -> print_term(swap(NewGoal),[indent_arguments(false)])
+                 ),
+                 nl
+              ), _
+             ),
+      nl
+      % subst2preds(Subst, SubstPreds), nl, print_term(SubstPreds, [indent_arguments(false)]), nl,
+      % display_subst(Subst)
      ; true
     ),
 
@@ -174,80 +211,125 @@ select_nounif([X|Xs],E,Acc,Rem):-
 
 
 %%% make a single proof step from a choice point
-% nondet_step(Action,Goal,Path,Lem,Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result)
-nondet_step(red(NegL), [Lit|Cla],Path,Lem,Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):- % reduction step
+nondet_step(red(NegL), Tableau, NewTableau, Result):- % reduction step
+    Tableau = tableau([Lit|Cla], Path, Lem, Todos, Subst, Proof),
+    append(_PathSuffix,[NegL2|_PathPrefix], Path), NegL2 == NegL, !,
     Ext = [Lit, NegL],
     copy_term(Ext,Ext_orig),
     neg_lit(Lit,NegL),
-    Proof2 = [red(Ext_orig-Ext)|Proof],
-    det_steps(Cla,Path,Lem,Todos,Proof2,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result).
-nondet_step(ext(NegLit,Cla1,_Grnd1), [Lit|Cla],Path,Lem,Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):- % extension step
+    Proof1 = [red(Ext_orig-Ext)|Proof],
+    Tableau1 = tableau(Cla, Path, Lem, Todos, Subst, Proof1),
+    det_steps(Tableau1, NewTableau, Result).
+nondet_step(ext(NegLit,Cla1,_Grnd1, Key,Vars,_), Tableau, NewTableau, Result):- % extension step
+    Tableau = tableau([Lit|Cla], Path, Lem, Todos, Subst, Proof),
     Ext = [Lit, [NegLit|Cla1]],
     copy_term(Ext, Ext_orig),
     neg_lit(Lit, NegLit),
     ( Cla=[_|_] ->
-	  Todos2 = [[Cla,Path,[Lit|Lem]]|Todos]
-     ; Todos2 = Todos
+	  Todos1 = [[Cla,Path,[Lit|Lem]]|Todos]
+     ; Todos1 = Todos
     ),
-    Proof2=[ext(Ext_orig-Ext)|Proof],
-    det_steps(Cla1,[Lit|Path],Lem,Todos2,Proof2,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result).
-nondet_step(para(Pos, LHS, RHS, Cla1, Dir), [Lit|Cla],Path,Lem,Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):- % paramodulation
+    Proof1=[ext(Ext_orig-Ext)|Proof],
+    ( length(Vars,0) -> Subst1 = Subst ; update_subst(Subst, Key, Vars, Subst1) ),
+    Tableau1 = tableau(Cla1, [Lit|Path], Lem, Todos1, Subst1, Proof1),
+    det_steps(Tableau1, NewTableau, Result).
+nondet_step(para(Pos, LHS, RHS, Cla1, Dir, Key, Vars), Tableau, NewTableau, Result):- % paramodulation
+    Tableau = tableau([Lit|Cla], Path, Lem, Todos, Subst, Proof),
     position(Lit, Pos, Term), !,
     Para = [Lit, Pos, LHS, RHS, Cla1, Dir],
     copy_term(Para, Para_orig),
     ( Dir = l2r -> LHS = Term, RHS = To
     ; LHS = To, RHS = Term
     ),
-    replace_term_in_pos(Lit, Pos,To,Lit2),
+    replace_term_in_pos(Lit, Pos,To,Lit1),
     ( Cla=[_|_] ->
-	  Todos2 = [[Cla,Path,[Lit|Lem]]|Todos]
-     ; Todos2 = Todos
+	  Todos1 = [[Cla,Path,[Lit|Lem]]|Todos]
+     ; Todos1 = Todos
     ),
-    Proof2=[para(Para_orig-Para)|Proof],
-    det_steps([Lit2|Cla1],[Lit|Path],Lem,Todos2,Proof2,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result).
+    Proof1=[para(Para_orig-Para)|Proof],
+    ( length(Vars,0) -> Subst1 = Subst ; update_subst(Subst, Key, Vars, Subst1) ),
+    Tableau1 = tableau([Lit1|Cla1], [Lit|Path], Lem, Todos1, Subst1, Proof1),
+    det_steps(Tableau1, NewTableau, Result).
+nondet_step(swap(LiteralIndex), Tableau, NewTableau, Result):- % swap current literal
+    Tableau = tableau(Goal, Path, Lem, Todos, Subst, Proof),
+    select_nth_literal(LiteralIndex, [[Goal, Path, Lem]|Todos], [Goal1, Path1, Lem1], Todos1),    
+    Ext = [Goal,Goal1],
+    copy_term(Ext, Ext_orig),
+    Proof1=[swap(Ext_orig-Ext)|Proof],
+    Tableau1 = tableau(Goal1, Path1, Lem1, Todos1, Subst, Proof1),
+    det_steps(Tableau1, NewTableau, Result).
 
-% perform steps until the next choice point (or end of proof)
-det_steps([],_Path,_Lem,Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):-
-    !,
-    ( Todos = [] -> % nothing to prove, nothing todo on the stack
-	  [NewGoal,NewPath,NewLem,NewTodos,NewProof,Result] = [[success],[],[],[],Proof,1]
-     ; Todos = [[Goal2,Path2,Lem2]|Todos2] -> % nothing to prove, something on the stack
-	   det_steps(Goal2,Path2,Lem2,Todos2,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result)
+
+
+det_steps(Tableau, NewTableau, Result):-
+    ( det_steps_pop_todo(Tableau, NewTableau, Result) -> true
+    ; det_steps_loopelim(Tableau, NewTableau, Result) -> true
+    ; det_steps_lemma(Tableau, NewTableau, Result) -> true
+    ; det_steps_reduction(Tableau, NewTableau, Result) -> true
+	; tab_comp(goal, Tableau, Goal),
+      tab_comp(path, Tableau, Path),
+      tab_comp(subst, Tableau, Subst),
+      tab_comp(proof, Tableau, Proof),
+      valid_actions_filter(Goal,Path,Actions),
+      ( option(single_action_optim(1)), Actions=[A], flag(single_action, X, X+1), X < 10 -> % only a single action is available, so perform it
+	    nondet_step(A,Tableau, NewTableau, Result),
+        flag(single_action, _, 0)
+      ; Actions==[] ->             % proof failed
+        NewTableau = tableau([failure],[],[],[],Subst,Proof), Result = -1
+      ; option(comp(PathLim)), \+ ground(Goal), length(Path,PLen), PLen > PathLim -> % reached path limit
+        NewTableau = tableau([failure],[],[],[],Subst,Proof), Result = -1
+      ; NewTableau = Tableau, Result = 0
+      )
     ).
-% det_steps([Lit|_Cla],Path,_Lem,_Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):-
-%     member(P,Path), Lit == P, !, % loop elimination
-det_steps(Cla,Path,_Lem,_Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):-
-    member(Lit,Cla), member(P,Path), Lit == P, !, % loop elimination
-    [NewGoal,NewPath,NewLem,NewTodos,NewProof,Result] = [[failure],[],[],[],Proof,-1].    
-det_steps([Lit|Cla],Path,Lem,Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):-
-    member(LitL,Lem), Lit==LitL, !, % perform lemma step
-    Proof2 = [lem(Lit)|Proof],
-    det_steps(Cla,Path,Lem,Todos,Proof2,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result).
-det_steps([Lit|Cla],Path,Lem,Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):-
-    neg_lit(Lit,NegLit),
-    ( option(eager_reduction(1)) -> member(NegL,Path), unify_with_occurs_check(NegL, NegLit), ! % eager reduction
-    ; member(NegL,Path), NegL == NegLit, ! % reduction step without unification can be performed eagerly
+
+det_steps_pop_todo(Tableau, NewTableau, Result):-
+    Tableau = tableau([], _Path, _Lem, Todos, Subst, Proof), % nothing to prove
+
+    ( Todos = [] -> % nothing todo on the stack
+      NewTableau = tableau([success],[],[],[],Subst,Proof), Result = 1
+    ; Todos = [[Goal1,Path1,Lem1]|Todos1] -> % nothing to prove, something on the stack
+
+      Tableau1 = tableau(Goal1, Path1, Lem1, Todos1, Subst, Proof),
+      det_steps(Tableau1, NewTableau, Result)
+    ).
+
+det_steps_loopelim(Tableau, NewTableau, Result):-
+    Tableau = tableau(Goal, Path, _Lem, _Todos, Subst, Proof),
+    member(Lit,Goal), member(P,Path), Lit == P, !,
+    NewTableau = tableau([failure],[],[],[],Subst,Proof),
+    Result = -1.
+
+det_steps_reduction(Tableau, NewTableau, Result):-
+    Tableau = tableau(Goal, Path, Lem, Todos, Subst, Proof),
+    Goal = [Lit|Cla], neg_lit(Lit,NegLit),
+    ( option(eager_reduction(1)) ->
+      append(_PathSuffix,[NegL|_PathPrefix], Path), unify_with_occurs_check(NegL, NegLit), ! % eager reduction
+    ; append(_PathSuffix,[NegL|_PathPrefix], Path), NegL == NegLit, ! % reduction step without unification can be performed eagerly
     ),
+      
     Ext = [Lit, NegLit],
-    Proof2 = [red(Ext-Ext)|Proof],
-    det_steps(Cla,Path,Lem,Todos,Proof2,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result).
-det_steps(Goal,Path,Lem,Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result):-
-    valid_actions_filter(Goal,Path,Actions),
-    ( option(single_action_optim),  Actions==[A] -> % only a single action is available, so perform it
-	  nondet_step(A,Goal,Path,Lem,Todos,Proof,NewGoal,NewPath,NewLem,NewTodos,NewProof,Result)
-    ;Actions==[] ->             % proof failed
-	  [NewGoal,NewPath,NewLem,NewTodos,NewProof,Result] = [[failure],[],[],[],Proof,-1]
-    ; option(comp(PathLim)), \+ ground(Goal), length(Path,PLen), PLen > PathLim -> % reached path limit
-      [NewGoal,NewPath,NewLem,NewTodos,NewProof,Result] = [[failure],[],[],[],Proof,-1]
-    ;[NewGoal,NewPath,NewLem,NewTodos,NewProof,Result] = [Goal,Path,Lem,Todos,Proof,0]
-    ).
+    Proof1 = [red(Ext-Ext)|Proof],
+    Tableau1 = tableau(Cla, Path, Lem, Todos, Subst, Proof1),
+    det_steps(Tableau1, NewTableau, Result).
+
+det_steps_lemma(Tableau, NewTableau, Result):-
+    Tableau = tableau(Goal, Path, Lem, Todos, Subst, Proof),
+    Goal = [Lit|Cla], member(LitL,Lem), Lit==LitL -> % perform lemma step
+    Proof1 = [lem(Lit)|Proof],
+    Tableau1 = tableau(Cla, Path, Lem, Todos, Subst, Proof1),
+    det_steps(Tableau1, NewTableau, Result).
+    
 
 valid_actions_filter(Goal,Path,Actions):-
-    valid_actions2(Goal,Path,Actions0),
-    ( option(paramodulation(0)) ->
-      filter_top_pred(Actions0, para, Actions)
-    ; Actions = Actions0
-    ).
+    ( option(eager_reduction(0)) -> Set1 = [ext, red] ; Set1 = [ext] ),
+    ( option(paramodulation(1)) -> Set = [para| Set1] ; Set = Set1 ),
+    valid_actions2(Goal, Path, Set, Actions).
+
+    %% valid_actions2(Goal,Path,Actions0),
+    %% ( option(paramodulation(0)) ->
+    %%   filter_top_pred(Actions0, para, Actions)
+    %% ; Actions = Actions0
+    %% ).
 
 filter_top_pred([], _, []).
 filter_top_pred([A|As], TopPred, Bs):-
@@ -255,43 +337,6 @@ filter_top_pred([A|As], TopPred, Bs):-
     ; Bs = [A|Bs1], filter_top_pred(As, TopPred, Bs1)
     ).
 
-% embed formulas into sequences of ints
-% THIS IS A VERY SIMPLE, VERY PRELIMINARY VERSION
-% variables are marked with 0
-% other symbols are marked with a unique index
-:- dynamic(atomlist/1).
-
-embed(X,Emb):-
-    ( atomlist(AtomL0) -> true
-     ;AtomL0=[]
-    ),
-    embed(X,AtomL0,[],AtomL,Emb),
-    retractall(atomlist(_)),
-    assert(atomlist(AtomL)).
-embed(X,AtomL0,Emb0,AtomL,Emb):-
-    ( var(X) -> Name = var
-     ;atom(X) -> Name = X
-    ), !,
-    add_to_embedding(Name,AtomL0,Emb0,AtomL,Emb).
-embed(X,AtomL0,Emb0,AtomL,Emb):-
-    is_list(X), !,
-    embed_list(X,AtomL0,Emb0,AtomL,Emb).
-embed(X,AtomL0,Emb0,AtomL,Emb):-
-    X=..[Name|Args],
-    add_to_embedding(Name,AtomL0,Emb0,AtomL1,Emb1),
-    embed_list(Args,AtomL1,Emb1,AtomL,Emb).
-
-embed_list([],AtomL,Emb,AtomL,Emb).
-embed_list([X|Xs],AtomL0,Emb0,AtomL,Emb):-
-    embed(X,AtomL0,Emb0,AtomL1,Emb1),
-    embed_list(Xs,AtomL1,Emb1,AtomL,Emb).
-		 
-add_to_embedding(Name,AtomL0,Emb0,AtomL,Emb):-
-    ( nth0(I,AtomL0,Name) -> AtomL=AtomL0
-     ;append(AtomL0,[Name],AtomL),
-      nth0(I,AtomL,Name)
-    ),
-    Emb=[I|Emb0].
 
 %% print proofs
 %% print_my_proof(+Proof, +Type):- Type in {orig, substituted, both}
@@ -303,10 +348,11 @@ print_my_proof([lem(Lit)|Proof], Type):- !,
     print_my_proof(Proof, Type).
 print_my_proof([P|Proof], Type):-
     P =.. [Head, Orig-Substituted],
-    ( Head = init -> Name = "Init"
-    ; Head = red -> Name = "Reduction"
-    ; Head = ext -> Name = "Extension"
+    ( Head = init -> Name = "Init          "
+    ; Head = red -> Name =  "Reduction     "
+    ; Head = ext -> Name =  "Extension     "
     ; Head = para -> Name = "Paramodulation"
+    ; Head = swap -> Name = "Swap          "
     ),
     write('   '), write(Name), write(': \t'),
 
@@ -321,7 +367,7 @@ print_my_proof([P|Proof], Type):-
 
 print_kb():-
     findall(Ax, (
-                 lit(_E,NegL,Cla,_),
+                 lit(_E,NegL,Cla,_,_,_,_),
                  Ax = lit([NegL|Cla]),
                  print_term(Ax, [indent_arguments(false)]), nl
                ), Axs
@@ -347,9 +393,9 @@ proof_clauses([para(Orig-_Substituted)|Proof], Stream):- !,
     format(Stream, '\nparamodulation.\n', []),
     rewrite_for_print([Goal], [Goal1]),
     copy_term(Goal1, Goal2), numbervars(Goal2, 0, _),
-    format(Stream, "~w.\n", [Goal2]),
-    format(Stream, "~w.\n", [Pos]),
-    format(Stream, "~w.\n", [Dir]),
+    format(Stream, "~p.\n", [Goal2]),
+    format(Stream, "~p.\n", [Pos]),
+    format(Stream, "~p.\n", [Dir]),
     print_clause([neg(eq(LHS,RHS))|Cla], Stream),
     proof_clauses(Proof, Stream).
 proof_clauses([ext(Orig-_Substituted)|Proof], Stream):- !,
@@ -357,8 +403,11 @@ proof_clauses([ext(Orig-_Substituted)|Proof], Stream):- !,
     format(Stream, '\nextension.\n', []),
     rewrite_for_print([Goal], [Goal1]),
     copy_term(Goal1, Goal2), numbervars(Goal2, 0, _),
-    format(Stream, "~w.\n", [Goal2]),
+    format(Stream, "~p.\n", [Goal2]),
     print_clause(OrigC, Stream),
+    proof_clauses(Proof, Stream).
+proof_clauses([swap(_)|Proof], Stream):- !,
+    format(Stream, '\nswap.\n', []),
     proof_clauses(Proof, Stream).
 
 print_clause(Clause, Stream):-
@@ -368,13 +417,13 @@ print_clause(Clause, Stream):-
     ( NegHead = neg(Head) -> true
     ; Head = neg(NegHead)
     ),
-    format(Stream, '~w', [Head]),
+    format(Stream, '~p', [Head]),
     length(Body, BLen),
     ( BLen > 0 -> Body = [B0 | Brest],
-      format(Stream, ":-\n\t~w",[B0]),
+      format(Stream, ":-\n\t~p",[B0]),
       findall(B, (
                   member(B, Brest),
-                  format(Stream, ', ~w', [B])
+                  format(Stream, ', ~p', [B])
                  ), _
              )
     ; true
@@ -396,3 +445,92 @@ rewrite_for_print(A, B):-
       B =.. [Head2|Args2]
     ).
 
+
+update_subst(Subst, Key, Vars, Subst1):-
+    p_hashtbl_put(Subst, Key, Vars, Subst1).
+
+display_subst(Subst):-
+    writeln("Subst    "),
+    findall(_, (
+                p_hashtbl_enumerate(Subst, Key, Value),
+                write(Key), write(": "), print_term(Value, [indent_arguments(false)]), nl
+            ), _
+           ).
+
+subst2preds(Subst, Preds):-
+    bagof(subst(Key,Var), Vars^(
+              p_hashtbl_enumerate(Subst, Key, Vars),
+              member(Var, Vars)
+          ), Preds
+         ), !.
+subst2preds(_, []).
+
+update_lem_req([], _, LemReq, LemReq).
+update_lem_req([P|Path], PLen, Acc, LemReq):-
+    ( select(L-Req, Acc, Rest), L == P ->
+      Req2 is max(Req, PLen),
+      LemReq = [P-Req2|LemReq2],
+      update_lem_req(Path, PLen, Rest, LemReq2)
+    ; LemReq = [P-PLen|LemReq2],
+      update_lem_req(Path, PLen, Acc, LemReq2)
+    ).
+filter_lemmas([], _, []).
+filter_lemmas([L-D|As], PLen, Bs):-
+    ( D > PLen -> filter_lemmas(As, PLen, Bs)
+    ; Bs = [L-D|Bs2], filter_lemmas(As, PLen, Bs2)
+    ).
+extract_lemmas([], LemReq, LemReq, []).
+extract_lemmas([L|Ls], LemReq, LemReq2, NewLem):-
+    ( select(L2-D, LemReq, Rest), L2 == L ->
+      NewLem = [L-D|NewLem2],
+      extract_lemmas(Ls, Rest, LemReq2, NewLem2)
+    ; NewLem = [L-0|NewLem2],
+      %% copy_term(L, L2), numbervars(L2),
+      %% ( lemma(L2, _) -> true ; assert(lemma(L2, L)) ),
+      extract_lemmas(Ls, LemReq, LemReq2, NewLem2)
+    ).
+                   
+
+
+tab_comp(goal , tableau(Goal, _Path, _Lem, _Todos, _Subst, _Proof), Goal).
+tab_comp(path , tableau(_Goal, Path, _Lem, _Todos, _Subst, _Proof), Path).
+tab_comp(lem  , tableau(_Goal, _Path, Lem, _Todos, _Subst, _Proof), Lem).
+tab_comp(todos, tableau(_Goal, _Path, _Lem, Todos, _Subst, _Proof), Todos).
+tab_comp(subst, tableau(_Goal, _Path, _Lem, _Todos, Subst, _Proof), Subst).
+tab_comp(proof, tableau(_Goal, _Path, _Lem, _Todos, _Subst, Proof), Proof).
+
+
+hacky_reorder_literals([], []).
+hacky_reorder_literals([C|Cs], [C2|Cs2]):-
+    ( C = [H|Tail], H =.. [p|_] -> append(Tail, [H], C2)
+    ; C=C2
+    ),
+    % sort(C, C2),
+    hacky_reorder_literals(Cs, Cs2).
+                       
+select_nth_literal(LiteralIndex, [[Goal, Path, Lem]|Todos], [Goal1, Path, Lem], Todos):-
+    length(GoalPrefix, LiteralIndex),
+    append(GoalPrefix, [Selected|GoalSuffix], Goal),
+    append([Selected|GoalPrefix], GoalSuffix, Goal1), !.
+select_nth_literal(LiteralIndex, [[Goal, Path, Lem]|Todos], [Goal1, Path1, Lem1], [[Goal, Path, Lem]|Todos1]):-
+    length(Goal, GLen),
+    GLen =< LiteralIndex,
+    LiteralIndex1 is LiteralIndex - GLen,
+    select_nth_literal(LiteralIndex1, Todos, [Goal1, Path1, Lem1], Todos1).
+
+    
+display_tableau(Tableau):-
+    tab_comp(goal, Tableau, Goal),
+    tab_comp(path, Tableau, Path),
+    tab_comp(lem, Tableau, Lem),
+    tab_comp(todos, Tableau, Todos),
+	write("Goal     "), print_term(Goal, [indent_arguments(false)]), nl,
+    length(Path, Plen),
+    length(Lem, Llen),
+    length(Todos, Tlen),
+	write("Path     "), print_term(Plen, [indent_arguments(false)]), nl,
+	write("Lem      "), print_term(Llen, [indent_arguments(false)]), nl,
+	format("Todos    ~w: ", [Tlen]), print_term(Todos, [indent_arguments(false)]), nl.
+
+display_state(state(Tableau, _, _)):-
+    display_tableau(Tableau).

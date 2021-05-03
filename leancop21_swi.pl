@@ -26,8 +26,9 @@
 
 
 :- [def_mm].  % load program for clausal form translation
-:- dynamic(pathlim/0), dynamic(lit/4).
+:- dynamic(pathlim/0), dynamic(lit/7).
 :- dynamic(option/1).
+:- dynamic(all_clauses/1).
 
 %%% prove matrix M / formula F
 
@@ -35,7 +36,7 @@ prove2(F,Proof) :- prove2(F,[cut,comp(7)],Proof).
 
 prove2(F,Set,Proof) :-
     (F=[_|_] -> M=F ; make_matrix(F,M,Set)),
-    retractall(lit(_,_,_,_)), (member([-(#)],M) -> S=conj ; S=pos),
+    retractall(lit(_,_,_,_,_,_,_)), (member([-(#)],M) -> S=conj ; S=pos),
     assert_clauses(M,S),
     retractall(option(_)),
     findall(_, ( member(Se,Set), assert(option(Se)) ), _ ),
@@ -43,7 +44,7 @@ prove2(F,Set,Proof) :-
     
 prove(PathLim,Proof) :-
     \+option(scut) -> prove([-(#)],[],PathLim,[],[Proof]) ;
-    lit(#,_,C,_) -> prove(C,[-(#)],PathLim,[],Proof1),
+    lit(#,_,C,_,_,_,_) -> prove(C,[-(#)],PathLim,[],Proof1),
     Proof=[C|Proof1].
 prove(PathLim,Proof) :-
     option(comp(Limit)), PathLim=Limit ->
@@ -63,7 +64,7 @@ prove([Lit|Cla],Path,PathLim,Lem,Proof) :-
          ;
 
          % collect all candidates for reduction and extension
-         valid_actions(Lit,NegLit,Path,Actions),
+         valid_actions(Lit,NegLit,Path, [ext, red], Actions),
          
          ( option(guidance) ->
                maplist(extract_features,Actions,AFeatures),
@@ -92,36 +93,62 @@ prove([Lit|Cla],Path,PathLim,Lem,Proof) :-
         ( option(cut) -> ! ; true ),
         prove(Cla,Path,PathLim,[Lit|Lem],Proof2).
 
-valid_actions2([],_,[]).
-valid_actions2([Lit|_],Path,Actions):-
+valid_actions2([],_,_,[]).
+valid_actions2([Lit|_],Path,Set,Actions):-
     (-NegLit=Lit;-Lit=NegLit), !,
-    valid_actions(Lit, NegLit,Path,Actions).
+    valid_actions(Lit, NegLit,Path,Set,Actions).
 
-% valid_actions(+Lit, +NegLit,+Path,-Actions)
+% valid_actions(+Lit, +NegLit,+Path,+Settings,-Actions)
 % Actions is all non-deterministic (reduction and extension and paramodulation) steps
-valid_actions(Lit, NegLit,Path,Actions):-
-    select_unifiable(Path,NegLit,Reductions),
-    select_unifiable_contras(NegLit,Extensions),
-    select_paramodulation(Lit,Paramodulations),
+% Settings is a list specifying with actions to collect: [ext, red, para]
+valid_actions(Lit, NegLit,Path,Set,Actions):-
+    ( member(red, Set) ->  select_unifiable(Path,NegLit,Reductions) ; Reductions = [] ),
+    ( member(ext, Set) ->  select_unifiable_contras(NegLit,Extensions) ; Extensions = [] ),
+    ( member(para, Set) -> select_paramodulation(Lit,Paramodulations) ; Paramodulations = [] ),
     append([Reductions,Extensions,Paramodulations],Actions).
 
 %%% write clauses into Prolog's database
-assert_clauses([],_).
-assert_clauses([C|M],Set) :-
-    (Set\=conj, \+member(-_,C) -> C1=[#|C] ; C1=C),
-    (ground(C) -> G=g ; G=n), assert_clauses2(C1,[],G),
-    assert_clauses(M,Set).
+assert_clauses(C, Set):-
+    insert_hashmark(C, Set, C2),
+    assert_clauses1(C2, 0),
+    once(term2list(C2, C3)),
+    assert(all_clauses(C3)).
 
-assert_clauses2([],_,_).
-assert_clauses2([L|C],C1,G) :-
+assert_clauses1([],_).
+assert_clauses1([C|M],Counter) :-
+    copy_term(C,C2), numbervars(C2,0,_), C2=Key, %term_hash(C2, Key),
+    term_variables(C, Vars),
+    (ground(C) -> G=g ; G=n), assert_clauses2(C,[],G, Key, Vars, Counter, Counter1),
+    assert_clauses1(M,Counter1).
+
+assert_clauses2([],_,_,_,_,Counter, Counter).
+assert_clauses2([L|C],C1,G,Key, Vars, Counter, Counter2) :-
     assert_renvar([L],[L2]), append(C1,C,C2), append(C1,[L],C3),
-    assert(lit(L2,L,C2,G)), assert_clauses2(C,C3,G).
+    assert_no_duplicate(lit(L2,L,C2,G,Key,Vars), Counter, Counter1), assert_clauses2(C,C3,G,Key, Vars, Counter1, Counter2).
 
 assert_renvar([],[]).
 assert_renvar([F|FunL],[F1|FunL1]) :-
     ( var(F) -> true ; F=..[Fu|Arg], assert_renvar(Arg,Arg1),
       F1=..[Fu|Arg1] ), assert_renvar(FunL,FunL1).
 
+assert_no_duplicate(lit(L2,L,C2,G,Key,Vars), Counter, Counter1):-
+    Contra = [L|C2], copy_term(Contra, ContraX), numbervars(ContraX),
+    ( lit(_,LY,CY,_,_,_,_), ContraY=[LY|CY], numbervars(ContraY), ContraX == ContraY -> Counter1 = Counter
+    ; assert(lit(L2,L,C2,G,Key,Vars,Counter)),
+      Counter1 is Counter + 1
+    ).
+
+insert_hashmark([], _, []).
+insert_hashmark([C|Cs], Set, [R|Rs]):-
+    ( Set\=conj, \+member(-_,C) -> R=[#|C] ; R=C),
+    insert_hashmark(Cs, Set, Rs).
+                  
+    
+term2list(X,X):- (atomic(X);var(X)),!.
+term2list(L,X):- maplist(term2list,L,X),!.
+term2list(X ^ [],X):- !. %,concat_atom([sss,X],Y).
+term2list(X ^ [H|T],[Y,H1|T1]):- !,concat_atom([sss,X],Y),maplist(term2list,[H|T],[H1|T1]).
+term2list(X,[H|T1]):- X =.. [H|T], maplist(term2list,T,T1).
 
 
 % select_unifiable_reds(List, E, Res):
@@ -134,15 +161,15 @@ select_unifiable([L|List], E, Res):-
     select_unifiable(List,E,Res2).
 
 select_unifiable_contras(E, Contras):-
-    findall( ext(NegL,Cla1,Grnd1), (
-                 lit(E,NegL,Cla1,Grnd1),
+    findall( ext(NegL,Cla1,Grnd1,Key,Vars,Counter), (
+                 lit(E,NegL,Cla1,Grnd1,Key,Vars, Counter),
                  \+(\+(unify_with_occurs_check(E,NegL)))
              ), Contras
            ).
 
 select_paramodulation(Lit, Paramodulations):-
-    findall(para(Pos, LHS, RHS, Cla1, Dir), (
-                                             lit(-(_=_), -(LHS=RHS), Cla1, _Grnd1),
+    findall(para(Pos, LHS, RHS, Cla1, Dir, Key, Vars), (
+                                             lit(-(_=_), -(LHS=RHS), Cla1, _Grnd1,Key,Vars, _),
                                              \+ LHS == RHS,
                                              position(Lit, Pos, Term),
                                              nonvar(Term),

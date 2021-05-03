@@ -178,6 +178,7 @@ symbol_frequencies(TermList, Assoc):-
 
 symbol_frequencies2(Term, Assoc0, Assoc):-
     ( var(Term) -> Assoc = Assoc0
+    ; Term =.. ['$VAR'|_] -> Assoc = Assoc0
     ; atomic(Term) -> bag_insert(Term, Assoc0, Assoc)
     ; Term =.. [H|T],
       bag_insert(H, Assoc0, Assoc1),

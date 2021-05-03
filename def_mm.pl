@@ -1,18 +1,18 @@
-%% File: def_mm.pl  -  Version: 1.01  -  Date: 07 June 2007
+%% File: leancop_defmm.pl  -  Version: 1.2beta8  -  Date: 3 July 2015
 %%
 %% Purpose: Transform first-order formulae into clausal form
 %%
 %% Author:  Jens Otten
 %% Web:     www.leancop.de
 %%
-%% Usage:   make_matrix(F,M,S).  % where F is a first-order formula,
+%% Usage:   make_matrix(F,S,M).  % where F is a first-order formula,
 %%                               % S is a list of settings, and M is
 %%                               % the (definitional) clausal form
 %%
-%% Example: make_matrix(ex Y: (all X: ((p(Y) => p(X))) ),Matrix,[]).
+%% Example: make_matrix(ex Y: (all X: ((p(Y) => p(X))) ),[],Matrix).
 %%          Matrix = [[-(p(X1))], [p(1 ^ [X1])]]
 %%
-%% Copyright: (c) 1999-2007 by Jens Otten
+%% Copyright: (c) 1999-2015 by Jens Otten
 %% License:   GNU General Public License
 
 
@@ -29,7 +29,7 @@
 
 
 % ------------------------------------------------------------------
-%  make_matrix(+Fml,-Matrix,+Settings)
+%  make_matrix(+Fml,+Setting,-Matrix)
 %    -  transform first-order formula into set of clauses (matrix)
 %
 %  Fml, Matrix: first-order formula and matrix
@@ -46,23 +46,29 @@
 %      quantifier 'all X:<Formula>'/'ex X:<Formula>' where 'X' is a
 %      Prolog variable, and atomic formulae are Prolog atoms.
 %
-%  Example: make_matrix(ex Y:(all X:((p(Y) => p(X)))),Matrix,[]).
+%  Example: make_matrix(ex Y:(all X:((p(Y) => p(X)))),[],Matrix).
 %           Matrix = [[-(p(X1))], [p(1 ^ [X1])]]
 
-make_matrix(Fml,Matrix,Set) :-
-    univar(Fml,[],F1),
+make_matrix(Fml,Set,Matrix) :- make_matrix(Fml,Set,Matrix,_).
+
+make_matrix(Fml,Set,Matrix,MatSource) :-
+    univar(Fml,[],F3),
+    ( F3=Source^(A3=>C3) -> F1=(Source^A3=>Source^C3) ; F1=F3 ),
     ( member(conj,Set), F1=(A=>C) -> F2=((A,#)=>(#,C)) ; F2=F1 ),
     ( member(nodef,Set) ->
        def_nnf(F2,NNF,1,_,nnf), dnf(NNF,DNF)
        ;
        \+member(def,Set), F2=(B=>D) ->
-        def_nnf(~(B),NNF,1,I,nnf), dnf(NNF,DNF1),
-        def_nnf(D,DNF2,I,_,def), DNF=(DNF2;DNF1)
+        def_nnf(~(B),NNF,1,J,nnf), dnf(NNF,DNF1),
+        def_nnf(D,DNF2,J,_,def), DNF=(DNF2;DNF1)
         ;
         def_nnf(F2,DNF,1,_,def)
     ),
     mat(DNF,M),
-    ( member(reo(I),Set) -> mreorder(M,Matrix,I) ; Matrix=M ).
+    ( member(reo(I),Set) -> mreorder(M,M1,I) ; M1=M ),
+    ( member(lit_reo(J), Set) -> lreorder(M1, M2, J) ; M2 = M1),
+    ( \+ (member(Cla,M2), member((0^_),Cla)) ->  Matrix=M2,
+      MatSource=[] ; mat_source(M2,Matrix,MatSource) ).
 
 % ------------------------------------------------------------------
 %  def_nnf(+Fml,-DEF)  -  transform formula into a definitional
@@ -72,12 +78,14 @@ make_matrix(Fml,Matrix,Set) :-
 %  Example: def_nnf(ex Y:(all X:((p(Y) => p(X)))),DEF,def).
 %           DEF = ~ p(X1) ; p(1 ^ [X1])
 
-def_nnf(Fml,DEF,I,I1,Set) :-
-    def(Fml,[],NNF,DEF1,_,I,I1,Set), def(DEF1,NNF,DEF).
+def_nnf(Fml,DEF,I,I1,Set) :- def(Fml,[],NNF,DEF1,_,I,I1,Set),
+                             dnf(NNF,DEF2), def(DEF1,DEF2,DEF,[]).
 
-def([],Fml,Fml).
-def([(A,(B;C))|DefL],DEF,Fml) :- !, def([(A,B),(A,C)|DefL],DEF,Fml).
-def([A|DefL],DEF,Fml) :- def(DefL,(A;DEF),Fml).
+def([],Fml,Fml,_).
+def([0^Src^D|DL],F,Fml,_) :- !, append(D,DL,L1), def(L1,F,Fml,Src).
+def([(A,(B;C))|DL],F,Fml,Src) :- !, def([(A,B),(A,C)|DL],F,Fml,Src).
+def([A|DL],F,Fml,[]) :- !, def(DL,(A;F),Fml,[]).
+def([A|DL],F,Fml,Src) :- def(DL,(((0^Src),A);F),Fml,Src).
 
 def(Fml,FreeV,NNF,DEF,Paths,I,I1,Set) :-
     ( Fml = ~(~A)      -> Fml1 = A;
@@ -98,9 +106,6 @@ def((ex X:F),FreeV,NNF,DEF,Paths,I,I1,Set) :- !,
 
 def((all X:Fml),FreeV,NNF,DEF,Paths,I,I1,Set) :- !,
     copy_term((X,Fml,FreeV),((I^FreeV),Fml1,FreeV)), I2 is I+1,
-	% length(FreeV,LFreeV), concat_atom([esk, I, '_',LFreeV], Esk),
-	%       Eskt=..[Esk|FreeV],
-    % copy_term((X,Fml,FreeV),((Eskt),Fml1,FreeV)), I2 is I+1,
     def(Fml1,FreeV,NNF,DEF,Paths,I2,I1,Set).
 
 def((A ; B),FreeV,NNF,DEF,Paths,I,I1,Set) :- !,
@@ -113,26 +118,21 @@ def((A ; B),FreeV,NNF,DEF,Paths,I,I1,Set) :- !,
 def((A , B),FreeV,NNF,DEF,Paths,I,I1,Set) :- !,
     def(A,FreeV,NNF3,DEF3,Paths1,I,I2,Set),
     ( NNF3=(_;_), Set=def -> append([(~I2^FreeV,NNF3)],DEF3,DEF1),
-     NNF1=I2^FreeV, I3 is I2+1 ;
-    % ( NNF3=(_;_), Set=def ->
-    %   length(FreeV,LFreeV), concat_atom([esk, I2, '_',LFreeV], Esk),
-    %   Eskt=..[Esk|FreeV],
-    %   append([(~Eskt,NNF3)],DEF3,DEF1),
-    %                          NNF1=Eskt, I3 is I2+1 ;
+                             NNF1=I2^FreeV, I3 is I2+1 ;
                              DEF1=DEF3, NNF1=NNF3, I3 is I2 ),
     def(B,FreeV,NNF4,DEF4,Paths2,I3,I4,Set),
     ( NNF4=(_;_), Set=def -> append([(~I4^FreeV,NNF4)],DEF4,DEF2),
-                                  NNF2=I4^FreeV, I1 is I4+1 ;
-%     ( NNF4=(_;_), Set=def ->
-% %      atom_concat(esk_, I4, Esk),
-%       length(FreeV,LFreeV), concat_atom([esk, I4, '_',LFreeV], Esk),
-%       Eskt=..[Esk|FreeV],
-%       append([(~Eskt,NNF4)],DEF4,DEF2),
-%                              NNF2=Eskt, I1 is I4+1 ;
+                             NNF2=I4^FreeV, I1 is I4+1 ;
                              DEF2=DEF4, NNF2=NNF4, I1 is I4 ),
     append(DEF1,DEF2,DEF), Paths is Paths1 + Paths2,
     (Paths1 > Paths2 -> NNF = (NNF2,NNF1);
                         NNF = (NNF1,NNF2)).
+
+def(~(Src^F),FreeV,((0^Src),NNF),[0^Src^DEF],Paths,I,I1,Set) :- !,
+    def(~(F),FreeV,NNF,DEF,Paths,I,I1,Set).
+
+def(Src^F,FreeV,((0^Src),NNF),[0^Src^DEF],Paths,I,I1,Set) :- !,
+    def(F,FreeV,NNF,DEF,Paths,I,I1,Set).
 
 def(Lit,_,Lit,[],1,I,I,_).
 
@@ -161,6 +161,11 @@ mat((A;B),M) :- !, mat(A,MA), mat(B,MB), append(MA,MB,M).
 mat((A,B),M) :- !, (mat(A,[CA]),mat(B,[CB]) -> union2(CA,CB,M);M=[]).
 mat(~Lit,[[-Lit]]) :- !.
 mat(Lit,[[Lit]]).
+
+mat_source([],[],[]).
+mat_source([[-(#)]|M],[[-(#)]|M1],MS) :- !, mat_source(M,M1,MS).
+mat_source([C|M],[C1|M1],[Src|MS]) :-
+    append(C2,[0^Src|C3],C) -> append(C2,C3,C1), mat_source(M,M1,MS).
 
 % ------------------------------------------------------------------
 %  univar(+Fml,[],-Fml1)  -  rename variables
@@ -198,9 +203,19 @@ delete2([X|T],Y,[X|T1]) :- delete2(T,Y,T1).
 
 mreorder(M,M,0) :- !.
 mreorder(M,M1,I) :-
-    length(M,L), K is L//3, append(A,D,M), length(A,K),
-    append(B,C,D), length(C,K), mreorder2(C,A,B,M2), I1 is I-1,
-    mreorder(M2,M1,I1).
+    length(M,L), K is L//3, mreorder1(M,A,D,K), mreorder1(D,B,C,K),
+    mreorder2(C,A,B,M2), I1 is I-1, mreorder(M2,M1,I1).
 
-mreorder2([],[],C,C).
+mreorder1(M,[],M,0) :- !.
+mreorder1([C|M],[C|M1],M2,I) :- I1 is I-1, mreorder1(M,M1,M2,I1).
+
+mreorder2(C,[],[],C).
 mreorder2([A|A1],[B|B1],[C|C1],[A,B,C|M1]) :- mreorder2(A1,B1,C1,M1).
+
+% ------------------------------------------------------------------
+%  lreorder - reorder literals
+
+lreorder([], [], _).
+lreorder([A|As], [B|Bs], I):-
+    mreorder(A, B, I),
+    lreorder(As, Bs, I).
